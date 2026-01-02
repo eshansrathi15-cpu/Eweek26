@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Film } from 'lucide-react';
 
 const Footer = () => {
   const [isLaunching, setIsLaunching] = useState(false);
@@ -29,19 +30,36 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-16 border-t border-border relative">
+    <footer className="py-16 border-t border-border relative bg-background">
+      {/* Film credits style border */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-6">
+        <Film className="w-6 h-6 text-muted-foreground" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-6">
+        {/* End Credits Style */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <p className="text-xs font-mono text-muted-foreground tracking-widest mb-2">— THE END —</p>
+          <p className="text-sm text-muted-foreground">No events were harmed in the making of this website.</p>
+        </motion.div>
+
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           {/* Logo & Info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 border-2 border-foreground flex items-center justify-center">
-                <span className="font-mono text-sm font-bold">E</span>
+            <div className="flex items-center gap-3 mb-4">
+              <Film className="w-6 h-6 text-primary" />
+              <div>
+                <span className="font-mono text-lg font-bold">E-WEEK 2026</span>
+                <p className="text-[10px] text-muted-foreground tracking-widest">A BITS PILANI PRODUCTION</p>
               </div>
-              <span className="font-mono text-lg font-bold">E-WEEK 2026</span>
             </div>
             <p className="text-muted-foreground text-sm">
-              The premier entrepreneurship week at BITS Pilani.
+              The premier entrepreneurship week.
               <br />
               February 9-15, 2026.
             </p>
@@ -49,7 +67,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-mono font-bold mb-4">QUICK LINKS</h4>
+            <h4 className="font-mono font-bold mb-4 text-sm tracking-wider">QUICK LINKS</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
               <li><a href="#" className="hover:text-primary transition-colors">About E-Week</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Events</a></li>
@@ -60,18 +78,22 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-mono font-bold mb-4">CONNECT</h4>
+            <h4 className="font-mono font-bold mb-4 text-sm tracking-wider">CONNECT</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
               <li>eweek@bits-pilani.ac.in</li>
-              <li>Instagram | Twitter | LinkedIn</li>
+              <li className="flex gap-3">
+                <a href="#" className="hover:text-primary transition-colors">Instagram</a>
+                <a href="#" className="hover:text-primary transition-colors">Twitter</a>
+                <a href="#" className="hover:text-primary transition-colors">LinkedIn</a>
+              </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border">
-          <p className="text-muted-foreground text-sm">
-            © 2026 E-Week, BITS Pilani. All rights reserved.
+          <p className="text-muted-foreground text-xs font-mono">
+            © 2026 E-WEEK, BITS PILANI. ALL RIGHTS RESERVED.
           </p>
 
           {/* Rocket Easter Egg */}
@@ -80,7 +102,7 @@ const Footer = () => {
               onClick={handleRocketClick}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="relative z-10"
+              className="relative z-10 group"
               aria-label="Launch rocket to scroll to top"
             >
               <motion.svg
@@ -96,7 +118,7 @@ const Footer = () => {
                 <path
                   d="M20 5 L30 25 L30 45 L25 50 L25 40 L20 45 L15 40 L15 50 L10 45 L10 25 Z"
                   className={`transition-colors duration-300 ${
-                    isLaunching ? 'fill-primary' : 'fill-none'
+                    isLaunching ? 'fill-primary' : 'fill-none group-hover:fill-primary/20'
                   }`}
                   stroke="currentColor"
                   strokeWidth="2"
@@ -116,6 +138,9 @@ const Footer = () => {
                 <path d="M10 35 L5 45 L10 45" stroke="currentColor" strokeWidth="2" fill="none" />
                 <path d="M30 35 L35 45 L30 45" stroke="currentColor" strokeWidth="2" fill="none" />
               </motion.svg>
+              <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-mono text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                LAUNCH
+              </span>
             </motion.button>
 
             {/* Particles */}
@@ -132,6 +157,13 @@ const Footer = () => {
               ))}
             </AnimatePresence>
           </div>
+        </div>
+
+        {/* Credits roll style */}
+        <div className="mt-8 pt-6 border-t border-border/50 text-center">
+          <p className="text-[10px] font-mono text-muted-foreground/50 tracking-widest">
+            DIRECTED BY CEL • PRODUCED BY BITS PILANI • SCREENPLAY BY THE E-WEEK TEAM
+          </p>
         </div>
       </div>
     </footer>

@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain">
       {/* Interactive Scanline Background */}
       <WaveformBackground />
 
