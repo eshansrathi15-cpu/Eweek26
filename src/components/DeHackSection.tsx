@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Terminal, Zap, Clock, Film } from 'lucide-react';
+import { Terminal, Clock, Film, DollarSign } from 'lucide-react';
 const DeHackSection = () => {
   return <section id="features" className="py-24 relative overflow-hidden">
       {/* Glitch Lines Background */}
@@ -53,7 +53,7 @@ const DeHackSection = () => {
                 <span className="text-foreground font-mono text-sm">5 DAYS</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-2 bg-secondary/30">
-                <Zap className="w-5 h-5 text-primary" />
+                <DollarSign className="w-5 h-5 text-primary" />
                 <span className="text-foreground font-mono text-sm">₹1L+ PRIZES</span>
               </div>
             </div>

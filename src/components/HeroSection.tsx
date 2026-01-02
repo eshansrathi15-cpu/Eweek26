@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Play, Star } from 'lucide-react';
+import { Play, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 const HeroSection = () => {
   return <section className="min-h-screen flex flex-col items-center justify-center relative px-6 pt-20 spotlight vignette">
       {/* Cinema Curtain Accents */}
@@ -28,9 +28,9 @@ const HeroSection = () => {
         duration: 0.6,
         delay: 0.3
       }} className="inline-flex items-center gap-2 mb-6 px-4 py-2 border border-primary/50 bg-primary/10">
-          <Star className="w-4 h-4 text-primary fill-primary" />
+          <ChevronLeft className="w-4 h-4 text-primary fill-primary" />
           <span className="font-mono text-sm text-primary tracking-widest">CEL Presents</span>
-          <Star className="w-4 h-4 text-primary fill-primary" />
+          <ChevronRight className="w-4 h-4 text-primary fill-primary" />
         </motion.div>
 
         {/* Main Title */}
