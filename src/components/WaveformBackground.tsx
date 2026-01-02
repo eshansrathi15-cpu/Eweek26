@@ -1,102 +1,151 @@
 import { useEffect, useRef, useCallback } from 'react';
 
-interface Line {
+interface Tile {
+  x: number;
   y: number;
-  points: { x: number; displacement: number; velocity: number }[];
+  baseX: number;
+  baseY: number;
+  z: number;
+  velocity: number;
+  targetZ: number;
 }
 
 const WaveformBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const linesRef = useRef<Line[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const tilesRef = useRef<Tile[]>([]);
+  const mouseRef = useRef({ x: -1000, y: -1000 });
   const animationRef = useRef<number>();
 
-  const LINE_SPACING = 40;
-  const POINT_SPACING = 10;
-  const INFLUENCE_RADIUS = 120;
-  const SPRING_TENSION = 0.03;
-  const DAMPING = 0.92;
-  const MAX_DISPLACEMENT = 25;
+  const GRID_SIZE = 60;
+  const PERSPECTIVE = 0.4;
+  const INFLUENCE_RADIUS = 200;
+  const MAX_LIFT = 40;
+  const SPRING_TENSION = 0.08;
+  const DAMPING = 0.85;
 
-  const initLines = useCallback((width: number, height: number) => {
-    const lines: Line[] = [];
-    const numLines = Math.ceil(height / LINE_SPACING) + 1;
-    const numPoints = Math.ceil(width / POINT_SPACING) + 1;
+  const initTiles = useCallback((width: number, height: number) => {
+    const tiles: Tile[] = [];
+    const cols = Math.ceil(width / GRID_SIZE) + 4;
+    const rows = Math.ceil(height / GRID_SIZE) + 4;
+    const offsetX = -GRID_SIZE * 2;
+    const offsetY = -GRID_SIZE * 2;
 
-    for (let i = 0; i < numLines; i++) {
-      const points = [];
-      for (let j = 0; j < numPoints; j++) {
-        points.push({
-          x: j * POINT_SPACING,
-          displacement: 0,
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const x = offsetX + col * GRID_SIZE;
+        const y = offsetY + row * GRID_SIZE;
+        tiles.push({
+          x,
+          y,
+          baseX: x,
+          baseY: y,
+          z: 0,
           velocity: 0,
+          targetZ: 0,
         });
       }
-      lines.push({ y: i * LINE_SPACING, points });
     }
-    return lines;
+    return tiles;
   }, []);
 
   const updatePhysics = useCallback(() => {
-    const lines = linesRef.current;
+    const tiles = tilesRef.current;
     const mouse = mouseRef.current;
 
-    lines.forEach((line) => {
-      line.points.forEach((point) => {
-        // Calculate distance from mouse
-        const dx = point.x - mouse.x;
-        const dy = line.y + point.displacement - mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    tiles.forEach((tile) => {
+      // Calculate distance from mouse to tile center
+      const tileCenterX = tile.baseX + GRID_SIZE / 2;
+      const tileCenterY = tile.baseY + GRID_SIZE / 2;
+      const dx = tileCenterX - mouse.x;
+      const dy = tileCenterY - mouse.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Apply mouse influence
-        if (distance < INFLUENCE_RADIUS && distance > 0) {
-          const force = (1 - distance / INFLUENCE_RADIUS) * 2;
-          const angle = Math.atan2(dy, dx);
-          point.velocity += Math.sin(angle) * force * 0.5;
-        }
+      // Calculate target Z based on mouse proximity
+      if (distance < INFLUENCE_RADIUS) {
+        const influence = 1 - distance / INFLUENCE_RADIUS;
+        const smoothInfluence = influence * influence * (3 - 2 * influence); // Smoothstep
+        tile.targetZ = MAX_LIFT * smoothInfluence;
+      } else {
+        tile.targetZ = 0;
+      }
 
-        // Spring physics - pull back to rest
-        const springForce = -point.displacement * SPRING_TENSION;
-        point.velocity += springForce;
+      // Spring physics
+      const springForce = (tile.targetZ - tile.z) * SPRING_TENSION;
+      tile.velocity += springForce;
+      tile.velocity *= DAMPING;
+      tile.z += tile.velocity;
 
-        // Apply damping
-        point.velocity *= DAMPING;
-
-        // Update displacement
-        point.displacement += point.velocity;
-
-        // Clamp displacement
-        point.displacement = Math.max(-MAX_DISPLACEMENT, Math.min(MAX_DISPLACEMENT, point.displacement));
-      });
+      // Clamp very small values to 0
+      if (Math.abs(tile.z) < 0.01 && Math.abs(tile.velocity) < 0.01) {
+        tile.z = 0;
+        tile.velocity = 0;
+      }
     });
+  }, []);
+
+  const projectPoint = useCallback((x: number, y: number, z: number, height: number) => {
+    // Simple perspective projection
+    const vanishY = height * 0.3;
+    const scale = 1 + (y - vanishY) * PERSPECTIVE / height;
+    const projectedY = y - z * scale;
+    return { x, y: projectedY, scale };
   }, []);
 
   const draw = useCallback((ctx: CanvasRenderingContext2D, width: number, height: number) => {
     ctx.clearRect(0, 0, width, height);
     
-    const lines = linesRef.current;
+    const tiles = tilesRef.current;
+    const cols = Math.ceil(width / GRID_SIZE) + 4;
 
-    lines.forEach((line) => {
-      ctx.beginPath();
-      ctx.strokeStyle = '#2A2A2A';
-      ctx.lineWidth = 1;
+    // Draw grid lines
+    tiles.forEach((tile, index) => {
+      const { x, y: projY } = projectPoint(tile.baseX, tile.baseY, tile.z, height);
+      const rightTile = tiles[index + 1];
+      const bottomTile = tiles[index + cols];
 
-      line.points.forEach((point, index) => {
-        const y = line.y + point.displacement;
-        if (index === 0) {
-          ctx.moveTo(point.x, y);
-        } else {
-          // Smooth curve through points
-          const prev = line.points[index - 1];
-          const prevY = line.y + prev.displacement;
-          const cpX = (prev.x + point.x) / 2;
-          ctx.quadraticCurveTo(prev.x, prevY, cpX, (prevY + y) / 2);
-        }
-      });
+      // Calculate glow intensity based on Z height
+      const glowIntensity = Math.min(tile.z / MAX_LIFT, 1);
+      
+      // Interpolate color from dark gray to yellow
+      const r = Math.round(42 + (255 - 42) * glowIntensity);
+      const g = Math.round(42 + (230 - 42) * glowIntensity);
+      const b = Math.round(42 + (0 - 42) * glowIntensity);
+      
+      ctx.strokeStyle = `rgb(${r}, ${g}, ${b})`;
+      ctx.lineWidth = glowIntensity > 0.1 ? 1.5 + glowIntensity : 1;
 
-      ctx.stroke();
+      // Add glow effect for lifted tiles
+      if (glowIntensity > 0.1) {
+        ctx.shadowColor = `rgba(255, 230, 0, ${glowIntensity * 0.8})`;
+        ctx.shadowBlur = 10 * glowIntensity;
+      } else {
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+      }
+
+      // Draw horizontal line to right neighbor
+      if (rightTile && (index + 1) % cols !== 0) {
+        const { x: rx, y: rProjY } = projectPoint(rightTile.baseX, rightTile.baseY, rightTile.z, height);
+        ctx.beginPath();
+        ctx.moveTo(x, projY);
+        ctx.lineTo(rx, rProjY);
+        ctx.stroke();
+      }
+
+      // Draw vertical line to bottom neighbor
+      if (bottomTile) {
+        const { x: bx, y: bProjY } = projectPoint(bottomTile.baseX, bottomTile.baseY, bottomTile.z, height);
+        ctx.beginPath();
+        ctx.moveTo(x, projY);
+        ctx.lineTo(bx, bProjY);
+        ctx.stroke();
+      }
     });
-  }, []);
+
+    // Reset shadow for next frame
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+  }, [projectPoint]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -108,11 +157,15 @@ const WaveformBackground = () => {
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      linesRef.current = initLines(canvas.width, canvas.height);
+      tilesRef.current = initTiles(canvas.width, canvas.height);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current = { x: -1000, y: -1000 };
     };
 
     const animate = () => {
@@ -124,16 +177,18 @@ const WaveformBackground = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
     animate();
 
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [initLines, updatePhysics, draw]);
+  }, [initTiles, updatePhysics, draw]);
 
   return (
     <canvas
