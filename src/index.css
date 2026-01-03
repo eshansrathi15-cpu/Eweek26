@@ -19,47 +19,47 @@
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
 
-    /* Primary - Electric Blue */
-    --primary: 217 100% 55%;
+    /* Primary - Ocean Blue */
+    --primary: 201 31% 53%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Dark Grey */
-    --secondary: 0 0% 20%;
+    /* Secondary - Deep Navy */
+    --secondary: 215 42% 31%;
     --secondary-foreground: 0 0% 100%;
 
     /* Muted */
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 215 42% 20%;
+    --muted-foreground: 201 31% 70%;
 
-    /* Accent */
-    --accent: 217 100% 55%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Bright Cyan */
+    --accent: 184 87% 86%;
+    --accent-foreground: 215 42% 20%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 217 100% 55%;
+    --border: 215 42% 25%;
+    --input: 215 42% 25%;
+    --ring: 184 87% 86%;
 
     --radius: 0px;
 
     /* Scanline color */
-    --scanline: 0 0% 16%;
-    --scanline-active: 217 100% 55%;
+    --scanline: 215 42% 20%;
+    --scanline-active: 184 87% 86%;
 
     /* Custom shadows */
-    --shadow-hard: 4px 4px 0px hsl(217 100% 55%);
+    --shadow-hard: 4px 4px 0px hsl(184 87% 86%);
     --shadow-hard-white: 4px 4px 0px hsl(0 0% 100%);
 
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 217 100% 55%;
+    --sidebar-primary: 201 31% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent: 215 42% 25%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 217 100% 55%;
+    --sidebar-border: 215 42% 25%;
+    --sidebar-ring: 184 87% 86%;
   }
 
   .dark {
@@ -69,27 +69,27 @@
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
-    --primary: 217 100% 55%;
+    --primary: 201 31% 53%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 20%;
+    --secondary: 215 42% 31%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 217 100% 55%;
-    --accent-foreground: 0 0% 100%;
+    --muted: 215 42% 20%;
+    --muted-foreground: 201 31% 70%;
+    --accent: 184 87% 86%;
+    --accent-foreground: 215 42% 20%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 217 100% 55%;
+    --border: 215 42% 25%;
+    --input: 215 42% 25%;
+    --ring: 184 87% 86%;
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 217 100% 55%;
+    --sidebar-primary: 201 31% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent: 215 42% 25%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 217 100% 55%;
+    --sidebar-border: 215 42% 25%;
+    --sidebar-ring: 184 87% 86%;
   }
 }
 
@@ -113,7 +113,7 @@
 
 @layer utilities {
   .text-shadow-glow {
-    text-shadow: 0 0 20px hsl(217 100% 55% / 0.5);
+    text-shadow: 0 0 20px hsl(184 87% 86% / 0.5);
   }
 
   .animate-glitch {
@@ -154,7 +154,7 @@
   }
 
   .marquee-border {
-    background-image: radial-gradient(circle, hsl(217 100% 55%) 2px, transparent 2px);
+    background-image: radial-gradient(circle, hsl(184 87% 86%) 2px, transparent 2px);
     background-size: 20px 20px;
     animation: marquee-lights 1.5s ease-in-out infinite;
   }
@@ -176,8 +176,8 @@
       to right,
       transparent,
       transparent 20px,
-      hsl(217 100% 55%) 20px,
-      hsl(217 100% 55%) 30px,
+      hsl(184 87% 86%) 20px,
+      hsl(184 87% 86%) 30px,
       transparent 30px,
       transparent 50px
     );
@@ -187,7 +187,7 @@
   .spotlight {
     background: radial-gradient(
       ellipse 600px 400px at var(--spotlight-x, 50%) var(--spotlight-y, 30%),
-      hsl(217 100% 55% / 0.05) 0%,
+      hsl(184 87% 86% / 0.05) 0%,
       transparent 70%
     );
   }
