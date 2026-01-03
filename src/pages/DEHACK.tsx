@@ -68,4 +68,38 @@ const Dehack = () => {
             <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-primary" />
             
             {/* UPDATED MANIFESTO TITLE */}
-            <h
+            <h3 className="text-primary font-mono mb-6 flex items-center gap-2">
+              <Terminal className="w-5 h-5" /> DEHACK_MANIFESTO.txt
+            </h3>
+            
+            <div className="space-y-6 font-mono text-sm">
+              <div className="border-l-2 border-primary/30 pl-4">
+                <p className="text-primary font-bold mb-1">01. THE PROBLEM</p>
+                {/* UPDATED PROBLEM TEXT */}
+                <p className="text-muted-foreground">Innovation is trapped in theory. Great ideas lack the grit of a prototype and the clarity of a business case.</p>
+              </div>
+              
+              <div className="border-l-2 border-primary/30 pl-4">
+                <p className="text-primary font-bold mb-1">02. THE CHALLENGE</p>
+                {/* UPDATED CHALLENGE TEXT */}
+                <p className="text-muted-foreground">54 Hours. Zero to founder in one weekend.</p>
+              </div>
+
+              <div className="border-l-2 border-primary/30 pl-4">
+                <p className="text-primary font-bold mb-1">03. THE OUTPUT</p>
+                {/* UPDATED OUTPUT TEXT */}
+                <p className="text-muted-foreground">Functional prototypes. Investor-ready decks. Transition from student to builder.</p>
+              </div>
+            </div>
+
+            <Button className="w-full mt-10 bg-primary text-black hover:bg-primary/90 font-bold tracking-widest uppercase py-6">
+              Establish Connection
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dehack;
