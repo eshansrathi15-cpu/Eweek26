@@ -1,12 +1,45 @@
-import { Link } from "react-router-dom";
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from '@/components/ui/button';
-import { Terminal, Clock, Film, DollarSign } from 'lucide-react';
+import { Terminal, Clock, Film, DollarSign, Rocket } from 'lucide-react';
 
 const DeHackSection = () => {
+  const [isLaunching, setIsLaunching] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLaunch = () => {
+    setIsLaunching(true);
+    // 1.5 second vertical blast-off before navigating
+    setTimeout(() => {
+      navigate("/dehack");
+    }, 1500);
+  };
+
   return (
     <section id="features" className="py-24 relative overflow-hidden">
-      {/* Glitch Lines Background */}
+      {/* ROCKET OVERLAY: Triggered ONLY after pressing INITIALIZE */}
+      <AnimatePresence>
+        {isLaunching && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1000] bg-black flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ y: 400, opacity: 0 }}
+              animate={{ y: [400, 0, -600], opacity: [0, 1, 0] }}
+              transition={{ duration: 1.5, ease: "easeIn" }}
+              className="text-primary"
+            >
+              <Rocket size={100} className="-rotate-45" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 100% RESTORED ORIGINAL DESIGN */}
       <div className="absolute inset-0 opacity-10">
         {[...Array(20)].map((_, i) => (
           <motion.div 
@@ -27,14 +60,12 @@ const DeHackSection = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }} 
             whileInView={{ opacity: 1, x: 0 }} 
             viewport={{ once: true }} 
             transition={{ duration: 0.8 }}
           >
-            {/* Film badge */}
             <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 border border-primary/30 bg-primary/5">
               <Film className="w-4 h-4 text-primary" />
               <span className="text-primary font-mono text-xs tracking-widest">FEATURE PRESENTATION</span>
@@ -60,20 +91,25 @@ const DeHackSection = () => {
               </div>
             </div>
 
-            {/* THE WORKING LINKED BUTTON */}
-            <Link to="/dehack">
-              <Button variant="outline" size="lg" className="text-lg group">
-                <Terminal className="w-5 h-5 mr-2" />
-                <span className="group-hover:text-primary transition-colors">INITIALIZE</span>
-                <motion.span 
-                  className="ml-2" 
-                  animate={{ x: [0, 5, 0] }} 
-                  transition={{ duration: 1, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleLaunch} 
+              variant="outline" 
+              size="lg" 
+              className="text-lg group"
+              disabled={isLaunching}
+            >
+              <Terminal className="w-5 h-5 mr-2" />
+              <span className="group-hover:text-primary transition-colors">
+                {isLaunching ? "LAUNCHING..." : "INITIALIZE"}
+              </span>
+              <motion.span 
+                className="ml-2" 
+                animate={{ x: [0, 5, 0] }} 
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                →
+              </motion.span>
+            </Button>
           </motion.div>
 
           {/* Visual Element - Director's Monitor Style */}
@@ -85,7 +121,6 @@ const DeHackSection = () => {
             className="relative"
           >
             <div className="aspect-square border-2 border-foreground relative overflow-hidden bg-background">
-              {/* Monitor frame */}
               <div className="absolute top-0 left-0 right-0 h-8 bg-secondary/50 border-b border-border flex items-center px-3 gap-2">
                 <div className="w-2 h-2 rounded-full bg-destructive" />
                 <div className="w-2 h-2 rounded-full bg-primary" />
@@ -97,7 +132,6 @@ const DeHackSection = () => {
                 </div>
               </div>
 
-              {/* Code Animation */}
               <div className="font-mono text-sm text-muted-foreground space-y-2 overflow-hidden p-6 pt-12">
                 {[
                   '> initializing hackathon...', 
@@ -129,12 +163,10 @@ const DeHackSection = () => {
                 ))}
               </div>
 
-              {/* Timecode overlay */}
               <div className="absolute bottom-4 right-4 font-mono text-xs text-primary/70">
                 TC 00:00:00:00
               </div>
 
-              {/* Corner Accents */}
               <div className="absolute top-8 left-0 w-8 h-8 border-t-4 border-l-4 border-primary" />
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary" />
             </div>
