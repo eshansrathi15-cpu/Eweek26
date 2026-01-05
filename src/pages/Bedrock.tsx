@@ -15,7 +15,7 @@ const Bedrock = () => {
         {/* Back to Home Button */}
         <Link 
           to="/" 
-          className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-background/80 backdrop-blur-sm border border-primary/30 text-primary hover:bg-primary/10 transition-colors font-mono text-sm"
+          className="fixed top-24 left-6 z-[70] flex items-center gap-2 px-4 py-2 bg-background/80 backdrop-blur-sm border border-primary/30 text-primary hover:bg-primary/10 transition-colors font-mono text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Home
