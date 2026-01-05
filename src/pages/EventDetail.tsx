@@ -54,6 +54,24 @@ const EventDetail = () => {
         );
     }
 
+    const renderTitle = (title: string) => {
+        if (title.toUpperCase() === 'DEHACK') {
+            return (
+                <>
+                    DE<span className="text-primary text-shadow-glow">HACK</span>
+                </>
+            );
+        }
+        if (title.toUpperCase() === 'BEDROCK') {
+            return (
+                <>
+                    BED<span className="text-primary text-shadow-glow">ROCK</span>
+                </>
+            );
+        }
+        return title;
+    };
+
     return (
         <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain">
             <WaveformBackground />
@@ -68,41 +86,103 @@ const EventDetail = () => {
                         BACK TO LIST
                     </Link>
 
-                    {/* Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mb-12"
-                    >
-                        <div className="flex items-center gap-4 mb-4">
-                            <span className="bg-primary/10 text-primary border border-primary/20 px-3 py-1 text-xs font-mono tracking-widest">
-                                {event.category}
-                            </span>
-                            <span className="border border-foreground px-2 py-0.5 text-xs font-bold">
-                                {event.rating}
-                            </span>
-                        </div>
-                        <h1 className="text-5xl md:text-7xl font-mono font-bold text-foreground mb-6 uppercase">
-                            {event.title}
-                        </h1>
-                        <p className="text-xl md:text-2xl text-muted-foreground font-sans max-w-3xl">
-                            {event.fullDescription}
-                        </p>
-                    </motion.div>
+                    {/* Hero Section: Title, Info, Actions */}
+                    <div className="grid lg:grid-cols-2 gap-12 mb-16">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                        >
+                            <div className="flex items-center gap-4 mb-4">
+                                <span className="bg-primary/10 text-primary border border-primary/20 px-3 py-1 text-xs font-mono tracking-widest">
+                                    {event.category}
+                                </span>
+                                <span className="border border-foreground px-2 py-0.5 text-xs font-bold">
+                                    {event.rating}
+                                </span>
+                            </div>
+                            <h1 className="text-6xl md:text-8xl font-mono font-bold text-foreground mb-6 uppercase tracking-tighter">
+                                {renderTitle(event.title)}
+                            </h1>
+                            <p className="text-xl text-muted-foreground font-sans max-w-xl mb-8 leading-relaxed">
+                                {event.fullDescription}
+                            </p>
+
+                            {/* Key Info: Date & Venue (if available, otherwise placeholders/derived) */}
+                            <div className="flex flex-wrap gap-6 mb-8 text-sm font-mono text-muted-foreground">
+                                {event.timeline.length > 0 && (
+                                    <div className="flex items-center gap-2">
+                                        <Calendar className="w-4 h-4 text-primary" />
+                                        <span>{new Date(event.timeline[0].datetime).toLocaleDateString()}</span>
+                                    </div>
+                                )}
+                                <div className="flex items-center gap-2">
+                                    <MapPin className="w-4 h-4 text-primary" />
+                                    <span>BITS PILANI</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Action Column: Prize & Registration */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="flex flex-col gap-6 justify-center lg:items-end"
+                        >
+                            {/* Prize Money - High Contrast */}
+                            <div className="bg-card w-full lg:w-auto p-8 border-2 border-primary/50 text-center lg:text-right relative overflow-hidden group hover:border-primary transition-colors">
+                                <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors" />
+                                <div className="relative z-10">
+                                    <div className="text-sm font-mono text-muted-foreground mb-1 tracking-widest">TOTAL PRIZE POOL</div>
+                                    <div className="text-5xl md:text-6xl font-bold text-primary drop-shadow-lg font-mono">
+                                        {event.prizes.total}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Registration Box */}
+                            <div className="w-full lg:w-96 p-6 border border-border bg-background/50 backdrop-blur-sm">
+                                <h3 className="font-mono font-bold text-lg mb-4 flex items-center gap-2">
+                                    <TicketIcon className="w-5 h-5 text-primary" />
+                                    REGISTRATION
+                                </h3>
+
+                                {event.registration.type === 'link' ? (
+                                    <Button className="w-full text-xl h-14 font-bold tracking-wide" asChild>
+                                        <a href={event.registration.url} target="_blank" rel="noreferrer">
+                                            REGISTER NOW
+                                        </a>
+                                    </Button>
+                                ) : (
+                                    <Button className="w-full text-xl h-14 font-bold tracking-wide" onClick={handleRegister}>
+                                        APPLY NOW
+                                    </Button>
+                                )}
+
+                                <div className="mt-4 text-center">
+                                    {event.registration.deadline && (
+                                        <p className="text-xs font-mono text-destructive">
+                                            DEADLINE: {new Date(event.registration.deadline).toLocaleDateString()}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    <div className="h-px w-full bg-border mb-16" />
 
                     <div className="grid lg:grid-cols-3 gap-12">
-
                         {/* Main Content */}
-                        <div className="lg:col-span-2 space-y-12">
-
+                        <div className="lg:col-span-2 space-y-16">
                             {/* Highlights */}
                             <section>
-                                <h2 className="text-2xl font-mono font-bold text-primary mb-6 flex items-center gap-2">
-                                    <CheckCircle className="w-6 h-6" /> HIGHLIGHTS
+                                <h2 className="text-2xl font-mono font-bold text-foreground mb-6 flex items-center gap-2 border-l-4 border-primary pl-4">
+                                    HIGHLIGHTS
                                 </h2>
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     {event.highlights.map((item, i) => (
-                                        <div key={i} className="flex items-center gap-3 p-4 border border-border bg-card/30">
+                                        <div key={i} className="flex items-center gap-3 p-4 border border-border bg-secondary/5 hover:bg-secondary/10 transition-colors">
                                             <div className="w-2 h-2 bg-primary transform rotate-45" />
                                             <span className="font-mono text-sm">{item}</span>
                                         </div>
@@ -112,13 +192,13 @@ const EventDetail = () => {
 
                             {/* Rules */}
                             <section>
-                                <h2 className="text-2xl font-mono font-bold text-primary mb-6 flex items-center gap-2">
-                                    <FileTextIcon className="w-6 h-6" /> RULES
+                                <h2 className="text-2xl font-mono font-bold text-foreground mb-6 flex items-center gap-2 border-l-4 border-primary pl-4">
+                                    RULES & REGULATIONS
                                 </h2>
                                 <ul className="space-y-4">
                                     {event.rules.map((rule, i) => (
-                                        <li key={i} className="flex gap-4 text-muted-foreground">
-                                            <span className="font-mono text-primary">0{i + 1}.</span>
+                                        <li key={i} className="flex gap-4 text-muted-foreground p-3 hover:bg-muted/50 rounded-lg transition-colors">
+                                            <span className="font-mono text-primary font-bold">0{i + 1}.</span>
                                             {rule}
                                         </li>
                                     ))}
@@ -128,13 +208,13 @@ const EventDetail = () => {
                             {/* Timeline */}
                             {event.timeline.length > 0 && (
                                 <section>
-                                    <h2 className="text-2xl font-mono font-bold text-primary mb-6 flex items-center gap-2">
-                                        <Clock className="w-6 h-6" /> SCHEDULE
+                                    <h2 className="text-2xl font-mono font-bold text-foreground mb-6 flex items-center gap-2 border-l-4 border-primary pl-4">
+                                        EVENT TIMELINE
                                     </h2>
-                                    <div className="border-l-2 border-primary/30 ml-3 space-y-8 pl-8 py-2">
+                                    <div className="relative ml-3 pl-8 py-2 border-l border-dashed border-border">
                                         {event.timeline.map((item, i) => (
-                                            <div key={i} className="relative">
-                                                <div className="absolute -left-[39px] top-1 w-4 h-4 bg-background border-2 border-primary rounded-full" />
+                                            <div key={i} className="relative mb-8 last:mb-0">
+                                                <div className="absolute -left-[37px] top-1 w-4 h-4 bg-background border-2 border-primary rounded-full z-10" />
                                                 <div className="font-mono text-sm text-primary mb-1">
                                                     {new Date(item.datetime).toLocaleString()}
                                                 </div>
@@ -146,86 +226,41 @@ const EventDetail = () => {
                             )}
                         </div>
 
-                        {/* Sidebar */}
+                        {/* Sidebar: Details & Contact */}
                         <div className="space-y-8">
-
-                            {/* Registration Card */}
-                            <div className="p-6 border-2 border-primary bg-primary/5">
-                                <h3 className="text-xl font-mono font-bold mb-6 text-center">
-                                    REGISTRATION
-                                </h3>
-                                {event.registration.steps && (
-                                    <div className="space-y-4 mb-8">
-                                        {event.registration.steps.map((step, i) => (
-                                            <div key={i} className="flex gap-3 text-sm">
-                                                <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs shrink-0">
-                                                    {i + 1}
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold">{step.label}</div>
-                                                    {step.description && <div className="text-muted-foreground text-xs">{step.description}</div>}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {event.registration.type === 'link' ? (
-                                    <Button className="w-full text-lg h-12" asChild>
-                                        <a href={event.registration.url} target="_blank" rel="noreferrer">
-                                            REGISTER NOW
-                                        </a>
-                                    </Button>
-                                ) : (
-                                    <Button className="w-full text-lg h-12" onClick={handleRegister}>
-                                        APPLY NOW
-                                    </Button>
-                                )}
-                                {event.registration.deadline && (
-                                    <div className="text-center mt-4 text-xs font-mono text-muted-foreground">
-                                        DEADLINE: {new Date(event.registration.deadline).toLocaleDateString()}
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Prizes */}
-                            <div className="p-6 border border-border bg-card">
-                                <div className="flex items-center gap-2 mb-6">
-                                    <Trophy className="w-5 h-5 text-primary" />
-                                    <h3 className="font-mono font-bold">PRIZE POOL</h3>
-                                </div>
-                                <div className="text-3xl font-bold text-primary mb-6 text-center">
-                                    {event.prizes.total}
-                                </div>
-                                <div className="space-y-3">
+                            <div className="p-6 border border-border bg-card/50">
+                                <h3 className="font-mono font-bold mb-6 text-xl">PRIZE BREAKDOWN</h3>
+                                <div className="space-y-4">
                                     {event.prizes.breakdown.map((prize, i) => (
-                                        <div key={i} className="flex justify-between items-center text-sm border-b border-border/50 pb-2">
+                                        <div key={i} className="flex justify-between items-center text-sm border-b border-border/50 pb-2 last:border-0">
                                             <span className="text-muted-foreground">{prize.position}</span>
-                                            <span className="font-mono font-bold">{prize.amount}</span>
+                                            <span className="font-mono font-bold text-primary">{prize.amount}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            {/* Contact */}
-                            <div className="p-6 border border-border bg-card">
-                                <h3 className="font-mono font-bold mb-4">CONTACT</h3>
-                                <div className="space-y-2 text-sm text-muted-foreground">
-                                    <div className="flex items-center gap-2">
-                                        <User className="w-4 h-4" />
+                            <div className="p-6 border border-border bg-card/50">
+                                <h3 className="font-mono font-bold mb-6 text-xl">CONTACT</h3>
+                                <div className="space-y-4 text-sm text-muted-foreground">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded bg-secondary/20 flex items-center justify-center text-primary">
+                                            <User className="w-4 h-4" />
+                                        </div>
                                         <a href={`mailto:${event.contact.email}`} className="hover:text-primary transition-colors">
                                             {event.contact.email}
                                         </a>
                                     </div>
                                     {event.contact.phone && (
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-mono">PH:</span>
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-8 h-8 rounded bg-secondary/20 flex items-center justify-center text-primary">
+                                                <CheckCircle className="w-4 h-4" />
+                                            </div>
                                             <span>{event.contact.phone}</span>
                                         </div>
                                     )}
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -235,6 +270,13 @@ const EventDetail = () => {
         </div>
     );
 };
+
+const TicketIcon = ({ className }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <rect x="2" y="6" width="20" height="12" rx="2" />
+        <path d="M6 12h.01M18 12h.01" />
+    </svg>
+);
 
 // Helper icon
 const FileTextIcon = ({ className }: { className?: string }) => (
