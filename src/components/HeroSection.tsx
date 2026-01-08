@@ -22,8 +22,8 @@ const HeroSection = () => {
     }, 800); // Waits 0.8s for the clapper to close before switching pages
   };
 
-  return <section ...
-  rreturn <section className="min-h-screen ...">
+
+  return <section className="min-h-screen ...">
     <ClapperOverlay isVisible={isClapping} />  {/* <--- ADD THIS LINE HERE */}
     {/* Cinema Curtain Accents */}
       <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-red-950/20 to-transparent pointer-events-none" />
