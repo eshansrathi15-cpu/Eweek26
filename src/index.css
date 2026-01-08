@@ -254,7 +254,23 @@
     to { opacity: 1; }
 }
 /* --- 1. THE VISUALS (Corner Cuts, Glow, & 5 Scattered Drawings) --- */
-#movie-ticket-popup {
+@media (min-width: 769px) {
+    #movie-ticket-popup {
+        position: fixed;
+        top: 50% !important;
+        left: 50% !important;
+        /* The 'transform' here is the final resting state */
+        transform: translate(-50%, -50%);
+        
+        /* APPLY THE ANIMATION HERE */
+        animation: ticketEntrance 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        
+        /* Keep your existing size settings */
+        width: 700px;
+        max-width: 90vw;
+        flex-direction: row;
+    }
+    
     /* Base color provided by the bottom gradient layers */
     background-color: transparent;
     
@@ -486,4 +502,21 @@
 @keyframes slideUp {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
+}
+/* --- ANIMATION KEYFRAMES --- */
+@keyframes ticketEntrance {
+    0% {
+        opacity: 0;
+        /* Starts slightly lower (-40%) and smaller (0.9) */
+        transform: translate(-50%, -40%) scale(0.9) rotate(-2deg);
+    }
+    70% {
+        /* Overshoots slightly to create a "bounce" or "stamp" feel */
+        transform: translate(-50%, -51%) scale(1.02) rotate(1deg);
+    }
+    100% {
+        opacity: 1;
+        /* Lands perfectly centered */
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
 }
