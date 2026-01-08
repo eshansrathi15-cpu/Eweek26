@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Film } from 'lucide-react';
+import celLogo from '@/assets/cel-logo.png';
 const Navbar = () => {
   return <motion.nav initial={{
     y: -100,
@@ -15,7 +15,7 @@ const Navbar = () => {
       {/* Logo with film reel */}
       <div className="flex items-center gap-3">
         <div className="relative">
-          <Film className="w-8 h-8 text-primary" />
+          <img src={celLogo} alt="CEL Logo" className="w-8 h-8" />
         </div>
         <div className="flex flex-col">
           <span className="font-mono text-lg font-bold tracking-tighter leading-none">E-WEEK</span>
