@@ -124,7 +124,7 @@ const DeHackSection = () => {
             <div className="flex flex-wrap gap-4">
               <Button onClick={handleLaunch} variant="outline" size="lg" className="text-lg group" disabled={isLaunching}>
                 <Terminal className="w-5 h-5 mr-2" />
-                <span className="group-hover:text-primary transition-colors uppercase font-bold">Initialize</span>
+                <span className="group-hover:text-primary transition-colors uppercase font-bold">Initialize Research</span>
                 <motion.span className="ml-2" animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity }}>→</motion.span>
               </Button>
               <Button variant="outline" size="lg" className="text-lg group border-primary bg-primary/10 hover:bg-primary/20">
