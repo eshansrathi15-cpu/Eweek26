@@ -238,7 +238,20 @@
    FINAL MOVIE TICKET STYLES
    (Paste this at the very bottom of index.css)
    ========================================= */
+/* --- OVERLAY (Blur Effect) --- */
+#popup-overlay {
+    position: fixed;
+    inset: 0;                /* Covers entire screen */
+    background-color: rgba(0, 0, 0, 0.6); /* Darkens background */
+    backdrop-filter: blur(5px);           /* Blurs background */
+    z-index: 99998;          /* Sits behind the ticket (99999) */
+    animation: fadeIn 0.3s ease-out;
+}
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 /* --- 1. THE VISUALS (Corner Cuts & Glow) --- */
 #movie-ticket-popup {
     /* Transparent background so we can draw the shape */
