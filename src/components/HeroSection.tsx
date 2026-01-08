@@ -1,9 +1,31 @@
+// 1. ADD these imports at the very top
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ClapperOverlay from './ClapperOverlay'; // Ensure you created this file!
+
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Play, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Play, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 const HeroSection = () => {
-  return <section className="min-h-screen flex flex-col items-center justify-center relative px-6 pt-20 spotlight vignette">
-      {/* Cinema Curtain Accents */}
+  const HeroSection = () => {
+  // 2. PASTE THIS LOGIC HERE
+  const [isClapping, setIsClapping] = useState(false);
+  const navigate = useNavigate();
+
+  const handleGetTickets = () => {
+    setIsClapping(true);
+    setTimeout(() => {
+      navigate('/tickets');
+    }, 800); // Waits 0.8s for the clapper to close before switching pages
+  };
+
+  return <section ...
+  rreturn <section className="min-h-screen ...">
+    <ClapperOverlay isVisible={isClapping} />  {/* <--- ADD THIS LINE HERE */}
+    {/* Cinema Curtain Accents */}
       <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-red-950/20 to-transparent pointer-events-none" />
       <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-red-950/20 to-transparent pointer-events-none" />
 
@@ -109,9 +131,14 @@ const HeroSection = () => {
         duration: 0.6,
         delay: 1.2
       }} className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="default" size="lg" className="text-lg px-8 py-6">
-            GET TICKETS
-          </Button>
+         <Button 
+  onClick={handleGetTickets}  // <--- ADD THIS LINE
+  variant="default" 
+  size="lg" 
+  className="text-lg px-8 py-6"
+>
+  GET TICKETS
+</Button>
           <Button variant="outline" size="lg" className="text-lg px-8 py-6">
             <Play className="w-5 h-5 mr-2" />
             WATCH TRAILER
