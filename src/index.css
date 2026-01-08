@@ -303,7 +303,7 @@
     0% { opacity: 0; transform: translate(-50%, -45%) scale(0.95); }
     100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 };
-  }
+  
   
   .ticket-rip-line {
       width: 2px;
