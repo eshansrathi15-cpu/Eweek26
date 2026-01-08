@@ -127,8 +127,9 @@ const DeHackSection = () => {
                 <span className="group-hover:text-primary transition-colors uppercase font-bold">Initialize</span>
                 <motion.span className="ml-2" animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity }}>→</motion.span>
               </Button>
-              <Button variant="default" size="lg" className="text-lg bg-primary text-black hover:bg-primary/90 font-mono font-bold uppercase tracking-wider">
-                Sign Up
+              <Button variant="outline" size="lg" className="text-lg group border-primary bg-primary/10 hover:bg-primary/20">
+                <Rocket className="w-5 h-5 mr-2 text-primary" />
+                <span className="text-primary uppercase font-bold">Sign Up</span>
               </Button>
             </div>
           </motion.div>
