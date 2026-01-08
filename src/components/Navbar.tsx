@@ -33,9 +33,7 @@ const Navbar = () => {
 
       {/* Auth Buttons */}
       <div className="flex items-center gap-4">
-        <button className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-          Login
-        </button>
+        
         <Button variant="default" size="sm">
           REGISTER
         </Button>

@@ -85,11 +85,11 @@ const Footer = () => {
           <div>
             <h4 className="font-mono font-bold mb-4 text-sm tracking-wider">CONNECT</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li>eweek@bits-pilani.ac.in</li>
+              <li>eweekpilani@gmail.com</li>
               <li className="flex gap-3">
                 <a href="#" className="hover:text-primary transition-colors">Instagram</a>
-                <a href="#" className="hover:text-primary transition-colors">Twitter</a>
-                <a href="#" className="hover:text-primary transition-colors">LinkedIn</a>
+                
+                
               </li>
             </ul>
           </div>
