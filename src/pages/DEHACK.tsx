@@ -74,7 +74,7 @@ const Dehack = () => {
         y: 0
       }} className="mb-12">
           <Link to="/" className="inline-flex items-center gap-2 text-primary hover:gap-4 transition-all duration-300 font-mono text-sm uppercase tracking-widest">
-            <ArrowLeft className="w-4 h-4" /> Back to Command Center
+            <ArrowLeft className="w-4 h-4" /> Back to Home   
           </Link>
         </motion.div>
 
