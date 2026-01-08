@@ -120,15 +120,24 @@ const BedRockSection = () => {
               ))}
             </div>
 
-            <Button 
-              onClick={handleAssemble} 
-              variant="default" 
-              size="lg" 
-              className="text-lg bg-primary text-black hover:bg-primary/90 font-bold px-10 py-8 tracking-widest uppercase shadow-[0_0_20px_rgba(147,245,255,0.2)]"
-              disabled={isGenerating}
-            >
-              {isGenerating ? "BUILDING..." : "ASSEMBLE TEAM"}
-            </Button>
+            <div className="flex flex-wrap gap-4">
+              <Button 
+                onClick={handleAssemble} 
+                variant="default" 
+                size="lg" 
+                className="text-lg bg-primary text-black hover:bg-primary/90 font-bold px-10 py-8 tracking-widest uppercase shadow-[0_0_20px_rgba(147,245,255,0.2)]"
+                disabled={isGenerating}
+              >
+                {isGenerating ? "BUILDING..." : "ASSEMBLE TEAM"}
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-lg border-2 border-primary text-primary hover:bg-primary/10 font-bold px-10 py-8 tracking-widest uppercase"
+              >
+                BOOK NOW
+              </Button>
+            </div>
           </motion.div>
         </div>
       </div>
