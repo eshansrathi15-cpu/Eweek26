@@ -218,3 +218,306 @@
     box-shadow: inset 0 0 150px 50px hsl(0 0% 0% / 0.5);
   }
 }
+/* =========================================
+   MOVIE TICKET POPUP STYLES
+   (Paste this at the very bottom of index.css)
+   ========================================= */
+/* Reuse your existing cyan variable or define local one */
+:root {
+  --ticket-cyan: hsl(183, 100%, 75%);
+  --ticket-bg: #1a1a1a;  /* <--- CHANGED: Dark Grey instead of Black */
+  --ticket-border: #ffffff;
+  /* ADDED: A subtle white pattern color */
+  --ticket-pattern-white: rgba(255, 255, 255, 0.04);
+}
+
+.ticket-hidden {
+  display: none !important;
+}
+
+/* =========================================
+   FINAL MOVIE TICKET STYLES
+   (Paste this at the very bottom of index.css)
+   ========================================= */
+/* --- OVERLAY (Blur Effect) --- */
+#popup-overlay {
+    position: fixed;
+    inset: 0;                /* Covers entire screen */
+    background-color: rgba(0, 0, 0, 0.6); /* Darkens background */
+    backdrop-filter: blur(5px);           /* Blurs background */
+    z-index: 99998;          /* Sits behind the ticket (99999) */
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+/* --- 1. THE VISUALS (Corner Cuts, Glow, & 5 Scattered Drawings) --- */
+    #movie-ticket-popup {
+    /* Base color provided by the bottom gradient layers */
+    background-color: transparent;
+    
+    background-image: 
+        /* === TOP LAYER: SCATTERED ICONS (All in subtle white) === */
+        /* These are placed at specific random % positions (X Y) */
+        
+        /* 1. Popcorn Tub (from image_6.png) - Top Left */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 8a2 2 0 0 0 0-4 2 2 0 0 0-4 0 2 2 0 0 0-4 0 2 2 0 0 0-4 0 2 2 0 0 0 0 4v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8Z'/%3E%3Cpath d='M10 14h4'/%3E%3Cpath d='M12 12v4'/%3E%3C/svg%3E"),
+        
+        /* 2. Film Reel with Strip (from image_3.png) - Right Middle */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 3h0'/%3E%3Cpath d='M16.5 4.5h0'/%3E%3Cpath d='M20 7.5h0'/%3E%3Cpath d='M21 12h0'/%3E%3Cpath d='M20 16.5h0'/%3E%3Cpath d='M16.5 19.5h0'/%3E%3Cpath d='M12 21h0'/%3E%3Cpath d='M7.5 19.5h0'/%3E%3Cpath d='M4 16.5h0'/%3E%3Cpath d='M3 12h0'/%3E%3Cpath d='M4 7.5h0'/%3E%3Cpath d='M7.5 4.5h0'/%3E%3Cpath d='M21 12c0 1.66-4 3-9 3s-9-1.34-9-3'/%3E%3Cpath d='M2 12h4'/%3E%3Cpath d='M2 12c0 5 4 9 10 9'/%3E%3C/svg%3E"),
+        
+        /* 3. Movie Camera on Tripod (from image_2.png) - Bottom Right */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 8V4l4-2v6l-4-2Z'/%3E%3Crect x='2' y='8' width='14' height='10' rx='2'/%3E%3Cpath d='m6 18-2 4'/%3E%3Cpath d='m10 18 2 4'/%3E%3Cpath d='m14 18 2 4'/%3E%3Ccircle cx='9' cy='13' r='3'/%3E%3C/svg%3E"),
+
+        /* 4. Clapboard with Film Strips (from image_4.png) - Bottom Left */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 11v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9'/%3E%3Cpath d='M4 11h16'/%3E%3Cpath d='M4 16h16'/%3E%3Cpath d='M9 11v11'/%3E%3Cpath d='M15 11v11'/%3E%3Cpath d='m4 11 16-7'/%3E%3Cpath d='m20 11-16-7'/%3E%3Cpath d='M2 12h4'/%3E%3Cpath d='M2 12c0 5 4 9 10 9'/%3E%3Cpath d='M22 12h-4'/%3E%3Cpath d='M22 12c0 5-4 9-10 9'/%3E%3C/svg%3E"),
+        
+        /* 5. Floating Popcorn (from image_5.png) - Top Center */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z'/%3E%3Cpath d='M5 8a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z'/%3E%3Cpath d='M19 8a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z'/%3E%3Cpath d='M8 14a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z'/%3E%3Cpath d='M16 14a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z'/%3E%3C/svg%3E"),
+
+
+        /* === BOTTOM LAYER: THE TICKET SHAPE (Grey Body + Corners) === */
+        /* These gradients draw the dark grey body but leave the corners transparent */
+        radial-gradient(circle at 0 0, transparent 20px, var(--ticket-bg) 21px),
+        radial-gradient(circle at 100% 0, transparent 20px, var(--ticket-bg) 21px),
+        radial-gradient(circle at 0 100%, transparent 20px, var(--ticket-bg) 21px),
+        radial-gradient(circle at 100% 100%, transparent 20px, var(--ticket-bg) 21px);
+    
+    /* === SIZING & POSITIONING === */
+    background-size: 
+        /* Icons Sizes (Varied for randomness) */
+        80px 80px,   /* 1. Popcorn Tub */
+        110px 110px, /* 2. Film Reel */
+        90px 90px,   /* 3. Camera */
+        120px 120px, /* 4. Clapboard */
+        70px 70px,   /* 5. Floating Popcorn */
+        
+        /* Corner Sizes (Do not change) */
+        51% 51%, 51% 51%, 51% 51%, 51% 51%;
+        
+    background-position: 
+        /* Random Scatter Positions (X  Y) */
+        10% 15%,   /* 1. Popcorn Tub */
+        85% 40%,   /* 2. Film Reel */
+        75% 80%,   /* 3. Camera */
+        15% 85%,   /* 4. Clapboard */
+        50% 10%,   /* 5. Floating Popcorn */
+
+        /* Corner Positions */
+        top left, top right, bottom left, bottom right;
+        
+    background-repeat: 
+        no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, /* Icons don't repeat */
+        no-repeat, no-repeat, no-repeat, no-repeat; /* Corners don't repeat */
+
+    /* Remove standard border */
+    border: none;
+
+    /* Cyan Glow */
+    filter: drop-shadow(0 0 15px rgba(94, 234, 212, 0.3));
+
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    z-index: 99999;
+    padding: 30px;
+    display: flex;
+}
+
+/* --- 2. DESKTOP SIZE & LAYOUT --- */
+@media (min-width: 769px) {
+    #movie-ticket-popup {
+        position: fixed;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%); /* Perfect Center */
+        
+        /* LARGE SIZE SETTINGS */
+        width: 700px;      /* Wide Cinematic Ticket */
+        max-width: 90vw;
+        flex-direction: row;
+        
+        animation: ticketEntrance 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    
+    /* The Perforated Line (Dashed) */
+    .ticket-rip-line {
+        width: 2px;
+        border-right: 2px dashed #333;
+        margin: 0 30px;
+        position: relative;
+    }
+
+    /* The "Admit One" Stub Side */
+    .ticket-stub {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 180px;
+        text-align: center;
+    }
+    
+    .mobile-swipe-hint { display: none; }
+}
+
+/* --- 3. ANIMATIONS --- */
+@keyframes ticketPopIn {
+    0% { opacity: 0; transform: translate(-50%, -45%) scale(0.95); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* --- 4. MOBILE LAYOUT --- */
+@media (max-width: 768px) {
+    #movie-ticket-popup {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        
+        /* Mobile: Only cut top corners */
+        background-image: 
+            radial-gradient(circle at 0 0, transparent 20px, #0a0a0a 21px),
+            radial-gradient(circle at 100% 0, transparent 20px, #0a0a0a 21px),
+            linear-gradient(#0a0a0a, #0a0a0a);
+        background-size: 50% 100%;
+        
+        flex-direction: column;
+        animation: slideUp 0.3s ease-out;
+        padding-bottom: 40px;
+    }
+
+    .ticket-rip-line {
+        width: 100%;
+        height: 2px;
+        border-bottom: 2px dashed #333; /* Horizontal tear line */
+        border-right: none;
+        margin: 20px 0;
+    }
+    
+    .ticket-stub {
+        width: 100%;
+        gap: 15px;
+    }
+}
+
+/* --- CONTENT STYLES --- */
+.ticket-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+    margin-bottom: 5px;
+}
+
+.ticket-admit {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #666;
+}
+
+#ticket-close-btn {
+    background: none;
+    border: none;
+    color: var(--ticket-cyan);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 10px;
+}
+
+#ticket-title {
+    color: var(--ticket-cyan);
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+#ticket-desc {
+    color: #ddd;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.register-btn {
+    background-color: var(--ticket-cyan);
+    color: #000;
+    padding: 12px 0;
+    width: 100%;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid var(--ticket-cyan);
+    transition: all 0.2s;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+}
+
+.register-btn:hover {
+    background-color: transparent;
+    color: var(--ticket-cyan);
+}
+
+.event-tile.active-card {
+    border-color: var(--ticket-cyan) !important;
+    box-shadow: 0 0 15px rgba(94, 234, 212, 0.3);
+}
+
+@keyframes ticketFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(50px) scale(0.9); /* Starts lower and smaller */
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+@keyframes slideUp {
+    0% { 
+        transform: translateY(100%); 
+    }
+    70% { 
+        /* Slides UP past the destination (negative Y is up) */
+        transform: translateY(-10%); 
+    }
+    100% { 
+        transform: translateY(0); 
+    }
+}
+@keyframes ticketEntrance {
+    0% {
+        opacity: 0;
+        /* Starts much smaller and tilted heavily */
+        transform: translate(-50%, -100%) scale(0.5) rotate(-15deg); 
+    }
+    60% {
+        opacity: 1;
+        /* Big overshoot: Grows larger than life and swings past center */
+        transform: translate(-50%, -45%) scale(1.1) rotate(5deg);
+    }
+    80% {
+        /* A slight recoil to settle the energy */
+        transform: translate(-50%, -50%) scale(0.95) rotate(-2deg);
+    }
+    100% {
+        /* Settle */
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+}

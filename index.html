@@ -8,7 +8,7 @@
     <meta name="description" content="Lovable Generated Project" />
     <meta name="author" content="Lovable" />
 
-    <!-- TODO: Update og:title to match your application name -->
+    <!-- TODO: Update og: title to match your application name -->
     <meta property="og:title" content="Lovable App" />
     <meta property="og:description" content="Lovable Generated Project" />
     <meta property="og:type" content="website" />
@@ -17,10 +17,81 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <link rel="stylesheet" href="/popup.css">
   </head>
 
   <body>
     <div id="root"></div>
+    <div id="popup-overlay" class="ticket-hidden"></div> 
+
+<div id="movie-ticket-popup" class="ticket-hidden">
+    <div class="ticket-body">
+        <div class="ticket-header">
+            <span class="ticket-admit">ADMIT ONE</span>
+            <button id="ticket-close-btn">×</button>
+        </div>
+        <h2 id="ticket-title">EVENT NAME</h2>
+        <p id="ticket-desc">Event details.</p>
+        <div class="ticket-meta">
+            <span class="meta-tag">NOW PLAYING</span>
+        </div>
+    </div>
+    <div class="ticket-rip-line"></div>
+    <div class="ticket-stub">
+        <a href="#register" class="register-btn">REGISTER</a>
+        <span class="mobile-swipe-hint">Swipe down to close</span>
+    </div>
+</div>
     <script type="module" src="/src/main.tsx"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('movie-ticket-popup');
+    const overlay = document.getElementById('popup-overlay'); // Get the overlay
+    const closeBtn = document.getElementById('ticket-close-btn');
+    const titleEl = document.getElementById('ticket-title');
+    const descEl = document.getElementById('ticket-desc');
+    let activeTile = null;
+
+    // --- OPEN POPUP ---
+    document.body.addEventListener('click', (e) => {
+        const tile = e.target.closest('.event-tile');
+        
+        if (tile) {
+            e.preventDefault(); 
+            e.stopPropagation();
+            
+            activeTile = tile;
+            titleEl.textContent = tile.dataset.title || 'Event';
+            descEl.textContent = tile.dataset.desc || 'Details coming soon.';
+            
+            // Show Popup & Overlay (CSS handles the centering)
+            popup.classList.remove('ticket-hidden');
+            overlay.classList.remove('ticket-hidden');
+        }
+    });
+
+    // --- CLOSE LOGIC ---
+    const closePopup = () => {
+        popup.classList.add('ticket-hidden');
+        overlay.classList.add('ticket-hidden'); // Hide overlay too
+        activeTile = null;
+    };
+
+    closeBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', closePopup); // Click background to close
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
+    });
+
+    // Mobile Swipe Logic
+    let touchStartY = 0;
+    popup.addEventListener('touchstart', (e) => touchStartY = e.changedTouches[0].screenY, {passive: true});
+    popup.addEventListener('touchend', (e) => {
+        if (e.changedTouches[0].screenY - touchStartY > 50) closePopup();
+    }, {passive: true});
+});
+</script>
   </body>
 </html>

@@ -42,7 +42,12 @@ const EventsGrid = () => {
               whileHover={{ scale: 1.02 }}
               className="group"
             >
-              <div className="border-2 border-foreground p-6 h-56 flex flex-col justify-between transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:border-primary relative overflow-hidden">
+             {/* ADD 'event-tile' class and data attributes here: */}
+<div 
+  className="border-2 border-foreground p-6 h-56 flex flex-col justify-between transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:border-primary relative overflow-hidden event-tile"
+  data-title={event.name}
+  data-desc={event.desc}
+>
                 {/* Movie rating badge */}
                 <div className="absolute top-3 right-3 w-8 h-8 border border-current flex items-center justify-center">
                   <span className="text-[10px] font-mono font-bold group-hover:text-primary-foreground transition-colors">
