@@ -254,23 +254,7 @@
     to { opacity: 1; }
 }
 /* --- 1. THE VISUALS (Corner Cuts, Glow, & 5 Scattered Drawings) --- */
-@media (min-width: 769px) {
     #movie-ticket-popup {
-        position: fixed;
-        top: 50% !important;
-        left: 50% !important;
-        /* The 'transform' here is the final resting state */
-        transform: translate(-50%, -50%);
-        
-        /* APPLY THE ANIMATION HERE */
-        animation: ticketEntrance 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        
-        /* Keep your existing size settings */
-        width: 700px;
-        max-width: 90vw;
-        flex-direction: row;
-    }
-    
     /* Base color provided by the bottom gradient layers */
     background-color: transparent;
     
@@ -354,7 +338,7 @@
         max-width: 90vw;
         flex-direction: row;
         
-        animation: ticketPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: ticketEntrance 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     
     /* The Perforated Line (Dashed) */
