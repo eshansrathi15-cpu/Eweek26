@@ -19,11 +19,11 @@ const BedrockPage = () => {
   }, {
     icon: <Award className="w-5 h-5" />,
     title: "The Stakes",
-    desc: "₹50,000+ prize pool for the masters of market disruption."
+    desc: "₹20,000+ prize pool."
   }];
   const stripboardItems = [{
     scene: "01",
-    title: "ANC_TAKEOVER",
+    title: "C'NOT_TAKEOVER",
     label: "Restaurant_View"
   }, {
     scene: "02",
@@ -31,7 +31,7 @@ const BedrockPage = () => {
     label: "Market_Open"
   }, {
     scene: "03",
-    title: "LTC_SQUAD",
+    title: "SQUAD",
     label: "Team_Deployment"
   }, {
     scene: "04",
@@ -39,28 +39,12 @@ const BedrockPage = () => {
     label: "Operational_Chaos"
   }, {
     scene: "05",
-    title: "REDI_OPS",
+    title: "KAMAL'S_OPS",
     label: "Supply_Chain"
   }, {
     scene: "06",
     title: "FINAL_TALLY",
     label: "Profit_Declaration"
-  }];
-  const faqs = [{
-    q: "Who can enter Bedrock?",
-    a: "Wings, groups of friends, clubs, departments—anything goes. If you can build a team, you can build a business."
-  }, {
-    q: "How many teams are selected?",
-    a: "Only 13 elite teams will make it through the initial screening to reach the Auction Pit."
-  }, {
-    q: "What is the primary objective?",
-    a: "To 'buy' a C'not restaurant via auction and generate the highest net profit over the event duration."
-  }, {
-    q: "Do we need prior business experience?",
-    a: "No. You just need the grit to sell, the strategy to outbid, and the energy to outlast the competition."
-  }, {
-    q: "How does the auction work?",
-    a: "Teams use a virtual budget to bid for physical restaurant slots in C'not. Strategy is key to getting a high-traffic spot."
   }];
   return <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain font-mono">
       <WaveformBackground />
@@ -111,7 +95,7 @@ const BedrockPage = () => {
               </div>
               <div className="border border-primary/20 p-4 bg-primary/10">
                 <Award className="w-5 h-5 text-primary mx-auto mb-2" />
-                <span className="text-2xl font-bold block text-foreground tracking-tighter">₹50K+</span>
+                <span className="text-2xl font-bold block text-foreground tracking-tighter">₹20K+</span>
                 <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Grand_Prize</span>
               </div>
             </div>
@@ -129,7 +113,7 @@ const BedrockPage = () => {
               <p className="text-yellow-400">{">"} WARNING: High traffic detected at ANC Circle</p>
               <p className="text-primary animate-pulse">{">"} WAITING FOR NEXT BID...</p>
               <Button className="w-full bg-primary text-black font-bold uppercase py-6 mt-6 tracking-widest hover:bg-primary/80 transition-all">
-                Enter Auction Pit
+                Team Questionnaire
               </Button>
             </div>
           </div>
@@ -152,27 +136,39 @@ const BedrockPage = () => {
             </motion.div>)}
         </div>
 
-        {/* FAQ Section */}
+        {/* What Is Bedrock Section */}
         <div className="mb-40">
-           <h2 className="text-3xl font-bold text-primary mb-12 flex items-center gap-3 italic">
-            <HelpCircle className="w-6 h-6" /> // MARKET_INTEL_FAQ
-          </h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            {faqs.map((faq, i) => <motion.div key={i} initial={{
-            opacity: 0,
-            x: -20
-          }} whileInView={{
-            opacity: 1,
-            x: 0
-          }} className="border-l border-primary/30 pl-6 group">
-                <h4 className="text-primary text-sm font-bold uppercase mb-3 tracking-widest group-hover:text-foreground transition-colors">
-                  {faq.q}
-                </h4>
-                <p className="text-muted-foreground text-sm font-sans leading-relaxed">
-                  {faq.a}
-                </p>
-              </motion.div>)}
-          </div>
+          <motion.div initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} className="border-l-4 border-primary/40 pl-8 md:pl-12">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase mb-8 text-primary">
+              What Is Bedrock?
+            </h2>
+            <div className="space-y-6 text-muted-foreground font-sans leading-relaxed max-w-4xl">
+              <p className="text-lg md:text-xl">
+                What if you got the chance to run your favorite restaurant at C'not? 
+                You've had countless dinners there but it's time we turn the tables around!
+              </p>
+              <p className="text-lg md:text-xl">
+                CEL brings to you, BEDROCK-the flagship event of E-Week 2024. 
+                It's your chance to make your own team with creative, street smart and those jugaadu friends 
+                to manage a restaurant at C'not. Imagine running Sharma's or Kamal's for a day and going crazy 
+                with the marketing just to clock in the maximum revenue.
+              </p>
+              <p className="text-lg md:text-xl">
+                Apart from a tonne of fun, memories and laughter, you stand a chance to win a cash prize of{" "}
+                <span className="inline-block px-4 py-2 bg-primary text-black font-bold text-2xl md:text-3xl tracking-tight border-2 border-primary animate-pulse">
+                  ₹20,000/-
+                </span>
+                .{" "}
+                <span className="text-primary font-bold">You C'not miss this!</span>
+              </p>
+            </div>
+          </motion.div>
         </div>
 
         {/* FILM STRIPBOARD SECTION */}
