@@ -44,12 +44,12 @@ const BedrockPage = () => {
     setShowModal(false);
   };
 
-  // Timeline Data
+  // Timeline Data - UPDATED WITH NEW SCHEDULE
   const bedrockTimeline = [
-    { time: "Day 0", event: "The Auction Pit: Bidding for your Restaurant.", status: "COMPLETED" },
-    { time: "Day 1 (08:00)", event: "Supply Chain Procurement: Sourcing raw materials.", status: "UPCOMING" },
-    { time: "Day 1 (12:00)", event: "Market Open: Operations and Marketing blitz.", status: "UPCOMING" },
-    { time: "Day 1 (22:00)", event: "The Final Tally: Profit declaration and auditing.", status: "UPCOMING" }
+    { time: "19th Jan", event: "Team Qualifiers: A 30-minute fun activity to test your team’s creativity. Think of it more like a fun brainstorming session.", status: "LIVE" },
+    { time: "20th Jan", event: "Online Interactions: Tell us more about your ideas, skills and team members. It’s the final step before reaching your restaurant at C’not.", status: "UPCOMING" },
+    { time: "22nd Jan", event: "The Auction: Get ready with your bids and negotiating skills to get your team the best restaurant, increasing your chances of winning.", status: "UPCOMING" },
+    { time: "25th Jan", event: "BEDROCK: Take over C’not with your team to compete against all restaurants to clock the maximum revenue.", status: "FINALE" }
   ];
 
   const features = [{
@@ -266,7 +266,7 @@ const BedrockPage = () => {
 
       </div>
 
-      {/* MODIFIED TIMELINE POP-UP */}
+      {/* TIMELINE POP-UP WITH NEW CONTENT */}
       <AnimatePresence>
         {showTimeline && (
           <motion.div
@@ -312,7 +312,7 @@ const BedrockPage = () => {
                         <span className="text-primary font-bold text-sm tracking-widest">{item.time}</span>
                         <span className="text-[8px] border border-primary/20 px-1 text-muted-foreground">{item.status}</span>
                       </div>
-                      <p className="text-muted-foreground text-sm font-sans">{item.event}</p>
+                      <p className="text-muted-foreground text-sm font-sans leading-tight">{item.event}</p>
                     </div>
                   </div>
                 ))}
@@ -355,7 +355,6 @@ const BedrockPage = () => {
                 </p>
               </div>
 
-              {/* Form remains exactly as provided */}
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2">
