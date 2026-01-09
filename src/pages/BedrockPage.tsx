@@ -64,8 +64,8 @@ desc: "Plus FAQs.",
 onClick: () => setShowRulebook(true) // Added Trigger for Rulebook
 }, { 
 icon: <Award className="w-5 h-5" />, 
-title: "The Stakes", 
-desc: "₹20,000+ prize pool." 
+title: "BEDROCK BROCHURE", 
+desc: "Everything you need to know." 
 }]; 
 
 const stripboardItems = [{ 
@@ -136,7 +136,7 @@ The C'Not Takeover. 13 teams. One goal: Absolute Market Dominance.
 </div> 
 <div className="border border-primary/20 p-4 bg-secondary/10"> 
 <TrendingUp className="w-5 h-5 text-primary mx-auto mb-2" /> 
-<span className="text-2xl font-bold block text-foreground tracking-tighter">1 Day</span> 
+<span className="text-2xl font-bold block text-foreground tracking-tighter">9+ HOURS</span> 
 <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Selling_Ops</span> 
 </div> 
 <div className="border border-primary/20 p-4 bg-primary/10"> 
@@ -161,7 +161,7 @@ The C'Not Takeover. 13 teams. One goal: Absolute Market Dominance.
 <Button 
 onClick={() => setShowModal(true)} 
 className="w-full bg-primary text-black font-bold uppercase py-6 mt-6 tracking-widest hover:bg-primary/80 transition-all"> 
-Team Questionnaire 
+Team Registration
 </Button> 
 </div> 
 </div> 
@@ -218,7 +218,7 @@ Apart from a tonne of fun, memories and laughter, you stand a chance to win a ca
 <span className="inline-block px-4 py-2 bg-primary text-black font-bold text-2xl md:text-3xl tracking-tight border-2 border-primary animate-pulse"> 
 ₹20,000/- 
 </span> 
-.{" "} 
+{" "} 
 <span className="text-primary font-bold">You C'not miss this!</span> 
 </p> 
 </div> 
@@ -428,7 +428,7 @@ PROTOCOL_DOCKET_v.2025
 </div> 
 
 <div className="mt-16 p-6 bg-primary/10 border-2 border-primary/30 text-lg text-primary font-bold uppercase tracking-widest text-center">
-"Fortune favors the bold."
+"#somethingcrazy"
 </div>
 </motion.div> 
 </motion.div> 
