@@ -2,11 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from '@/components/ui/button';
-import { Terminal, Clock, Film, DollarSign, Rocket } from 'lucide-react';
+import { Terminal, Clock, Film, DollarSign, Rocket, X } from 'lucide-react';
 
 const DeHackSection = () => {
   const [isLaunching, setIsLaunching] = useState(false);
   const navigate = useNavigate();
+
+  // Modal and form states
+  const [showModal, setShowModal] = useState(false);
+  const [teamName, setTeamName] = useState('');
+  const [captainName, setCaptainName] = useState('');
+  const [captainId, setCaptainId] = useState('');
+  const [captainPhone, setCaptainPhone] = useState('');
+  const [numMembers, setNumMembers] = useState('');
+  const [teamMembers, setTeamMembers] = useState([]);
 
   // Create 8 smoke particles for the plume
   const smokeParticles = Array.from({ length: 8 });
@@ -16,6 +25,36 @@ const DeHackSection = () => {
     setTimeout(() => {
       navigate("/dehack");
     }, 1800);
+  };
+
+  const handleNumMembersChange = (e) => {
+    const inputValue = e.target.value;
+    setNumMembers(inputValue);
+    
+    if (inputValue !== '') {
+      const numValue = parseInt(inputValue);
+      if (!isNaN(numValue) && numValue > 0) {
+        const membersCount = Math.max(0, numValue - 1);
+        setTeamMembers(Array(membersCount).fill(null).map(() => ({ name: '', id: '' })));
+      }
+    } else {
+      setTeamMembers([]);
+    }
+  };
+
+  const handleMemberChange = (index, field, value) => {
+    const updatedMembers = [...teamMembers];
+    updatedMembers[index] = { ...updatedMembers[index], [field]: value };
+    setTeamMembers(updatedMembers);
+  };
+
+  const handleSubmit = () => {
+    console.log({
+      teamName,
+      captain: { name: captainName, id: captainId, phone: captainPhone },
+      members: teamMembers,
+    });
+    setShowModal(false);
   };
 
   return (
@@ -127,7 +166,7 @@ const DeHackSection = () => {
                 <span className="group-hover:text-primary transition-colors uppercase font-bold">Initialize Research</span>
                 <motion.span className="ml-2" animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity }}>→</motion.span>
               </Button>
-              <Button variant="outline" size="lg" className="text-lg group border-primary bg-primary/10 hover:bg-primary/20">
+              <Button onClick={() => setShowModal(true)} variant="outline" size="lg" className="text-lg group border-primary bg-primary/10 hover:bg-primary/20">
                 <Rocket className="w-5 h-5 mr-2 text-primary" />
                 <span className="text-primary uppercase font-bold">Sign Up</span>
               </Button>
@@ -155,6 +194,151 @@ const DeHackSection = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Registration Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" 
+            onClick={() => setShowModal(false)} 
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }} 
+              animate={{ scale: 1, opacity: 1 }} 
+              exit={{ scale: 0.9, opacity: 0 }} 
+              onClick={(e) => e.stopPropagation()} 
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-background border-2 border-primary/30 p-8 film-grain" 
+            >
+              <button 
+                onClick={() => setShowModal(false)} 
+                className="absolute top-4 right-4 text-primary hover:text-foreground transition-colors" 
+              >
+                <X className="w-6 h-6" /> 
+              </button>
+
+              <div className="mb-8"> 
+                <h2 className="text-3xl font-bold uppercase tracking-tighter text-primary mb-2"> 
+                  TEAM_REGISTRATION 
+                </h2> 
+                <p className="text-xs text-muted-foreground uppercase tracking-widest"> 
+                  SECURE_FORM_v2.1 // BROWNIE POINTS FOR COOLEST NAMES! 
+                </p> 
+              </div>
+
+              <div className="space-y-6"> 
+                <div> 
+                  <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2"> 
+                    1. Team Name 
+                  </label> 
+                  <input 
+                    type="text" 
+                    value={teamName} 
+                    onChange={(e) => setTeamName(e.target.value)} 
+                    className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono" 
+                    placeholder="Enter team name..." 
+                  /> 
+                </div>
+
+                <div className="border-l-2 border-primary/30 pl-6 space-y-4"> 
+                  <p className="text-xs text-primary uppercase tracking-widest font-bold">CAPTAIN DETAILS</p> 
+                  <div> 
+                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2"> 
+                      2. Captain - Name 
+                    </label> 
+                    <input 
+                      type="text" 
+                      value={captainName} 
+                      onChange={(e) => setCaptainName(e.target.value)} 
+                      className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono" 
+                      placeholder="Enter captain name..." 
+                    /> 
+                  </div> 
+                  <div> 
+                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2"> 
+                      3. Captain - BITS ID 
+                    </label> 
+                    <input 
+                      type="text" 
+                      value={captainId} 
+                      onChange={(e) => setCaptainId(e.target.value)} 
+                      className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono" 
+                      placeholder="Enter BITS ID..." 
+                    /> 
+                  </div> 
+                  <div> 
+                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2"> 
+                      4. Captain - Phone Number 
+                    </label> 
+                    <input 
+                      type="tel" 
+                      value={captainPhone} 
+                      onChange={(e) => setCaptainPhone(e.target.value)} 
+                      className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono" 
+                      placeholder="Enter phone number..." 
+                    /> 
+                  </div> 
+                </div>
+
+                <div> 
+                  <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2"> 
+                    5. Number of Team Members (Including Captain) 
+                  </label> 
+                  <input 
+                    type="number" 
+                    min="1" 
+                    value={numMembers} 
+                    onChange={handleNumMembersChange} 
+                    className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono" 
+                    placeholder="Enter number..." 
+                  /> 
+                </div>
+
+                {teamMembers.map((member, index) => ( 
+                  <div key={index} className="border-l-2 border-primary/30 pl-6 space-y-4"> 
+                    <p className="text-xs text-primary uppercase tracking-widest font-bold"> 
+                      MEMBER {index + 2} DETAILS 
+                    </p> 
+                    <div> 
+                      <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2"> 
+                        {6 + index * 2}. Team Member {index + 2} - Name 
+                      </label> 
+                      <input 
+                        type="text" 
+                        value={member.name} 
+                        onChange={(e) => handleMemberChange(index, 'name', e.target.value)} 
+                        className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono" 
+                        placeholder="Enter name..." 
+                      /> 
+                    </div> 
+                    <div> 
+                      <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2"> 
+                        {7 + index * 2}. Team Member {index + 2} - BITS ID 
+                      </label> 
+                      <input 
+                        type="text" 
+                        value={member.id} 
+                        onChange={(e) => handleMemberChange(index, 'id', e.target.value)} 
+                        className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono" 
+                        placeholder="Enter BITS ID..." 
+                      /> 
+                    </div> 
+                  </div> 
+                ))}
+
+                <Button 
+                  onClick={handleSubmit} 
+                  className="w-full bg-primary text-black font-bold uppercase py-6 mt-8 tracking-widest hover:bg-primary/80 transition-all" 
+                > 
+                  SUBMIT_REGISTRATION 
+                </Button> 
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
