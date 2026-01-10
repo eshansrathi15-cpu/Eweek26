@@ -224,7 +224,7 @@ const DeHackSection = () => {
                   TEAM_REGISTRATION 
                 </h2> 
                 <p className="text-xs text-muted-foreground uppercase tracking-widest"> 
-                  SECURE_FORM_v2.1 // BROWNIE POINTS FOR COOLEST NAMES! 
+                  SECURE_FORM_v2.1 // GO CRAZY 
                 </p> 
               </div>
 
