@@ -12,8 +12,7 @@ const Tickets = () => {
    { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", date: "Feb 10", prize: "₹25K+" },
    { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", date: "Feb 12", prize: "₹15K+" },
    { id: 5, name: "HANGOVER: THE TREASURE HUNT", type: "Exploration", date: "Feb 13", prize: "₹20K+" },
-   { id: 6, name: "MOVIE SCREENING", type: "Premiere Night", date: "Feb 14", prize: "Priceless" },
-   { id: 7, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "Feb 14", prize: "Priceless" },
+   { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "Feb 14", prize: "Priceless" },
  ];
 
 
