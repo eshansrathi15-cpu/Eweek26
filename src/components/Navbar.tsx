@@ -35,9 +35,6 @@ const Navbar = () => {
     {/* Auth Buttons */}
     <div className="flex items-center gap-4">
       <GoogleLoginBtn />
-      <Button variant="default" size="sm">
-        REGISTER
-      </Button>
     </div>
   </motion.nav>;
 };
