@@ -21,7 +21,7 @@ const events: EventDef[] = [
     rating: 'PG',
     isTeamEvent: true,
     config: {
-      extraFields: [] // Just standard team fields (Captain + Members)
+      extraFields: []
     }
   },
   {
@@ -29,7 +29,7 @@ const events: EventDef[] = [
     category: 'INNOVATION',
     desc: 'Rapid ideation competition',
     rating: 'G',
-    isTeamEvent: true,
+    isTeamEvent: true, // Type irrelevant as disabled
     disableRegistration: true
   },
   {
@@ -37,13 +37,7 @@ const events: EventDef[] = [
     category: 'INSIGHTS',
     desc: 'Leaders share their journey',
     rating: 'PG',
-    isTeamEvent: false,
-    config: {
-      extraFields: [
-        { key: 'phone', label: 'Phone Number', type: 'tel', required: true },
-        { key: 'college', label: 'College / Organization', type: 'text', required: true }
-      ]
-    }
+    isTeamEvent: false
   },
   {
     name: 'MOVIE SCREENING',
@@ -58,25 +52,15 @@ const events: EventDef[] = [
     category: 'COMPETITIVE',
     desc: 'Shortest code wins',
     rating: 'R',
-    isTeamEvent: true,
-    config: {
-      minMembers: 2,
-      maxMembers: 4,
-      extraFields: []
-    }
+    // Changed to false to collect ONLY Name/Email as requested
+    isTeamEvent: false
   },
   {
     name: 'ONE RED PAPERCLIP',
     category: 'CONNECT',
     desc: 'Build lasting connections',
     rating: 'G',
-    isTeamEvent: false,
-    config: {
-      extraFields: [
-        { key: 'phone', label: 'Phone Number', type: 'tel', required: true },
-        { key: 'itemDesc', label: 'Starting Item Description', type: 'text', placeholder: 'Describe your item...', required: true }
-      ]
-    }
+    isTeamEvent: false
   },
 ];
 
