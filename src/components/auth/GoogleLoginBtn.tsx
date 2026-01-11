@@ -1,5 +1,3 @@
-import { useGoogleLogin } from '@react-oauth/google';
-import { useState, useEffect } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,50 +8,10 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-interface User {
-    name: string;
-    email: string;
-    picture: string;
-}
+import { useAuth } from "@/context/AuthContext";
 
 const GoogleLoginBtn = () => {
-    const [user, setUser] = useState<User | null>(null);
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        console.log("Google Login Component Mounted");
-        console.log("Environment Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
-    }, []);
-
-    const handleLogout = () => {
-        setUser(null);
-        localStorage.removeItem('user');
-    };
-
-    const login = useGoogleLogin({
-        onSuccess: async (tokenResponse) => {
-            try {
-                const userInfo = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-                    headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-                }).then(res => res.json());
-
-                const userData: User = {
-                    name: userInfo.name,
-                    email: userInfo.email,
-                    picture: userInfo.picture
-                };
-                setUser(userData);
-                localStorage.setItem('user', JSON.stringify(userData));
-            } catch (error) {
-                console.error("Login Failed", error);
-            }
-        },
-        onError: () => console.log('Login Failed'),
-    });
+    const { user, login, logout } = useAuth();
 
     if (user) {
         return (
@@ -76,7 +34,7 @@ const GoogleLoginBtn = () => {
                         </div>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout}>
+                    <DropdownMenuItem onClick={logout}>
                         Log out
                     </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -85,10 +43,7 @@ const GoogleLoginBtn = () => {
     }
 
     return (
-        <Button variant="default" size="sm" onClick={() => {
-            console.log("Register button clicked, attempting login...");
-            login();
-        }}>
+        <Button variant="default" size="sm" onClick={() => login()}>
             REGISTER
         </Button>
     );
