@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { Ticket } from 'lucide-react';
+import { Ticket, Check, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import RegistrationModal, { EventConfig } from '@/components/RegistrationModal';
+import { useAuth } from '@/context/AuthContext';
+import { toast } from 'sonner';
 
 interface EventDef {
   name: string;
@@ -29,7 +31,7 @@ const events: EventDef[] = [
     category: 'INNOVATION',
     desc: 'Rapid ideation competition',
     rating: 'G',
-    isTeamEvent: true, // Type irrelevant as disabled
+    isTeamEvent: true,
     disableRegistration: true
   },
   {
@@ -52,7 +54,6 @@ const events: EventDef[] = [
     category: 'COMPETITIVE',
     desc: 'Shortest code wins',
     rating: 'R',
-    // Changed to false to collect ONLY Name/Email as requested
     isTeamEvent: false
   },
   {
@@ -65,11 +66,57 @@ const events: EventDef[] = [
 ];
 
 const EventsGrid = () => {
+  const { user, login } = useAuth();
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
+  const [registering, setRegistering] = useState<Record<string, boolean>>({});
+  const [registered, setRegistered] = useState<Record<string, boolean>>({});
 
-  const handleEventClick = (eventName: string, disabled?: boolean) => {
-    if (disabled) return;
-    setSelectedEvent(eventName);
+  const handleEventClick = async (event: EventDef) => {
+    if (event.disableRegistration) return;
+
+    // Special Case: Team Events still trigger Modal
+    if (event.isTeamEvent) {
+      setSelectedEvent(event.name);
+      return;
+    }
+
+    // 1-Click Registration Flow
+    if (!user) {
+      login();
+      return;
+    }
+
+    if (registered[event.name]) return;
+
+    setRegistering(prev => ({ ...prev, [event.name]: true }));
+
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          eventName: event.name.replace(/\s+/g, '_').toUpperCase(),
+          user: { name: user.name, email: user.email },
+          registrationData: {
+            interested: true,
+            timestamp: new Date().toISOString()
+          }
+        })
+      });
+
+      if (res.ok) {
+        setRegistered(prev => ({ ...prev, [event.name]: true }));
+        toast.success(`Successfully registered for ${event.name}!`);
+      } else {
+        const d = await res.json();
+        toast.error(`Registration failed: ${d.message}`);
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("Something went wrong.");
+    } finally {
+      setRegistering(prev => ({ ...prev, [event.name]: false }));
+    }
   };
 
   const selectedEventData = events.find(e => e.name === selectedEvent);
@@ -82,7 +129,6 @@ const EventsGrid = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          {/* Section header with ticket icon */}
           <div className="flex items-center justify-center gap-3 mb-4">
             <Ticket className="w-6 h-6 text-primary" />
             <h2 className="text-4xl md:text-5xl font-mono font-bold text-center">
@@ -95,52 +141,72 @@ const EventsGrid = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map((event, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              className="group"
-              onClick={() => handleEventClick(event.name, event.disableRegistration)}
-            >
-              <div
-                className="border-2 border-foreground p-6 h-56 flex flex-col justify-between transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:border-primary relative overflow-hidden event-tile"
-                data-title={event.name}
-                data-desc={event.desc}
+          {events.map((event, index) => {
+            const isRegistered = registered[event.name];
+            const isLoading = registering[event.name];
+            const isDisabled = event.disableRegistration;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="group"
+                onClick={() => handleEventClick(event)}
               >
-                {/* Movie rating badge */}
-                <div className="absolute top-3 right-3 w-8 h-8 border border-current flex items-center justify-center">
-                  <span className="text-[10px] font-mono font-bold group-hover:text-primary-foreground transition-colors">
-                    {event.rating}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-xs font-mono text-muted-foreground group-hover:text-primary-foreground/70 transition-colors tracking-widest">
-                    {event.category}
-                  </span>
-                  <h3 className="text-2xl font-mono font-bold mt-2 text-foreground group-hover:text-primary-foreground transition-colors">
-                    {event.name}
-                  </h3>
-                </div>
-
-                <div>
-                  <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/80 transition-colors mb-3">
-                    {event.desc}
-                  </p>
-                  {/* Showtime style footer */}
-                  <div className="flex items-center gap-2 pt-3 border-t border-border group-hover:border-primary-foreground/30 transition-colors">
-                    <span className="text-[10px] font-mono text-muted-foreground group-hover:text-primary-foreground/60 transition-colors">
-                      {event.disableRegistration ? "DETAILS COMING SOON" : "CLICK TO REGISTER"}
+                <div
+                  className={`border-2 p-6 h-56 flex flex-col justify-between transition-all duration-300 cursor-pointer relative overflow-hidden event-tile
+                    ${isRegistered
+                      ? 'border-primary bg-primary/10'
+                      : 'border-foreground group-hover:bg-primary group-hover:border-primary'
+                    }`}
+                  data-title={event.name}
+                  data-desc={event.desc}
+                >
+                  <div className="absolute top-3 right-3 w-8 h-8 border border-current flex items-center justify-center">
+                    <span className={`text-[10px] font-mono font-bold transition-colors ${!isRegistered && 'group-hover:text-primary-foreground'}`}>
+                      {event.rating}
                     </span>
                   </div>
+
+                  <div>
+                    <span className={`text-xs font-mono text-muted-foreground transition-colors tracking-widest ${!isRegistered && 'group-hover:text-primary-foreground/70'}`}>
+                      {event.category}
+                    </span>
+                    <h3 className={`text-2xl font-mono font-bold mt-2 text-foreground transition-colors ${!isRegistered && 'group-hover:text-primary-foreground'}`}>
+                      {event.name}
+                    </h3>
+                  </div>
+
+                  <div>
+                    <p className={`text-sm text-muted-foreground transition-colors mb-3 ${!isRegistered && 'group-hover:text-primary-foreground/80'}`}>
+                      {event.desc}
+                    </p>
+                    <div className={`flex items-center gap-2 pt-3 border-t transition-colors ${isRegistered ? 'border-primary' : 'border-border group-hover:border-primary-foreground/30'}`}>
+                      {isLoading ? (
+                        <div className="flex items-center gap-2 text-primary font-bold animate-pulse">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span className="text-[10px] font-mono uppercase">REGISTERING...</span>
+                        </div>
+                      ) : isRegistered ? (
+                        <div className="flex items-center gap-2 text-primary font-bold">
+                          <Check className="w-4 h-4" />
+                          <span className="text-[10px] font-mono uppercase">REGISTERED</span>
+                        </div>
+                      ) : (
+                        <span className={`text-[10px] font-mono text-muted-foreground transition-colors ${!isDisabled && 'group-hover:text-primary-foreground/60'}`}>
+                          {isDisabled ? "DETAILS COMING SOON" : "CLICK TO REGISTER"}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
