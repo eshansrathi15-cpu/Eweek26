@@ -46,7 +46,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         // Helper to format members
         const members = registrationData.members || [];
-        const memberFields = members.map((m: { name?: string; id?: string }) => `${m.name} (${m.id})`).join(', ');
+        const memberFields = members.map((m: any) => `${m.name} (${m.id})`).join(', ');
 
         const rowData = [
             ...commonFields,
@@ -66,11 +66,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         return res.status(200).json({ success: true, data: response.data });
 
-    } catch (error: unknown) {
+    } catch (error: any) {
         console.error('Sheet Error:', error);
         return res.status(500).json({
             message: 'Internal Server Error',
-            error: error instanceof Error ? error.message : 'Unknown Error'
+            error: error.message
         });
     }
 }

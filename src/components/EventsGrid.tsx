@@ -1,73 +1,21 @@
 import { motion } from 'framer-motion';
 import { Ticket } from 'lucide-react';
 import { useState } from 'react';
-import RegistrationModal, { EventConfig } from '@/components/RegistrationModal';
+import RegistrationModal from '@/components/RegistrationModal';
 
-interface EventDef {
-  name: string;
-  category: string;
-  desc: string;
-  rating: string;
-  isTeamEvent: boolean;
-  config?: EventConfig;
-  disableRegistration?: boolean;
-}
-
-const events: EventDef[] = [
-  {
-    name: 'HOW TO TRAIN YOUR DELIVERY TEAM',
-    category: 'TECH',
-    desc: 'Hands-on sessions with industry experts',
-    rating: 'PG',
-    isTeamEvent: true,
-    config: {
-      extraFields: []
-    }
-  },
-  {
-    name: 'WING TRADE',
-    category: 'INNOVATION',
-    desc: 'Rapid ideation competition',
-    rating: 'G',
-    isTeamEvent: true,
-    disableRegistration: true
-  },
-  {
-    name: 'WOLF OF DALAL STREET',
-    category: 'INSIGHTS',
-    desc: 'Leaders share their journey',
-    rating: 'PG',
-    isTeamEvent: false
-  },
-  {
-    name: 'MOVIE SCREENING',
-    category: 'BUSINESS',
-    desc: 'Showcase your venture',
-    rating: 'G',
-    isTeamEvent: false,
-    disableRegistration: true
-  },
-  {
-    name: 'HANGOVER: THE TREASURE HUNT',
-    category: 'COMPETITIVE',
-    desc: 'Shortest code wins',
-    rating: 'R',
-    isTeamEvent: false
-  },
-  {
-    name: 'ONE RED PAPERCLIP',
-    category: 'CONNECT',
-    desc: 'Build lasting connections',
-    rating: 'G',
-    isTeamEvent: false
-  },
+const events = [
+  { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', category: 'TECH', desc: 'Hands-on sessions with industry experts', rating: 'PG', isTeamEvent: true },
+  { name: 'WING TRADE', category: 'INNOVATION', desc: 'Rapid ideation competition', rating: 'G', isTeamEvent: true },
+  { name: 'WOLF OF DALAL STREET', category: 'INSIGHTS', desc: 'Leaders share their journey', rating: 'PG', isTeamEvent: false },
+  { name: 'MOVIE SCREENING', category: 'BUSINESS', desc: 'Showcase your venture', rating: 'G', isTeamEvent: false },
+  { name: 'HANGOVER: THE TREASURE HUNT', category: 'COMPETITIVE', desc: 'Shortest code wins', rating: 'R', isTeamEvent: true },
+  { name: 'ONE RED PAPERCLIP', category: 'CONNECT', desc: 'Build lasting connections', rating: 'G', isTeamEvent: false },
 ];
 
 const EventsGrid = () => {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
 
-  const handleEventClick = (eventName: string, disabled?: boolean) => {
-    if (disabled) return;
+  const handleEventClick = (eventName: string) => {
     setSelectedEvent(eventName);
   };
 
@@ -81,6 +29,7 @@ const EventsGrid = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
+          {/* Section header with ticket icon */}
           <div className="flex items-center justify-center gap-3 mb-4">
             <Ticket className="w-6 h-6 text-primary" />
             <h2 className="text-4xl md:text-5xl font-mono font-bold text-center">
@@ -102,13 +51,14 @@ const EventsGrid = () => {
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
               className="group"
-              onClick={() => handleEventClick(event.name, event.disableRegistration)}
+              onClick={() => handleEventClick(event.name)}
             >
               <div
                 className="border-2 border-foreground p-6 h-56 flex flex-col justify-between transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:border-primary relative overflow-hidden event-tile"
                 data-title={event.name}
                 data-desc={event.desc}
               >
+                {/* Movie rating badge */}
                 <div className="absolute top-3 right-3 w-8 h-8 border border-current flex items-center justify-center">
                   <span className="text-[10px] font-mono font-bold group-hover:text-primary-foreground transition-colors">
                     {event.rating}
@@ -128,9 +78,10 @@ const EventsGrid = () => {
                   <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/80 transition-colors mb-3">
                     {event.desc}
                   </p>
-                  <div className="flex items-center gap-2 pt-3 border-t border-border group-hover:border-primary-foreground/30 transition-colors min-h-[40px]">
+                  {/* Showtime style footer */}
+                  <div className="flex items-center gap-2 pt-3 border-t border-border group-hover:border-primary-foreground/30 transition-colors">
                     <span className="text-[10px] font-mono text-muted-foreground group-hover:text-primary-foreground/60 transition-colors">
-                      {event.disableRegistration ? "DETAILS COMING SOON" : "CLICK TO REGISTER"}
+                      CLICK TO REGISTER
                     </span>
                   </div>
                 </div>
@@ -147,7 +98,6 @@ const EventsGrid = () => {
         isTeamEvent={selectedEventData?.isTeamEvent || false}
         title={selectedEvent || ""}
         subtitle={selectedEventData?.category || "EVENT REGISTRATION"}
-        config={selectedEventData?.config}
       />
     </section>
   );

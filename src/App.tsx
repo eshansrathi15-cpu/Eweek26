@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import DEHACK from "./pages/DEHACK";
 import BedrockPage from "./pages/BedrockPage";
-import Tickets from "./pages/Tickets";
+import Tickets from "./pages/Tickets"; // <--- 1. ADD THIS IMPORT
 
 const queryClient = new QueryClient();
 
@@ -20,7 +20,10 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/dehack" element={<DEHACK />} />
           <Route path="/bedrock" element={<BedrockPage />} />
+          
+          {/* 2. ADD THIS ROUTE LINE BELOW */}
           <Route path="/tickets" element={<Tickets />} />
+          
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
