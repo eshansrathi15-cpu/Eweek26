@@ -1,5 +1,4 @@
 import { useGoogleLogin } from '@react-oauth/google';
-import { useState, useEffect } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,27 +9,10 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-interface User {
-    name: string;
-    email: string;
-    picture: string;
-}
+import { useAuth } from '@/contexts/AuthContext';
 
 const GoogleLoginBtn = () => {
-    const [user, setUser] = useState<User | null>(null);
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
-
-    const handleLogout = () => {
-        setUser(null);
-        localStorage.removeItem('user');
-    };
+    const { user, logout } = useAuth();
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -39,13 +21,15 @@ const GoogleLoginBtn = () => {
                     headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
                 }).then(res => res.json());
 
-                const userData: User = {
+                const userData = {
                     name: userInfo.name,
                     email: userInfo.email,
                     picture: userInfo.picture
                 };
-                setUser(userData);
+                // Store directly in localStorage - AuthContext will pick it up on refresh
                 localStorage.setItem('user', JSON.stringify(userData));
+                // Force page reload to sync with AuthContext
+                window.location.reload();
             } catch (error) {
                 console.error("Login Failed", error);
             }
@@ -74,7 +58,7 @@ const GoogleLoginBtn = () => {
                         </div>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout}>
+                    <DropdownMenuItem onClick={logout}>
                         Log out
                     </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -90,3 +74,4 @@ const GoogleLoginBtn = () => {
 };
 
 export default GoogleLoginBtn;
+
