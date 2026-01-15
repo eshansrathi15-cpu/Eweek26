@@ -42,7 +42,7 @@ const BedrockPage = () => {
         setNumMembers(e.target.value);
         // Create array for additional team members (excluding captain) 
         const additionalMembers = num > 1 ? num - 1 : 0;
-        setTeamMembers(Array(additionalMembers).fill(null).map(() => ({ name: "", id: "" })));
+        setTeamMembers(Array(additionalMembers).fill(null).map(() => ({ name: "", id: "", phone: "" })));
     };
 
     const handleMemberChange = (index, field, value) => {
@@ -59,7 +59,7 @@ const BedrockPage = () => {
 
         setIsSubmitting(true);
         try {
-            const membersData = teamMembers.map((m: any) => `${m.name} (${m.id})`).join(', ');
+            const membersData = teamMembers.map((m: any) => `${m.name} (${m.id}) [${m.phone}]`).join(', ');
 
             const response = await fetch('/api/register', {
                 method: 'POST',
@@ -103,10 +103,10 @@ const BedrockPage = () => {
 
     // Timeline Data - UPDATED WITH SPECIFIC ICONS 
     const bedrockTimeline = [
-        { time: "19th Jan", event: "Team Qualifiers: Test your team’s creativity. 30 mins of brainstorming!", status: "LIVE", icon: <Brain className="w-5 h-5 text-primary" /> },
+        { time: "19th Jan", event: "Team Qualifiers: Test your team's creativity. 30 mins of brainstorming!", status: "LIVE", icon: <Brain className="w-5 h-5 text-primary" /> },
         { time: "20th Jan", event: "Online Interactions: Tell us more about your ideas, skills and team.", status: "UPCOMING", icon: <Users className="w-5 h-5 text-primary" /> },
         { time: "22nd Jan", event: "The Auction: Get ready with your bids and negotiating skills to nab your team the best restaurant!", status: "UPCOMING", icon: <Gavel className="w-5 h-5 text-primary" /> },
-        { time: "25th Jan", event: "BEDROCK: C’not is yours for the taking!", status: "FINALE", icon: <Crown className="w-5 h-5 text-primary" /> }
+        { time: "25th Jan", event: "BEDROCK: C'not is yours for the taking!", status: "FINALE", icon: <Crown className="w-5 h-5 text-primary" /> }
     ];
 
     const features = [{
@@ -440,7 +440,7 @@ const BedrockPage = () => {
 
                             <div className="border-l-4 border-primary/40 pl-6 py-2">
                                 <span className="text-primary font-bold text-2xl mb-2 block">06. LOGISTICS</span>
-                                <p>All sales must be made, paid, and completed at C’Not. Home deliveries are strictly prohibited and will not be considered sales for Bedrock unless done through the facilitation of a PowerUp.</p>
+                                <p>All sales must be made, paid, and completed at C'Not. Home deliveries are strictly prohibited and will not be considered sales for Bedrock unless done through the facilitation of a PowerUp.</p>
                             </div>
 
                             <div className="border-l-4 border-primary/40 pl-6 py-2">
@@ -565,19 +565,7 @@ const BedrockPage = () => {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                                        4. Captain - BITS ID
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={captainId}
-                                        onChange={(e) => setCaptainId(e.target.value)}
-                                        className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                                        placeholder="Enter BITS ID..."
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                                        5. Captain - Phone Number
+                                        4. Captain - Phone Number
                                     </label>
                                     <input
                                         type="tel"
@@ -591,7 +579,7 @@ const BedrockPage = () => {
 
                             <div>
                                 <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2">
-                                    6. Number of Team Members (Including Captain)
+                                    5. Number of Team Members (Including Captain)
                                 </label>
                                 <input
                                     type="number"
@@ -610,7 +598,7 @@ const BedrockPage = () => {
                                     </p>
                                     <div>
                                         <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                                            {7 + index * 2}. Team Member {index + 2} - Name
+                                            {6 + index * 3}. Team Member {index + 2} - Name
                                         </label>
                                         <input
                                             type="text"
@@ -622,14 +610,26 @@ const BedrockPage = () => {
                                     </div>
                                     <div>
                                         <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                                            {8 + index * 2}. Team Member {index + 2} - BITS ID
+                                            {7 + index * 3}. Team Member {index + 2} - BITS Email
                                         </label>
                                         <input
                                             type="text"
                                             value={member.id}
                                             onChange={(e) => handleMemberChange(index, 'id', e.target.value)}
                                             className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                                            placeholder="Enter BITS ID..."
+                                            placeholder="Enter BITS Email..."
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                                            {8 + index * 3}. Team Member {index + 2} - Phone Number
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            value={member.phone}
+                                            onChange={(e) => handleMemberChange(index, 'phone', e.target.value)}
+                                            className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                                            placeholder="Enter phone number..."
                                         />
                                     </div>
                                 </div>

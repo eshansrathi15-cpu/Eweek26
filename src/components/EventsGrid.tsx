@@ -5,7 +5,7 @@ const events = [
   { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', category: 'TECH', desc: 'Hands-on sessions with industry experts', rating: 'PG' },
   { name: 'WING TRADE', category: 'INNOVATION', desc: 'Rapid ideation competition', rating: 'G' },
   { name: 'WOLF OF DALAL STREET', category: 'INSIGHTS', desc: 'Leaders share their journey', rating: 'PG' },
-  { name: 'MOVIE SCREENING', category: 'BUSINESS', desc: 'Showcase your venture', rating: 'G' },
+  { name: 'ESCAPE ROOM', category: 'BUSINESS', desc: 'Showcase your venture', rating: 'G' },
   { name: 'HANGOVER: THE TREASURE HUNT', category: 'COMPETITIVE', desc: 'Shortest code wins', rating: 'R' },
   { name: 'ONE RED PAPERCLIP', category: 'CONNECT', desc: 'Build lasting connections', rating: 'G' },
 ];

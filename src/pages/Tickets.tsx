@@ -12,7 +12,7 @@ const EVENT_SHEET_MAP: Record<string, string> = {
   "CROWDFUNDING": "DEHACK",
   "WOLF OF DALAL STREET": "WOLF_DALAL",
   "HOW TO TRAIN YOUR DELIVERY TEAM": "DELIVERY_TEAM",
-  "ESCAPE_ROOM": "HANGOVER",
+  "ESCAPE ROOM": "ESCAPE_ROOM",
   "ONE RED PAPERCLIP": "RED_PAPERCLIP",
 };
 
@@ -195,6 +195,13 @@ const Tickets = () => {
                   <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Registering As</p>
                   <p className="text-foreground font-mono">{user?.name}</p>
                   <p className="text-sm text-muted-foreground">{user?.email}</p>
+                </div>
+                
+                {/* THE REQUESTED LINE INJECTED BELOW */}
+                <div className="border border-primary/20 bg-primary/5 p-3 rounded-sm">
+                  <p className="text-[10px] md:text-xs font-mono text-primary uppercase tracking-widest leading-relaxed">
+                    {">"} You'll be emailed a community link upon registering!
+                  </p>
                 </div>
               </div>
 

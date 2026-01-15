@@ -43,7 +43,7 @@ const Dehack = () => {
       const numValue = parseInt(inputValue);
       if (!isNaN(numValue) && numValue > 0) {
         const membersCount = Math.max(0, numValue - 1);
-        setTeamMembers(Array(membersCount).fill(null).map(() => ({ name: '', id: '' })));
+        setTeamMembers(Array(membersCount).fill(null).map(() => ({ name: '', id: '', phone: '' })));
       }
     } else {
       setTeamMembers([]);
@@ -64,7 +64,7 @@ const Dehack = () => {
 
     setIsSubmitting(true);
     try {
-      const membersData = teamMembers.map((m: any) => `${m.name} (${m.id})`).join(', ');
+      const membersData = teamMembers.map((m: any) => `${m.name} (${m.id}) [${m.phone}]`).join(', ');
 
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -388,19 +388,7 @@ const Dehack = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                    4. Captain - BITS ID
-                  </label>
-                  <input
-                    type="text"
-                    value={captainId}
-                    onChange={(e) => setCaptainId(e.target.value)}
-                    className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                    placeholder="Enter BITS ID..."
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                    5. Captain - Phone Number
+                    4. Captain - Phone Number
                   </label>
                   <input
                     type="tel"
@@ -414,7 +402,7 @@ const Dehack = () => {
 
               <div>
                 <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2">
-                  6. Number of Team Members (Including Captain)
+                  5. Number of Team Members (Including Captain)
                 </label>
                 <input
                   type="number"
@@ -433,7 +421,7 @@ const Dehack = () => {
                   </p>
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                      {7 + index * 2}. Team Member {index + 2} - Name
+                      {6 + index * 3}. Team Member {index + 2} - Name
                     </label>
                     <input
                       type="text"
@@ -445,14 +433,26 @@ const Dehack = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
-                      {8 + index * 2}. Team Member {index + 2} - BITS ID
+                      {7 + index * 3}. Team Member {index + 2} - BITS Email
                     </label>
                     <input
                       type="text"
                       value={member.id}
                       onChange={(e) => handleMemberChange(index, 'id', e.target.value)}
                       className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                      placeholder="Enter BITS ID..."
+                      placeholder="Enter BITS Email..."
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                      {8 + index * 3}. Team Member {index + 2} - Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      value={member.phone}
+                      onChange={(e) => handleMemberChange(index, 'phone', e.target.value)}
+                      className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                      placeholder="Enter phone number..."
                     />
                   </div>
                 </div>

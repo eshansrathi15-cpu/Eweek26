@@ -4,7 +4,7 @@ import { Clapperboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const events = [
-  { date: 'FEB 09', title: 'OPENING', description: 'Grand Opening Ceremony', scene: 'SCENE 01', slug: 'opening' },
+  { date: 'FEB 09', title: 'WING TRADE', description: 'Grand Opening Ceremony', scene: 'SCENE 01', slug: 'opening' },
   { date: 'FEB 10', title: 'WOLF OF DALAL STREET', description: '120-Hour Hackathon Begins', scene: 'SCENE 02', slug: 'dehack' },
   { date: 'FEB 11', title: 'CROWDFUNDING', description: 'Build Phase', scene: 'SCENE 03', slug: 'dehack' },
   { date: 'FEB 12', title: 'HOW TO TRAIN YOUR DELIVERY TEAM', description: 'Innovation Sprint', scene: 'SCENE 04', slug: 'dehack' },

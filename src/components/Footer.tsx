@@ -54,7 +54,7 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground">No events were harmed in the making of this website.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-12 mb-16">
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* Logo & Info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -71,24 +71,14 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-mono font-bold mb-4 text-sm tracking-wider">QUICK LINKS</h4>
-            <ul className="space-y-2 text-muted-foreground text-sm">
-              <li><a href="/about" className="hover:text-primary transition-colors">About E-Week</a></li>
-              
-              
-              <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          {/* Contact */}
+          {/* Connect */}
           <div>
             <h4 className="font-mono font-bold mb-4 text-sm tracking-wider">CONNECT</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
+              <li><a href="/about" className="hover:text-primary transition-colors">About E-Week</a></li>
               <li>eweekpilani@gmail.com</li>
               <li className="flex gap-3">
-                <a href="#" className="hover:text-primary transition-colors">Instagram</a>
+                <a href="https://www.instagram.com/eweek2026/?igsh=MTdtaG1rOXdhNmM3dw%3D%3D" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
                 
                 
               </li>
