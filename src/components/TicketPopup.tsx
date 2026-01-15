@@ -37,21 +37,14 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
                     headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
                 }).then(res => res.json());
 
-                // Update context/local storage
                 const credential = {
                     name: userInfo.name,
                     email: userInfo.email,
                     picture: userInfo.picture,
-                    // Mocking jwt structure if needed by context or just passing raw user data if context adapted
-                    // But context expects a JWT string usually or we trigger login with it.
-                    // Actually contextLogin takes a "credential" string (JWT).
-                    // We might need to manually set the user in context if we don't get a JWT from this flow.
-                    // Looking at GoogleLoginBtn.tsx, it manually sets localStorage and reloads.
-                    // We will do the same for consistency.
                 };
                 
                  localStorage.setItem('user', JSON.stringify(credential));
-                 window.location.reload(); // Simple reload to pick up auth state
+                 window.location.reload(); 
             } catch (error) {
                 console.error("Login Failed", error);
                 toast.error("Login failed. Please try again.");
@@ -68,9 +61,6 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
 
         setIsRegistering(true);
         try {
-            // Map event name to sheet name format if needed
-            // Currently assuming event.name maps closely, but might need normalization
-            // Example: "WING TRADE" -> "WING_TRADE"
             const sheetName = event?.name.replace(/ /g, '_').toUpperCase() || 'UNKNOWN_EVENT';
 
             const response = await fetch('/api/register', {
@@ -81,8 +71,7 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
                     row_data: [
                         user.name,
                         user.email,
-                        new Date().toISOString(), // Timestamp
-                        // Add other fields if required by the sheet structure
+                        new Date().toISOString(), 
                     ]
                 })
             });
@@ -112,8 +101,14 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
                     </div>
                     <h2 id="ticket-title">{event.name}</h2>
                     <p id="ticket-desc">{event.desc}</p>
+                    
+                    {/* Community link reminder remains untouched */}
+                    <p className="mt-4 text-[10px] md:text-xs font-mono text-cyan-400 opacity-80 uppercase tracking-widest leading-relaxed">
+                        {">"} You'll get an email with the community link upon registering!
+                    </p>
+
                     <div className="ticket-meta">
-                        <span className="meta-tag text-xs font-mono text-cyan-400 border border-cyan-400 px-2 py-0.5 mt-2 inline-block">NOW PLAYING</span>
+                        {/* "NOW PLAYING" tag removed as requested */}
                     </div>
                 </div>
                 <div className="ticket-rip-line"></div>
