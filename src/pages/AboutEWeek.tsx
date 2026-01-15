@@ -325,7 +325,7 @@ const AboutEWeek = () => {
               — JOIN US —
             </motion.p>
             <p className="text-muted-foreground mb-8">
-              Be part of the premier entrepreneurship festival
+              Be part of the legacy
             </p>
           </motion.div>
         </div>
