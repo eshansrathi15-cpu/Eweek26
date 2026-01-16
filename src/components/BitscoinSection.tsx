@@ -22,7 +22,7 @@ icon: <Coins className="w-8 h-8 text-primary" />,
 
 return (
 /* Removed 'bg-background' to allow the WaveformBackground to be visible */
-<section className="py-24 relative px-6 overflow-hidden bg-transparent">
+<section id="bitscoin" className="py-24 relative px-6 overflow-hidden bg-transparent">
 {/* We keep the vignette but set it to pointer-events-none 
          so it doesn't block the mouse from interacting with the background grid.
       */}

@@ -10,6 +10,13 @@ const Navbar = () => {
   const { isAuthenticated } = useAuth();
   const { balance } = useBitscoin();
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.nav
       initial={{
@@ -40,14 +47,14 @@ const Navbar = () => {
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">
         {['SHOWTIME', 'FEATURES', 'BITSCOIN'].map(item => (
-          <a
+          <button
             key={item}
-            href={`#${item.toLowerCase()}`}
+            onClick={() => scrollToSection(item.toLowerCase())}
             className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
           >
             {item}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-          </a>
+          </button>
         ))}
       </div>
 
