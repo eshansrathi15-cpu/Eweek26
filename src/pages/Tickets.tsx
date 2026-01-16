@@ -130,10 +130,21 @@ const Tickets = () => {
         </motion.div>
 
         {/* Header */}
-        <div className="flex items-center gap-4 mb-12">
+        <div className="flex items-center gap-4 mb-4">
           <Ticket className="text-primary w-8 h-8" />
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase">EVENT_TICKETS</h1>
         </div>
+
+        {/* Notice Banner - Now as Subheading */}
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          className="mb-12 border-l-4 border-primary bg-primary/5 p-4 backdrop-blur-sm"
+        >
+          <p className="text-sm md:text-base font-mono text-primary uppercase tracking-[0.2em] leading-relaxed font-bold">
+            {">"} Please register for DEHACK and BEDROCK on their individual event pages
+          </p>
+        </motion.div>
 
         {/* Event List */}
         <div className="space-y-4">
