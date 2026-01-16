@@ -18,15 +18,15 @@ const EVENT_SHEET_MAP: Record<string, string> = {
 
 const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
   "CROWDFUNDING": {
-    description: "Join the ultimate hackathon challenge where innovation meets funding! Build groundbreaking solutions and pitch your ideas to secure crowdfunding. Collaborate, code, and compete over 5 days to create the next big thing.",
+    description: "Suggest solutions to campus problems. ANC cats bothering you? FD washrooms not clean? Impress people with your solutions, and secure the funding to make your vision a reality.",
     prize: "₹8,000"
   },
   "WOLF OF DALAL STREET": {
-    description: "Step into the high-stakes world of stock trading! Test your market instincts, trading strategies, and risk management skills in this intense simulation. Buy low, sell high, and dominate the leaderboard in this thrilling competition.",
+    description: "Durex making diapers? Prove you can pitch the impossible and snag a spot on BITS' very own stock market. Market your stocks, trash talk competitors and collect BITScoin to bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
     prize: "₹7,500"
   },
   "HOW TO TRAIN YOUR DELIVERY TEAM": {
-    description: "Master the art of logistics and operations! Optimize delivery routes, manage resources, and lead your team to peak efficiency. Tackle real-world operational challenges and prove your strategic prowess.",
+    description: "Take over ANC & Looters to master logistics and operations! Optimize delivery routes, manage resources and team up for maximum sales!",
     prize: "₹6,000"
   },
   "ESCAPE ROOM": {
