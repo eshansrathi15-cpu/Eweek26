@@ -68,7 +68,7 @@ const GoogleLoginBtn = () => {
 
     return (
         <Button variant="default" size="sm" onClick={() => login()}>
-            REGISTER
+            LOGIN
         </Button>
     );
 };
