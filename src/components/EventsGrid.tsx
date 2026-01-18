@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { Ticket } from 'lucide-react';
 
 const events = [
-  { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', category: 'TECH', desc: 'Hands-on sessions with industry experts', rating: 'PG' },
-  { name: 'WING TRADE', category: 'INNOVATION', desc: 'Rapid ideation competition', rating: 'G' },
-  { name: 'WOLF OF DALAL STREET', category: 'INSIGHTS', desc: 'Leaders share their journey', rating: 'PG' },
-  { name: 'ESCAPE ROOM', category: 'BUSINESS', desc: 'Showcase your venture', rating: 'G' },
-  { name: 'HANGOVER: THE TREASURE HUNT', category: 'COMPETITIVE', desc: 'Shortest code wins', rating: 'R' },
-  { name: 'ONE RED PAPERCLIP', category: 'CONNECT', desc: 'Build lasting connections', rating: 'G' },
+  { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', desc: 'Take over FM, ANC & Looters!', rating: 'PG', category: 'EVENT' },
+  { name: 'WING TRADE', desc: 'Tired of your wingies? Sell them.', rating: 'G', category: 'EVENT' },
+  { name: 'WOLF OF DALAL STREET', desc: 'Build your company, bet on the IPO!', rating: 'PG', category: 'EVENT' },
+  { name: 'ESCAPE ROOM', desc: 'Elementary, my dear Watson.', rating: 'G', category: 'EVENT' },
+  { name: 'CROWDFUNDING', desc: 'Get people to fund your solutions to campus problems.', rating: 'R', category: 'EVENT' },
+  { name: 'ONE RED PAPERCLIP', desc: 'Build lasting connections', rating: 'G', category: 'EVENT' },
 ];
 
 interface EventsGridProps {
@@ -61,9 +61,6 @@ const EventsGrid = ({ onEventClick }: EventsGridProps) => {
                 </div>
 
                 <div>
-                  <span className="text-xs font-mono text-muted-foreground group-hover:text-primary-foreground/70 transition-colors tracking-widest">
-                    {event.category}
-                  </span>
                   <h3 className="text-2xl font-mono font-bold mt-2 text-foreground group-hover:text-primary-foreground transition-colors">
                     {event.name}
                   </h3>
@@ -75,8 +72,8 @@ const EventsGrid = ({ onEventClick }: EventsGridProps) => {
                   </p>
                   {/* Showtime style footer */}
                   <div className="flex items-center gap-2 pt-3 border-t border-border group-hover:border-primary-foreground/30 transition-colors">
-                    <span className="text-[10px] font-mono text-muted-foreground group-hover:text-primary-foreground/60 transition-colors">
-                      MULTIPLE SHOWTIMES
+                    <span className="text-xs font-mono font-bold text-primary group-hover:text-primary-foreground transition-colors">
+                      REGISTER HERE
                     </span>
                   </div>
                 </div>
@@ -90,4 +87,3 @@ const EventsGrid = ({ onEventClick }: EventsGridProps) => {
 };
 
 export default EventsGrid;
-

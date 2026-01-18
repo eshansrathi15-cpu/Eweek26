@@ -67,7 +67,7 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm">
               The premier entrepreneurship week.
               <br />
-              February 9-15, 2026.
+              February 02-09, 2026.
             </p>
           </div>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Ticket, Star, Zap, Trophy, X, Check } from "lucide-react";
+import { ArrowLeft, Ticket, Star, Zap, Trophy, X, Check, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
@@ -16,17 +16,41 @@ const EVENT_SHEET_MAP: Record<string, string> = {
   "ONE RED PAPERCLIP": "RED_PAPERCLIP",
 };
 
+const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
+  "CROWDFUNDING": {
+    description: "Suggest solutions to campus problems. ANC cats bothering you? FD washrooms not clean? Impress people with your solutions, and secure the funding to make your vision a reality.",
+    prize: "₹8,000"
+  },
+  "WOLF OF DALAL STREET": {
+    description: "Durex making diapers? Prove you can pitch the impossible and snag a spot on BITS' very own stock market. Market your stocks, trash talk competitors and collect BITScoin to bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
+    prize: "₹7,500"
+  },
+  "HOW TO TRAIN YOUR DELIVERY TEAM": {
+    description: "Take over ANC & Looters to master logistics and operations! Optimize delivery routes, manage resources and team up for maximum sales!",
+    prize: "₹6,000"
+  },
+  "ESCAPE ROOM": {
+    description: "Crack codes, solve puzzles, and race against time! Navigate through intricate challenges in this immersive exploration experience. Work with your team to uncover secrets and escape before time runs out.",
+    prize: "₹9,000"
+  },
+  "ONE RED PAPERCLIP": {
+    description: "One red paperclip, infinite possibilities. Trade your way up and prove that the ultimate prize is just a few deals away. How far can you go?",
+    prize: "₹5,500"
+  }
+};
+
 const Tickets = () => {
   const { user, isAuthenticated } = useAuth();
   const { registeredEvents, addRegisteredEvent, isLoading: isCheckingStatus } = useRegistrationStatus();
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
+  const [learnMoreEvent, setLearnMoreEvent] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const events = [
     { id: 1, name: "CROWDFUNDING", type: "Hackathon", date: "Feb 11-16", prize: "₹1L+" },
     { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", date: "Feb 10", prize: "₹25K+" },
     { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", date: "Feb 12", prize: "₹15K+" },
-    { id: 5, name: "ESCAPE_ROOM", type: "Exploration", date: "Feb 13", prize: "₹20K+" },
+    { id: 5, name: "ESCAPE ROOM", type: "Exploration", date: "Feb 13", prize: "₹20K+" },
     { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "Feb 14", prize: "Priceless" },
   ];
 
@@ -106,10 +130,21 @@ const Tickets = () => {
         </motion.div>
 
         {/* Header */}
-        <div className="flex items-center gap-4 mb-12">
+        <div className="flex items-center gap-4 mb-4">
           <Ticket className="text-primary w-8 h-8" />
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase">EVENT_TICKETS</h1>
         </div>
+
+        {/* Notice Banner - Now as Subheading */}
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          className="mb-12 border-l-4 border-primary bg-primary/5 p-4 backdrop-blur-sm"
+        >
+          <p className="text-sm md:text-base font-mono text-primary uppercase tracking-[0.2em] leading-relaxed font-bold">
+            {">"} Please register for DEHACK and BEDROCK on their individual event pages
+          </p>
+        </motion.div>
 
         {/* Event List */}
         <div className="space-y-4">
@@ -133,25 +168,95 @@ const Tickets = () => {
                     <span className="flex items-center gap-2 uppercase font-semibold"><Trophy className="w-3 h-3 text-yellow-500" /> {event.prize}</span>
                   </div>
                 </div>
-                <Button
-                  onClick={() => handleRegisterClick(event.name)}
-                  className={`w-full md:w-auto font-bold uppercase py-8 px-12 tracking-widest transition-transform shadow-[0_0_20px_rgba(147,245,255,0.2)] ${isRegistered
-                    ? 'bg-green-500 text-white hover:bg-green-600'
-                    : 'bg-primary text-black hover:scale-105'
-                    }`}
-                  disabled={isRegistered || isCheckingStatus}
-                >
-                  {isRegistered ? (
-                    <span className="flex items-center gap-2"><Check className="w-5 h-5" /> REGISTERED</span>
-                  ) : (
-                    'REGISTER_NOW'
-                  )}
-                </Button>
+                <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+                  <Button
+                    onClick={() => setLearnMoreEvent(event.name)}
+                    variant="outline"
+                    className="w-full md:w-auto font-bold uppercase py-5 px-8 tracking-widest border-primary/30 text-primary hover:bg-primary/20 transition-all text-sm"
+                  >
+                    <Info className="w-4 h-4 mr-2" /> LEARN_MORE
+                  </Button>
+                  <Button
+                    onClick={() => handleRegisterClick(event.name)}
+                    className={`w-full md:w-auto font-bold uppercase py-5 px-8 tracking-widest transition-transform shadow-[0_0_20px_rgba(147,245,255,0.2)] text-sm ${isRegistered
+                      ? 'bg-green-500 text-white hover:bg-green-600'
+                      : 'bg-primary text-black hover:scale-105'
+                      }`}
+                    disabled={isRegistered || isCheckingStatus}
+                  >
+                    {isRegistered ? (
+                      <span className="flex items-center gap-2"><Check className="w-5 h-5" /> REGISTERED</span>
+                    ) : (
+                      'REGISTER_NOW'
+                    )}
+                  </Button>
+                </div>
               </motion.div>
             );
           })}
         </div>
       </div>
+
+      {/* Learn More Modal */}
+      <AnimatePresence>
+        {learnMoreEvent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setLearnMoreEvent(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-lg bg-background border-2 border-primary/30 p-8 film-grain"
+            >
+              <button
+                onClick={() => setLearnMoreEvent(null)}
+                className="absolute top-4 right-4 text-primary hover:text-foreground transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="mb-6">
+                <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tighter text-primary mb-2">
+                  {learnMoreEvent}
+                </h2>
+                <p className="text-xs text-muted-foreground uppercase tracking-widest">
+                  EVENT_DETAILS_v1.0
+                </p>
+              </div>
+
+              <div className="space-y-6 mb-8">
+                <div className="border-l-2 border-primary/30 pl-4">
+                  <p className="text-sm leading-relaxed text-foreground">
+                    {EVENT_DETAILS[learnMoreEvent]?.description}
+                  </p>
+                </div>
+
+                <div className="border-2 border-primary bg-primary/10 p-6 text-center">
+                  <p className="text-xs text-primary uppercase tracking-widest mb-2 font-bold">
+                    PRIZE POOL
+                  </p>
+                  <p className="text-4xl md:text-5xl font-bold text-primary tracking-tight">
+                    {EVENT_DETAILS[learnMoreEvent]?.prize}
+                  </p>
+                </div>
+              </div>
+
+              <Button
+                onClick={() => setLearnMoreEvent(null)}
+                className="w-full bg-primary text-black font-bold uppercase tracking-widest hover:bg-primary/80 py-6"
+              >
+                CLOSE
+              </Button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Confirmation Modal */}
       <AnimatePresence>
