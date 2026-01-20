@@ -18,7 +18,7 @@ const EVENT_SHEET_MAP: Record<string, string> = {
 
 const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
   "MISSION:POSSIBLE?": {
-    description: "Suggest solutions to campus problems. ANC cats bothering you? FD washrooms not clean? Impress people with your solutions, and secure the funding to make your vision a reality.",
+    description: "Suggest solutions to problems. You decide what the problem is. ANC cats bothering you? No Diet Coke in your vendi? Pitch your solutions and raise real capital from the student body.",
     prize: "₹8,000"
   },
   "WOLF OF DALAL STREET": {
@@ -30,11 +30,11 @@ const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
     prize: "₹6,000"
   },
   "ESCAPE ROOM": {
-    description: "Crack codes, solve puzzles, and race against time! Navigate through intricate challenges in this immersive exploration experience. Work with your team to uncover secrets and escape before time runs out.",
+    description: "Challenge yourself to a fusion of two classic events on campus—an escape room and a treasure hunt—but with a twist. The slowest team will be eliminated each round. Make your escape before time runs out.",
     prize: "₹9,000"
   },
   "ONE RED PAPERCLIP": {
-    description: "One red paperclip, infinite possibilities. Trade your way up and prove that the ultimate prize is just a few deals away. How far can you go?",
+    description: "One lone paperclip, infinite possibilities. Trade your way up and prove that the ultimate prize is just a few deals away. How far can you go?",
     prize: "₹5,500"
   }
 };
