@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Target, TrendingUp, Award, Users, Briefcase, Zap, ShoppingCart, Gavel, Flame, HelpCircle, Film, X, Clock, Brain, Crown, BookOpen, ScrollText } from "lucide-react";
+import { ArrowLeft, Target, TrendingUp, Award, Users, Briefcase, Zap, ShoppingCart, Gavel, Flame, HelpCircle, Film, X, Clock, Brain, Crown, BookOpen, ScrollText, Map } from "lucide-react";
 import WaveformBackground from "@/components/WaveformBackground";
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/contexts/AuthContext';
@@ -17,6 +17,7 @@ const BedrockPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [showTimeline, setShowTimeline] = useState(false); // State for Timeline 
     const [showRulebook, setShowRulebook] = useState(false); // State for Rulebook
+    const [showBrochure, setShowBrochure] = useState(false); // State for Brochure
     const [teamName, setTeamName] = useState("");
     const [captainName, setCaptainName] = useState("");
     const [captainEmail, setCaptainEmail] = useState("");
@@ -122,7 +123,8 @@ const BedrockPage = () => {
     }, {
         icon: <Award className="w-5 h-5" />,
         title: "BEDROCK BROCHURE",
-        desc: "Everything you need to know."
+        desc: "Everything you need to know.",
+        onClick: () => setShowBrochure(true) // Added Trigger for Brochure
     }];
 
     const stripboardItems = [{
@@ -150,6 +152,15 @@ const BedrockPage = () => {
         title: "FINAL_TALLY",
         label: "Profit_Declaration"
     }];
+
+    const restaurantList = [
+        "1 DCC – Amit sharma", "2 Desi Tadka – Vikram Chauhan", "3 Blue mMon – Manoj",
+        "4 Sharma – Vijay Sharma", "5 Kanha – Shahshi Kant", "6 Al Chicken – Laxman",
+        "7 Al cafe – Same", "8 Kamal – Harivand",
+        "9 Vijay – Vijay Saini", "10 Retro 64 – Naman Tyagi",
+        "11 The momo place / Raj consultancy – Gautam", "12 Anupurna – Resteruant",
+        "13 Nobles – Abhimanyu Gupta", "14 Gullus – Paras"
+    ];
 
     return <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain font-mono">
         <WaveformBackground />
@@ -486,6 +497,67 @@ const BedrockPage = () => {
 
                         <div className="mt-16 p-6 bg-primary/10 border-2 border-primary/30 text-lg text-primary font-bold uppercase tracking-widest text-center">
                             "#somethingcrazy"
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+
+        {/* BROCHURE POP-UP */}
+        <AnimatePresence>
+            {showBrochure && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xl"
+                    onClick={() => setShowBrochure(false)}
+                >
+                    <motion.div
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{
+                            scale: 1,
+                            opacity: 1,
+                            transition: { type: "spring", damping: 20, stiffness: 300 }
+                        }}
+                        exit={{ scale: 0.5, opacity: 0 }}
+                        onClick={(e) => e.stopPropagation()}
+                        className="relative w-full max-w-2xl bg-background border-2 border-primary/50 p-10 film-grain shadow-2xl"
+                    >
+                        <button
+                            onClick={() => setShowBrochure(false)}
+                            className="absolute top-6 right-6 text-primary hover:rotate-90 transition-transform duration-200"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        <div className="mb-10 text-center">
+                            <h2 className="text-4xl font-bold uppercase tracking-tighter text-primary mb-2 flex items-center justify-center gap-3">
+                                <ScrollText className="w-8 h-8" /> BEDROCK BROCHURE
+                            </h2>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em]">
+                                C'NOT_RESTAURANT_DIRECTORY_v1.0
+                            </p>
+                        </div>
+
+                        <div className="bg-primary/5 border border-primary/20 p-6 font-mono text-sm space-y-2 max-h-[50vh] overflow-y-auto custom-scrollbar">
+                            <p className="text-primary mb-4 font-bold tracking-widest uppercase border-b border-primary/20 pb-2 flex items-center gap-2">
+                                <Map className="w-4 h-4" /> SECURE_DATA_LIST:
+                            </p>
+                            {restaurantList.map((item, idx) => (
+                                <div key={idx} className="flex gap-3 text-muted-foreground hover:text-primary transition-colors py-1">
+                                    <span className="text-primary/50 font-bold">{">"}</span>
+                                    <span>{item}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-8 text-center">
+                            <Button
+                                onClick={() => setShowBrochure(false)}
+                                className="bg-primary text-black font-bold uppercase py-4 px-8 tracking-widest hover:bg-primary/80 transition-all">
+                                CLOSE_BROCHURE
+                            </Button>
                         </div>
                     </motion.div>
                 </motion.div>
