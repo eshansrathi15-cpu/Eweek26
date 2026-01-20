@@ -135,40 +135,8 @@ const Dehack = () => {
     { date: "4th February", task: "DeHack kicks off, with hackathon brief and problem solving begins.", status: "KICKOFF" },
     { date: "5th February", task: "Problem solving, Workshop & solving sprints", status: "IN_PROGRESS" },
     { date: "6th February", task: "Problem solving, Workshop & solving sprints", status: "IN_PROGRESS" },
-    { date: "7th February", task: "Submission day", status: "FINAL_PUSH" }
+    { date: "7th February", task: "Submission day.", status: "FINAL_PUSH" }
   ];
-
-  const faqs = [{
-    q: "Who can participate?",
-    a: "Open to all BITSians. Whether you are a first-year explorer or a final-year builder, you're welcome."
-  }, {
-    q: "Is it a team event?",
-    a: "Yes, teams must consist of 3-5 members. Solo explorers can find teams during the networking mixer."
-  }, {
-    q: "What is the registration fee?",
-    a: "Nil. Participation is fully sponsored, including high-speed workspace and technical resources."
-  }, {
-    q: "Do I need to know how to code?",
-    a: "Not necessarily. Great ventures need designers, strategists, and visionaries, not just developers."
-  }, {
-    q: "What should I bring?",
-    a: "Your laptop, chargers, a 'build-fast' mindset, and enough energy to last 54 hours."
-  }, {
-    q: "Can I use pre-existing code?",
-    a: "The core prototype must be built during the 54-hour window, though libraries and frameworks are allowed."
-  }, {
-    q: "How does the judging work?",
-    a: "Judging is conducted by a panel of esteemed Professors and industry veterans based on innovation and execution."
-  }, {
-    q: "Will there be mentors?",
-    a: "Yes, we have technical experts and senior student mentors to guide your builds."
-  }, {
-    q: "What if I don't have an idea?",
-    a: "We provide problem statements from our sponsors to get your gears turning."
-  }, {
-    q: "What happens at the end?",
-    a: "Teams will present their working prototypes and slides to the judges in a final showcase."
-  }];
 
   return <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain">
     <WaveformBackground />
@@ -205,7 +173,7 @@ const Dehack = () => {
             DE<span className="text-primary animate-pulse">HACK</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-10 font-sans leading-relaxed">
-            Talk is Cheap. Build the future with BITS Pilani's flagship 54-hour sprint where engineering meets entrepreneurship.
+            Build the future with BITS Pilani's flagship 4 day hackathon where engineering meets entrepreneurship.
           </p>
 
           {/* LOGISTICS GRID */}
@@ -214,7 +182,7 @@ const Dehack = () => {
               <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest">
                 <Calendar className="w-4 h-4" /> Timeline
               </div>
-              <span className="text-2xl font-mono font-bold">FEB 11-16</span>
+              <span className="text-2xl font-mono font-bold">FEB 4-7</span>
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest">
@@ -304,25 +272,6 @@ const Dehack = () => {
             <p className="text-xs text-muted-foreground font-sans uppercase tracking-widest">Status: PENDING_MANIFEST...</p>
             <p className="text-sm text-muted-foreground mt-4">Find out about Dehack here.</p>
           </div>
-        </div>
-      </motion.div>
-
-      {/* FAQs */}
-      <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
-        once: true
-      }} className="max-w-4xl">
-        <h2 className="text-3xl font-mono font-bold text-primary mb-10 flex items-center gap-3 italic">
-          <HelpCircle className="w-6 h-6" /> // SYSTEM_QUERY_v2.3
-        </h2>
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-          {faqs.map((faq, i) => <motion.div key={i} variants={itemVariants} className="border-l border-primary/20 pl-6 pb-4 group">
-            <h4 className="text-foreground font-mono text-sm font-bold uppercase mb-2 group-hover:text-primary transition-colors tracking-tighter">
-              {faq.q}
-            </h4>
-            <p className="text-muted-foreground text-sm font-sans leading-relaxed">
-              {faq.a}
-            </p>
-          </motion.div>)}
         </div>
       </motion.div>
     </div>
@@ -525,7 +474,7 @@ const Dehack = () => {
                 SIGN_UP_YOUR_SQUAD
               </h2>
               <p className="text-xs text-muted-foreground uppercase tracking-widest">
-                SECURE_FORM_v2.1 // GO CRAZY
+                TEAM UP WITH UP TO 5 PEOPLE.
               </p>
             </div>
 
@@ -583,7 +532,7 @@ const Dehack = () => {
 
               <div>
                 <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2">
-                  5. Number of Team Members (Including Captain)
+                  5. Number of Team Members (5 Including Captain)
                 </label>
                 <input
                   type="number"
@@ -591,7 +540,7 @@ const Dehack = () => {
                   value={numMembers}
                   onChange={handleNumMembersChange}
                   className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                  placeholder="Enter number..."
+                  placeholder="Enter number (max 5)..."
                 />
               </div>
 
