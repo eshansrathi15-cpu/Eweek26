@@ -5,7 +5,7 @@ import { useState } from 'react';
 const EBucksSection = () => {
   const cards = [
     {
-      title: "WHAT IS E-BUCKS?",
+      title: "WHAT ARE E-BUCKS?",
       description: "Your golden ticket to Bedrock! Players can earn E-Bucks by participating in and winning events.",
       icon: <Coins className="w-8 h-8 text-primary" />,
     },
