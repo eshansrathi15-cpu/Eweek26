@@ -168,10 +168,12 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
                     <h2 id="ticket-title">{event.name}</h2>
                     <p id="ticket-desc">{event.desc}</p>
 
-                    {/* Community link reminder remains untouched */}
-                    <p className="mt-4 text-[10px] md:text-xs font-mono text-cyan-400 opacity-80 uppercase tracking-widest leading-relaxed">
-                        {">"} You'll get an email with the community link upon registering!
-                    </p>
+                    {/* Community link reminder - only show for internal registration events */}
+                    {event.name !== "WHAT DA FUKREY" && event.name !== "MISSION:POSSIBLE?" && (
+                        <p className="mt-4 text-[10px] md:text-xs font-mono text-cyan-400 opacity-80 uppercase tracking-widest leading-relaxed">
+                            {">"} You'll get an email with the community link upon registering!
+                        </p>
+                    )}
 
                     <div className="ticket-meta">
                         {/* "NOW PLAYING" tag removed as requested */}
