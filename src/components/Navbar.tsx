@@ -46,13 +46,14 @@ const Navbar = () => {
 
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">
-        {['SHOWTIME', 'FEATURES', 'E-WEEK HITS', 'EBUCKS'].map(item => (
+        {['SHOWTIME', 'FEATURES', 'E-WEEK HITS', 'E-BUCKS'].map(item => (
           <button
             key={item}
             onClick={() => {
-              // Mapping "E-WEEK HITS" to the ID "hits" used in FeatureHighlights.tsx
+              // Mapping menu items to their respective section IDs
               if (item === 'E-WEEK HITS') scrollToSection('hits');
               else if (item === 'CAREER FAIR') scrollToSection('career-fair');
+              else if (item === 'E-BUCKS') scrollToSection('ebucks');
               else scrollToSection(item.toLowerCase());
             }}
             className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
