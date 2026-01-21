@@ -186,8 +186,10 @@ const BedRockSection = () => {
                 <img 
                   src={bedrockImage} 
                   alt="Bedrock Event" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                 />
+                {/* Cyan overlay for theme consistency */}
+                <div className="absolute inset-0 bg-primary/10 mix-blend-overlay pointer-events-none" />
               </div>
             </div>
           </motion.div>
