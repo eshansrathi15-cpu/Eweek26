@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Crown, Users, TrendingUp, Award, X } from 'lucide-react';
+import { Users, TrendingUp, Award, X, Crown } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+import bedrockImage from '@/assets/bedrock-image.png';
 
 const BedRockSection = () => {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -181,12 +182,12 @@ const BedRockSection = () => {
             className="order-2 lg:order-1"
           >
             <div className="aspect-square border-4 border-primary p-1 relative shadow-[0_0_30px_rgba(147,245,255,0.1)]">
-              <div className="w-full h-full bg-background border-2 border-primary/30 flex flex-col items-center justify-center relative">
-                <Crown className="w-32 h-32 text-primary" strokeWidth={1} />
-                <div className="mt-6 text-center">
-                  <p className="text-xs text-muted-foreground uppercase tracking-widest">Award For</p>
-                  <p className="text-xl font-bold text-primary mt-1 uppercase">Best Business</p>
-                </div>
+              <div className="w-full h-full bg-background border-2 border-primary/30 relative overflow-hidden">
+                <img 
+                  src={bedrockImage} 
+                  alt="Bedrock Event" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </motion.div>

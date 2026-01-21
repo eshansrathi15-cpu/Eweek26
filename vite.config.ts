@@ -1,7 +1,8 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv, ViteDevServer } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import type { IncomingMessage, ServerResponse } from "http";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -17,8 +18,8 @@ export default defineConfig(({ mode }) => {
       mode === "development" && componentTagger(),
       {
         name: 'api-server',
-        configureServer(server) {
-          server.middlewares.use(async (req, res, next) => {
+        configureServer(server: ViteDevServer) {
+          server.middlewares.use(async (req: IncomingMessage, res: ServerResponse, next: () => void) => {
             if (req.url === '/api/register' && req.method === 'POST') {
               try {
                 // Parse body
