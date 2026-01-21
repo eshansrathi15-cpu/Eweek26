@@ -21,15 +21,61 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
     const [isRegistered, setIsRegistered] = useState(false);
 
     useEffect(() => {
+        const checkRegistration = async () => {
+            if (isOpen && user && event?.name) {
+                const sheetName = EVENT_SHEET_MAP[event.name];
+                if (!sheetName) return;
+
+                // Check session storage first
+                const cached = sessionStorage.getItem(`registration_${user.email}`);
+                if (cached) {
+                    const registeredEvents = JSON.parse(cached);
+                    if (registeredEvents.includes(sheetName)) {
+                        setIsRegistered(true);
+                        document.body.style.overflow = 'hidden';
+                        return;
+                    }
+                }
+
+                // If not in cache (or we want to double check), fetch from API
+                // We can skip this if we trust the cache, but for better UX on first load or cross-device, we might want to fetch.
+                // For now, let's fetch if not in cache, or maybe always fetch on first open of the session?
+                // Let's implement a "stale-while-revalidate" approach or just fetch if not cached.
+                // However, the user request implies they want it to persist "till the session ends", so sessionStorage is key.
+                // But if they just reloaded the page, sessionStorage might be empty if they closed the tab.
+
+                try {
+                    const response = await fetch(`/api/check-registration?email=${encodeURIComponent(user.email)}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const registeredEvents = data.registeredEvents || [];
+
+                        // Update cache
+                        sessionStorage.setItem(`registration_${user.email}`, JSON.stringify(registeredEvents));
+
+                        if (registeredEvents.includes(sheetName)) {
+                            setIsRegistered(true);
+                        } else {
+                            setIsRegistered(false);
+                        }
+                    }
+                } catch (error) {
+                    console.error("Failed to check registration status", error);
+                }
+            } else if (isOpen) {
+                setIsRegistered(false);
+            }
+        };
+
         if (isOpen) {
             document.body.style.overflow = 'hidden';
-            setIsRegistered(false); // Reset on open
+            checkRegistration();
         } else {
             document.body.style.overflow = 'unset';
             setIsRegistering(false);
         }
         return () => { document.body.style.overflow = 'unset'; };
-    }, [isOpen]);
+    }, [isOpen, user, event]);
 
     // Google Login flow
     const googleLogin = useGoogleLogin({
@@ -91,6 +137,15 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
 
             setIsRegistered(true);
             toast.success(`Successfully registered for ${event?.name}!`);
+
+            // Update session storage
+            const cached = sessionStorage.getItem(`registration_${user.email}`);
+            let registeredEvents = cached ? JSON.parse(cached) : [];
+            if (!registeredEvents.includes(sheetName)) {
+                registeredEvents.push(sheetName);
+                sessionStorage.setItem(`registration_${user.email}`, JSON.stringify(registeredEvents));
+            }
+
         } catch (error: any) {
             console.error(error);
             toast.error(error.message || "Registration failed. Please try again.");
