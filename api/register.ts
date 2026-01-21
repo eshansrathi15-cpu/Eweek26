@@ -88,7 +88,7 @@ export default async function handler(req: any, res: any) {
             return res.status(500).json({ error: 'Failed to authenticate with Google (Token Exchange Failed)' });
         }
 
-        const tokenData = await tokenResponse.json();
+        const tokenData = await tokenResponse.json() as { access_token: string };
         const accessToken = tokenData.access_token;
 
         // Append data to Google Sheets
@@ -134,7 +134,7 @@ export default async function handler(req: any, res: any) {
             return res.status(sheetsResponse.status).json({ error: errorMessage });
         }
 
-        const result = await sheetsResponse.json();
+        const result = await sheetsResponse.json() as { updates?: { updatedRange?: string } };
         return res.status(200).json({
             success: true,
             message: 'Registration successful',

@@ -17,7 +17,7 @@ const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
     prize: "TBA"
   },
   "WOLF OF DALAL STREET": {
-    description: "Durex making diapers? Prove you can pitch the impossible and snag a spot on BITS' very own stock market. Market your stocks, trash talk competitors and collect BITScoin to bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
+    description: "Durex making diapers? Prove you can pitch the impossible and snag a spot on BITS' very own stock market. Market your stocks, trash talk competitors and collect E-Bucks to bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
     prize: "TBA"
   },
   "HOW TO TRAIN YOUR DELIVERY TEAM": {

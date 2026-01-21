@@ -79,7 +79,7 @@ export default async function handler(req: any, res: any) {
             return res.status(500).json({ error: 'Failed to authenticate with Google' });
         }
 
-        const tokenData = await tokenResponse.json();
+        const tokenData = await tokenResponse.json() as { access_token: string };
         const accessToken = tokenData.access_token;
 
         // Define sheets and ranges to check
@@ -112,7 +112,7 @@ export default async function handler(req: any, res: any) {
             return res.status(500).json({ error: 'Failed to fetch from Google Sheets' });
         }
 
-        const result = await sheetsResponse.json();
+        const result = await sheetsResponse.json() as { valueRanges: Array<{ values?: string[][] }> };
         const valueRanges = result.valueRanges;
 
         const registeredEvents: string[] = [];
