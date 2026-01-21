@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { Ticket } from 'lucide-react';
 
 const events = [
-  { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', desc: 'Take over FM, ANC & Looters!', rating: 'PG', category: 'EVENT' },
+  { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', desc: 'Take over ANC & Looters!', rating: 'PG', category: 'EVENT' },
   { name: 'WING TRADE', desc: 'Tired of your wingies? Sell them.', rating: 'G', category: 'EVENT' },
   { name: 'WOLF OF DALAL STREET', desc: 'Build your company, bet on the IPO!', rating: 'PG', category: 'EVENT' },
   { name: 'CCBR', desc: 'Elementary, my dear Watson.', rating: 'G', category: 'EVENT' },
-  { name: 'MISSION:POSSIBLE?', desc: 'Get people to fund your solutions to campus problems.', rating: 'R', category: 'EVENT' },
-  { name: 'ONE RED PAPERCLIP', desc: 'Build lasting connections', rating: 'G', category: 'EVENT' },
+  { name: 'MISSION:POSSIBLE?', desc: 'Raise capital to fund your solutions to campus problems.', rating: 'R', category: 'EVENT' },
+  { name: 'ONE RED PAPERCLIP', desc: 'Trade your way up, starting from a single paperclip.', rating: 'G', category: 'EVENT' },
 ];
 
 interface EventsGridProps {
