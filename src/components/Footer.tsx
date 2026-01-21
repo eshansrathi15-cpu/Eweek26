@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Film } from 'lucide-react';
+import { Film, Copy, Check } from 'lucide-react';
+import { toast } from 'sonner';
 import celLogo from '@/assets/cel-logo.png';
 
 const Footer = () => {
@@ -79,7 +80,18 @@ const Footer = () => {
             <h4 className="font-mono font-bold mb-4 text-sm tracking-wider">CONNECT</h4>
             <ul className="space-y-2 text-muted-foreground text-sm font-sans">
               <li><a href="/about" className="hover:text-primary transition-colors">About E-Week</a></li>
-              <li>eweekpilani@gmail.com</li>
+              <li>
+                <button 
+                  onClick={() => {
+                    navigator.clipboard.writeText('eweekpilani@gmail.com');
+                    toast.success('Email copied to clipboard!');
+                  }}
+                  className="hover:text-primary transition-colors cursor-pointer flex items-center gap-2 group"
+                >
+                  eweekpilani@gmail.com
+                  <Copy className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              </li>
               <li className="flex gap-3">
                 <a href="https://www.instagram.com/eweek2026/?igsh=MTdtaG1rOXdhNmM3dw%3D%3D" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
               </li>
