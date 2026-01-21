@@ -71,11 +71,13 @@ const EventsGrid = ({ onEventClick }: EventsGridProps) => {
                     {event.desc}
                   </p>
                   {/* Showtime style footer */}
-                  <div className="flex items-center gap-2 pt-3 border-t border-border group-hover:border-primary-foreground/30 transition-colors">
-                    <span className="text-xs font-mono font-bold text-primary group-hover:text-primary-foreground transition-colors">
-                      REGISTER HERE
-                    </span>
-                  </div>
+                  {event.name !== "WHAT DA FUKREY" && event.name !== "MISSION:POSSIBLE?" && (
+                    <div className="flex items-center gap-2 pt-3 border-t border-border group-hover:border-primary-foreground/30 transition-colors">
+                      <span className="text-xs font-mono font-bold text-primary group-hover:text-primary-foreground transition-colors">
+                        REGISTER HERE
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
