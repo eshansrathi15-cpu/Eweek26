@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Terminal, Cpu, Zap, Shield, Trophy, Calendar, Clock, MapPin, MessageSquare, HelpCircle, ChevronRight, Layers, Code, Lightbulb, Radio, X } from "lucide-react";
+import { ArrowLeft, Terminal, Cpu, Zap, Shield, Trophy, Calendar, Clock, MapPin, MessageSquare, HelpCircle, ChevronRight, Layers, Code, Lightbulb, Radio, X, BookOpen, ScrollText } from "lucide-react";
 import WaveformBackground from "@/components/WaveformBackground";
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/contexts/AuthContext';
@@ -15,6 +15,8 @@ const Dehack = () => {
   const { user, isAuthenticated } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(false);
+  const [showRulebook, setShowRulebook] = useState(false);
   const [teamName, setTeamName] = useState('');
   const [captainName, setCaptainName] = useState('');
   const [captainEmail, setCaptainEmail] = useState('');
@@ -127,37 +129,15 @@ const Dehack = () => {
       opacity: 1
     }
   };
-  const faqs = [{
-    q: "Who can participate?",
-    a: "Open to all BITSians. Whether you are a first-year explorer or a final-year builder, you're welcome."
-  }, {
-    q: "Is it a team event?",
-    a: "Yes, teams must consist of 3-5 members. Solo explorers can find teams during the networking mixer."
-  }, {
-    q: "What is the registration fee?",
-    a: "Nil. Participation is fully sponsored, including high-speed workspace and technical resources."
-  }, {
-    q: "Do I need to know how to code?",
-    a: "Not necessarily. Great ventures need designers, strategists, and visionaries, not just developers."
-  }, {
-    q: "What should I bring?",
-    a: "Your laptop, chargers, a 'build-fast' mindset, and enough energy to last 54 hours."
-  }, {
-    q: "Can I use pre-existing code?",
-    a: "The core prototype must be built during the 54-hour window, though libraries and frameworks are allowed."
-  }, {
-    q: "How does the judging work?",
-    a: "Judging is conducted by a panel of esteemed Professors and industry veterans based on innovation and execution."
-  }, {
-    q: "Will there be mentors?",
-    a: "Yes, we have technical experts and senior student mentors to guide your builds."
-  }, {
-    q: "What if I don't have an idea?",
-    a: "We provide problem statements from our sponsors to get your gears turning."
-  }, {
-    q: "What happens at the end?",
-    a: "Teams will present their working prototypes and slides to the judges in a final showcase."
-  }];
+
+  const dehackTimeline = [
+    { date: "1st February", task: "Registration Begins & Website goes live", status: "LAUNCH" },
+    { date: "4th February", task: "DeHack kicks off, with hackathon brief and problem solving begins.", status: "KICKOFF" },
+    { date: "5th February", task: "Problem solving, Workshop & solving sprints", status: "IN_PROGRESS" },
+    { date: "6th February", task: "Problem solving, Workshop & solving sprints", status: "IN_PROGRESS" },
+    { date: "7th February", task: "Submission day.", status: "FINAL_PUSH" }
+  ];
+
   return <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain">
     <WaveformBackground />
 
@@ -193,7 +173,7 @@ const Dehack = () => {
             DE<span className="text-primary animate-pulse">HACK</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-10 font-sans leading-relaxed">
-            Talk is Cheap. Build the future with BITS Pilani's flagship 54-hour sprint where engineering meets entrepreneurship.
+            Build the future with BITS Pilani's flagship 4 day hackathon where engineering meets entrepreneurship.
           </p>
 
           {/* LOGISTICS GRID */}
@@ -202,7 +182,7 @@ const Dehack = () => {
               <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest">
                 <Calendar className="w-4 h-4" /> Timeline
               </div>
-              <span className="text-2xl font-mono font-bold">FEB 11-16</span>
+              <span className="text-2xl font-mono font-bold">FEB 4-7</span>
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest">
@@ -274,46 +254,196 @@ const Dehack = () => {
           <Layers className="w-6 h-6" /> // DEHACK_SUB_EVENTS
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {[{
-            icon: <Code />,
-            title: "The Build-Off",
-            desc: "Core 54-hour sprint protocol. Locked-in building."
-          }, {
-            icon: <Lightbulb />,
-            title: "Ideation Matrix",
-            desc: "Workshop: Reframing problems into scalable solutions."
-          }, {
-            icon: <Zap />,
-            title: "The Showcase",
-            desc: "Final presentation to the panel of Professors. High stakes."
-          }].map((ev, i) => <div key={i} className="p-8 border border-border bg-secondary/5 backdrop-blur-sm group hover:border-primary/50 transition-all cursor-wait">
-            <div className="text-primary mb-4">{ev.icon}</div>
-            <h4 className="text-foreground font-mono font-bold uppercase mb-2 tracking-tight">{ev.title}</h4>
+          <div onClick={() => setShowTimeline(true)} className="p-8 border border-border bg-secondary/5 backdrop-blur-sm group hover:border-primary/50 transition-all cursor-pointer">
+            <div className="text-primary mb-4"><Code /></div>
+            <h4 className="text-foreground font-mono font-bold uppercase mb-2 tracking-tight">Timeline</h4>
             <p className="text-xs text-muted-foreground font-sans uppercase tracking-widest">Status: PENDING_MANIFEST...</p>
-            <p className="text-sm text-muted-foreground mt-4">{ev.desc}</p>
-          </div>)}
-        </div>
-      </motion.div>
-
-      {/* FAQs */}
-      <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
-        once: true
-      }} className="max-w-4xl">
-        <h2 className="text-3xl font-mono font-bold text-primary mb-10 flex items-center gap-3 italic">
-          <HelpCircle className="w-6 h-6" /> // SYSTEM_QUERY_v2.3
-        </h2>
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-          {faqs.map((faq, i) => <motion.div key={i} variants={itemVariants} className="border-l border-primary/20 pl-6 pb-4 group">
-            <h4 className="text-foreground font-mono text-sm font-bold uppercase mb-2 group-hover:text-primary transition-colors tracking-tighter">
-              {faq.q}
-            </h4>
-            <p className="text-muted-foreground text-sm font-sans leading-relaxed">
-              {faq.a}
-            </p>
-          </motion.div>)}
+            <p className="text-sm text-muted-foreground mt-4">Find how Dehack fits into E-Week.</p>
+          </div>
+          <div onClick={() => setShowRulebook(true)} className="p-8 border border-border bg-secondary/5 backdrop-blur-sm group hover:border-primary/50 transition-all cursor-pointer">
+            <div className="text-primary mb-4"><Lightbulb /></div>
+            <h4 className="text-foreground font-mono font-bold uppercase mb-2 tracking-tight">Rulebook</h4>
+            <p className="text-xs text-muted-foreground font-sans uppercase tracking-widest">Status: PENDING_MANIFEST...</p>
+            <p className="text-sm text-muted-foreground mt-4">Plus FAQs.</p>
+          </div>
+          <div className="p-8 border border-border bg-secondary/5 backdrop-blur-sm group hover:border-primary/50 transition-all cursor-wait">
+            <div className="text-primary mb-4"><Zap /></div>
+            <h4 className="text-foreground font-mono font-bold uppercase mb-2 tracking-tight">Dehack Website</h4>
+            <p className="text-xs text-muted-foreground font-sans uppercase tracking-widest">Status: PENDING_MANIFEST...</p>
+            <p className="text-sm text-muted-foreground mt-4">Find out about Dehack here.</p>
+          </div>
         </div>
       </motion.div>
     </div>
+
+    {/* Timeline Modal */}
+    <AnimatePresence>
+      {showTimeline && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xl"
+          onClick={() => setShowTimeline(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{
+              scale: 1,
+              opacity: 1,
+              transition: { type: "spring", damping: 20, stiffness: 300 }
+            }}
+            exit={{ scale: 0.5, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-lg bg-background border-2 border-primary/50 p-10 film-grain shadow-2xl"
+          >
+            <button
+              onClick={() => setShowTimeline(false)}
+              className="absolute top-6 right-6 text-primary hover:rotate-90 transition-transform duration-200"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="mb-10 text-center font-mono">
+              <h2 className="text-4xl font-bold uppercase tracking-tighter text-primary mb-2 flex items-center justify-center gap-3">
+                <Clock className="w-8 h-8" /> TIMELINE
+              </h2>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em]">
+                DEHACK_OPERATIONS_HUB
+              </p>
+            </div>
+
+            <div className="space-y-12">
+              {dehackTimeline.map((item, idx) => (
+                <div key={idx} className="flex gap-6 border-l border-primary/30 pl-6 relative font-mono">
+                  <div className="absolute -left-[16px] top-0 w-8 h-8 bg-background border border-primary/50 flex items-center justify-center">
+                    <Zap className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-baseline gap-3 mb-2">
+                      <span className="text-primary font-bold text-xl tracking-tighter uppercase">{item.date}</span>
+                      <span className="text-[8px] border border-primary/20 px-2 py-0.5 text-muted-foreground uppercase tracking-widest">{item.status}</span>
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.task}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+
+    {/* Rulebook Modal */}
+    <AnimatePresence>
+      {showRulebook && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xl"
+          onClick={() => setShowRulebook(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{
+              scale: 1,
+              opacity: 1,
+              transition: { type: "spring", damping: 20, stiffness: 300 }
+            }}
+            exit={{ scale: 0.5, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto bg-background border-2 border-primary/50 p-12 film-grain shadow-2xl custom-scrollbar"
+          >
+            <button
+              onClick={() => setShowRulebook(false)}
+              className="absolute top-6 right-6 text-primary hover:rotate-90 transition-transform duration-200"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="mb-12 text-center font-mono">
+              <h2 className="text-5xl font-bold uppercase tracking-tighter text-primary mb-4 flex items-center justify-center gap-4">
+                <BookOpen className="w-10 h-10" /> OFFICIAL RULEBOOK
+              </h2>
+              <p className="text-[12px] text-muted-foreground uppercase tracking-[0.6em] border-y border-primary/20 py-2 inline-block">
+                PROTOCOL_DOCKET_v.2025
+              </p>
+            </div>
+
+            <div className="space-y-10 font-mono text-sm text-muted-foreground leading-relaxed">
+              <section className="border-l-4 border-primary/40 pl-6 py-2">
+                <h3 className="text-primary font-bold text-lg mb-4 uppercase tracking-widest">1. Team Formation & Eligibility</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li>Teams may have 1–5 participants.</li>
+                  <li>One person registers the team and lists all members; limited flexibility to substitute members before the hackathon starts.</li>
+                  <li>Each participant may be part of only one team.</li>
+                  <li>No team changes are allowed once the hackathon begins.</li>
+                  <li>Teams must choose one track only.</li>
+                  <li>All participants must follow the event code of conduct.</li>
+                </ul>
+              </section>
+
+              <section className="border-l-4 border-primary/40 pl-6 py-2">
+                <h3 className="text-primary font-bold text-lg mb-4 uppercase tracking-widest">2. Track Selection & Problem Definition</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li>Solutions must align with the chosen track.</li>
+                  <li>Teams must define their own problem statement, except in the Company Sponsorship track.</li>
+                  <li>Problems must be real or plausible and scoped appropriately for the hackathon timeline.</li>
+                  <li>Track switching is not allowed once development begins.</li>
+                  <li>Track-specific rules and guidelines must be followed.</li>
+                  <li>Organizers may reassign projects to a more suitable track if required.</li>
+                  <li>Teams may work on existing or common ideas; innovation is not mandatory.</li>
+                  <li>Judging will focus on the quality of execution, not novelty alone.</li>
+                </ul>
+              </section>
+
+              <section className="border-l-4 border-primary/40 pl-6 py-2">
+                <h3 className="text-primary font-bold text-lg mb-4 uppercase tracking-widest">3. Development & Build Rules</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li>All work must be done during the official hackathon period.</li>
+                  <li>Open-source tools, APIs, frameworks, templates, and AI tools are allowed with proper attribution.</li>
+                  <li>Starter kits and boilerplates are permitted; fully pre-built projects are not.</li>
+                  <li>Teams must understand and explain every part of their solution.</li>
+                  <li>Projects must comply with ethical, legal, and data-privacy standards.</li>
+                  <li>Any hardware used must be safe and organizer-approved.</li>
+                  <li>Plagiarism or misrepresentation will result in disqualification.</li>
+                </ul>
+              </section>
+
+              <section className="border-l-4 border-primary/40 pl-6 py-2">
+                <h3 className="text-primary font-bold text-lg mb-4 uppercase tracking-widest">4. Submission Requirements</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li>All projects must be submitted before the deadline.</li>
+                  <li>Submissions must include: Project name and track, Problem statement, Solution overview, Demo link or live demo, Document showing iterations, MVP.</li>
+                  <li>Incomplete submissions will not be evaluated (partially built products may still be considered).</li>
+                  <li>Teams are responsible for ensuring their demo works at submission time.</li>
+                  <li>Submission format details will be shared in advance.</li>
+                  <li>Late submissions will not be accepted.</li>
+                </ul>
+              </section>
+
+              <section className="border-l-4 border-primary/40 pl-6 py-2">
+                <h3 className="text-primary font-bold text-lg mb-4 uppercase tracking-widest">5. Conduct, Ethics & Disqualification</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li>Participants must behave respectfully at all times.</li>
+                  <li>Harassment, discrimination, or disruptive behavior is strictly prohibited.</li>
+                  <li>Solutions must not promote harm, hate, or illegal activity.</li>
+                  <li>Attempts to manipulate judging are forbidden.</li>
+                  <li>Rule violations may lead to warnings or disqualification.</li>
+                  <li>Organizers may remove any participant or team at their discretion.</li>
+                  <li>Disqualified teams forfeit prize eligibility.</li>
+                </ul>
+              </section>
+            </div>
+
+            <div className="mt-16 p-6 bg-primary/10 border-2 border-primary/30 text-lg text-primary font-bold uppercase tracking-widest text-center font-mono">
+              "VALIDATED IDEAS TO SCALABLE PRODUCTS"
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
 
     {/* Registration Modal */}
     <AnimatePresence>
@@ -344,7 +474,7 @@ const Dehack = () => {
                 SIGN_UP_YOUR_SQUAD
               </h2>
               <p className="text-xs text-muted-foreground uppercase tracking-widest">
-                SECURE_FORM_v2.1 // GO CRAZY
+                TEAM UP WITH UP TO 5 PEOPLE.
               </p>
             </div>
 
@@ -402,7 +532,7 @@ const Dehack = () => {
 
               <div>
                 <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2">
-                  5. Number of Team Members (Including Captain)
+                  5. Number of Team Members (5 Including Captain)
                 </label>
                 <input
                   type="number"
@@ -410,7 +540,7 @@ const Dehack = () => {
                   value={numMembers}
                   onChange={handleNumMembersChange}
                   className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                  placeholder="Enter number..."
+                  placeholder="Enter number (max 5)..."
                 />
               </div>
 
@@ -472,4 +602,5 @@ const Dehack = () => {
     </AnimatePresence>
   </div>;
 };
+
 export default Dehack;

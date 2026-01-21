@@ -4,11 +4,11 @@ import { Coins } from 'lucide-react';
 import celLogo from '@/assets/cel-logo.png';
 import GoogleLoginBtn from './auth/GoogleLoginBtn';
 import { useAuth } from '@/contexts/AuthContext';
-import { useBitscoin } from '@/hooks/useBitscoin';
+import { useEBucks } from '@/hooks/useEBucks';
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth();
-  const { balance } = useBitscoin();
+  const { balance } = useEBucks();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -46,7 +46,7 @@ const Navbar = () => {
 
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">
-        {['SHOWTIME', 'FEATURES', 'BITSCOIN'].map(item => (
+        {['SHOWTIME', 'FEATURES', 'EBUCKS'].map(item => (
           <button
             key={item}
             onClick={() => scrollToSection(item.toLowerCase())}
@@ -58,12 +58,24 @@ const Navbar = () => {
         ))}
       </div>
 
-      {/* Auth Buttons and BITSCOIN Counter */}
+      {/* Auth Buttons and E-BUCKS Counter */}
       <div className="flex items-center gap-4">
         {isAuthenticated && (
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/30 rounded-sm">
-            <Coins className="w-4 h-4 text-primary" />
-            <span className="font-mono text-sm font-bold text-primary tracking-wider">
+          <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-sm">
+            <motion.div
+              animate={{ 
+                rotate: [0, 360],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <Coins className="w-5 h-5 text-primary" />
+            </motion.div>
+            <span className="font-mono text-base font-bold text-primary tracking-wider">
               {balance.toLocaleString()}
             </span>
           </div>

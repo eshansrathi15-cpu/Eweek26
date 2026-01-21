@@ -206,8 +206,8 @@ const BedRockSection = () => {
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 font-sans">The C'Not Takeover. Marketing. Profit. Glory.</p>
 
             <div className="grid grid-cols-3 gap-4 mb-10 text-center">
-              {[{ icon: Users, label: 'TEAMS', value: '30+' },
-              { icon: TrendingUp, label: 'REVENUE', value: '₹5L+' },
+              {[{ icon: Users, label: 'TEAMS', value: '13' },
+              { icon: TrendingUp, label: 'REVENUE', value: '₹10L+' },
               { icon: Crown, label: 'CHAMPION', value: '1' }
               ].map((stat, i) => (
                 <div key={i} className="p-4 border border-primary/20 bg-primary/5 hover:border-primary/50 transition-colors">

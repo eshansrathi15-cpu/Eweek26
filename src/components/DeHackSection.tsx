@@ -253,11 +253,11 @@ const DeHackSection = () => {
             <div className="flex flex-wrap gap-6 mb-10">
               <div className="flex items-center gap-2 px-3 py-2 bg-secondary/30">
                 <Clock className="w-5 h-5 text-primary" />
-                <span className="text-foreground font-mono text-sm uppercase">5 Days</span>
+                <span className="text-foreground font-mono text-sm uppercase">4 Days</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-2 bg-secondary/30">
                 <DollarSign className="w-5 h-5 text-primary" />
-                <span className="text-foreground font-mono text-sm uppercase">₹1L+ Prizes</span>
+                <span className="text-foreground font-mono text-sm uppercase">$$$</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-4">

@@ -2,9 +2,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface ClapperOverlayProps {
   isVisible: boolean;
+  text: string; // Added this line to accept the word from HeroSection
 }
 
-const ClapperOverlay = ({ isVisible }: ClapperOverlayProps) => {
+const ClapperOverlay = ({ isVisible, text }: ClapperOverlayProps) => {
   return (
     <AnimatePresence>
       {isVisible && (
@@ -34,7 +35,10 @@ const ClapperOverlay = ({ isVisible }: ClapperOverlayProps) => {
                 <span>SCENE 01</span>
               </div>
               <div className="text-center font-mono">
-                <span className="text-[#93f5ff] font-black text-4xl tracking-tighter block mb-1 uppercase">TICKETS</span>
+                {/* MODIFIED: It now displays the 'text' prop instead of hardcoded 'TICKETS' */}
+                <span className="text-[#93f5ff] font-black text-4xl tracking-tighter block mb-1 uppercase">
+                  {text}
+                </span>
               </div>
               <div className="flex justify-between font-mono text-white text-[10px] uppercase tracking-widest opacity-80">
                 <span>DIR: CEL</span>

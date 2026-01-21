@@ -3,25 +3,34 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Play, Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import ClapperOverlay from './ClapperOverlay'; // Ensure this file exists
+import ClapperOverlay from './ClapperOverlay'; 
 
 const HeroSection = () => {
   const [isClapping, setIsClapping] = useState(false);
+  const [clapperText, setClapperText] = useState("TICKETS"); // New state
   const navigate = useNavigate();
 
   const handleGetTickets = () => {
+    setClapperText("TICKETS"); // Set text for tickets
     setIsClapping(true);
     setTimeout(() => {
       navigate('/tickets');
     }, 800);
   };
 
+  const handleWatchTrailer = () => {
+    setClapperText("TRAILER"); // Set text for trailer
+    setIsClapping(true);
+    setTimeout(() => {
+      navigate('/trailer');
+    }, 800);
+  };
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative px-6 pt-20 spotlight vignette">
-      {/* 1. Clapper Overlay sits on top */}
-      <ClapperOverlay isVisible={isClapping} />
+      {/* Passing both the visibility and the specific text */}
+      <ClapperOverlay isVisible={isClapping} text={clapperText} />
 
-      {/* Cinema Curtain Accents */}
       <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-red-950/20 to-transparent pointer-events-none" />
       <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-red-950/20 to-transparent pointer-events-none" />
 
@@ -31,7 +40,6 @@ const HeroSection = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="text-center max-w-6xl mx-auto"
       >
-        {/* "Now Showing" Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -43,7 +51,6 @@ const HeroSection = () => {
           <ChevronRight className="w-4 h-4 text-primary fill-primary" />
         </motion.div>
 
-        {/* Main Title */}
         <motion.h1
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -55,7 +62,6 @@ const HeroSection = () => {
           <span className="text-primary text-shadow-glow">2026</span>
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -69,7 +75,6 @@ const HeroSection = () => {
           <div className="h-px w-12 bg-muted-foreground" />
         </motion.div>
 
-        {/* Date Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -78,14 +83,13 @@ const HeroSection = () => {
         >
           <div className="ticket-perf w-3 h-16 bg-primary" />
           <div className="bg-primary text-primary-foreground px-8 py-4 font-mono relative">
-            <div className="text-xs opacity-70 mb-1">​Theater Timing </div>
+            <div className="text-xs opacity-70 mb-1">Theater Timing </div>
             <div className="text-xl md:text-2xl font-bold tracking-wider">FEB 02 - 09</div>
             <div className="text-xs opacity-70 mt-1">BITS PILANI</div>
           </div>
           <div className="ticket-perf w-3 h-16 bg-primary" />
         </motion.div>
 
-        {/* Star Rating */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -98,7 +102,6 @@ const HeroSection = () => {
           <span className="ml-2 text-sm text-muted-foreground font-mono">5.0 / 5.0</span>
         </motion.div>
 
-        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,13 +111,12 @@ const HeroSection = () => {
           <Button onClick={handleGetTickets} variant="default" size="lg" className="text-lg px-8 py-6">
             GET TICKETS
           </Button>
-          <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+          <Button onClick={handleWatchTrailer} variant="outline" size="lg" className="text-lg px-8 py-6">
             <Play className="w-5 h-5 mr-2" />
             WATCH TRAILER
           </Button>
         </motion.div>
 
-        {/* Credits */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -123,19 +125,6 @@ const HeroSection = () => {
         >
           PRESENTED & PRODUCED BY CEL
         </motion.p>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        />
       </motion.div>
     </section>
   );

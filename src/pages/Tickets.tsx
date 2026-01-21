@@ -9,33 +9,33 @@ import { useRegistrationStatus } from "@/hooks/useRegistrationStatus";
 
 // Map event names to sheet tab names
 const EVENT_SHEET_MAP: Record<string, string> = {
-  "CROWDFUNDING": "DEHACK",
+  "MISSION:POSSIBLE?": "CROWDFUNDING",
   "WOLF OF DALAL STREET": "WOLF_DALAL",
   "HOW TO TRAIN YOUR DELIVERY TEAM": "DELIVERY_TEAM",
-  "ESCAPE ROOM": "ESCAPE_ROOM",
+  "CCBR": "ESCAPE_ROOM",
   "ONE RED PAPERCLIP": "RED_PAPERCLIP",
 };
 
 const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
-  "CROWDFUNDING": {
-    description: "Suggest solutions to campus problems. ANC cats bothering you? FD washrooms not clean? Impress people with your solutions, and secure the funding to make your vision a reality.",
-    prize: "₹8,000"
+  "MISSION:POSSIBLE?": {
+    description: "Suggest solutions to problems. You decide what the problem is. ANC cats bothering you? No Diet Coke in your vendi? Pitch your solutions and raise real capital from the student body.",
+    prize: "TBA"
   },
   "WOLF OF DALAL STREET": {
     description: "Durex making diapers? Prove you can pitch the impossible and snag a spot on BITS' very own stock market. Market your stocks, trash talk competitors and collect BITScoin to bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
-    prize: "₹7,500"
+    prize: "TBA"
   },
   "HOW TO TRAIN YOUR DELIVERY TEAM": {
     description: "Take over ANC & Looters to master logistics and operations! Optimize delivery routes, manage resources and team up for maximum sales!",
-    prize: "₹6,000"
+    prize: "TBA"
   },
   "ESCAPE ROOM": {
-    description: "Crack codes, solve puzzles, and race against time! Navigate through intricate challenges in this immersive exploration experience. Work with your team to uncover secrets and escape before time runs out.",
-    prize: "₹9,000"
+    description: "Challenge yourself to a fusion of two classic events on campus—an escape room and a treasure hunt—but with a twist. The slowest team will be eliminated each round. Make your escape before time runs out.",
+    prize: "TBA"
   },
   "ONE RED PAPERCLIP": {
-    description: "One red paperclip, infinite possibilities. Trade your way up and prove that the ultimate prize is just a few deals away. How far can you go?",
-    prize: "₹5,500"
+    description: "One lone paperclip, infinite possibilities. Trade your way up and prove that the ultimate prize is just a few deals away. How far can you go?",
+    prize: "TBA"
   }
 };
 
@@ -47,11 +47,11 @@ const Tickets = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const events = [
-    { id: 1, name: "CROWDFUNDING", type: "Hackathon", date: "Feb 11-16", prize: "₹1L+" },
-    { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", date: "Feb 10", prize: "₹25K+" },
-    { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", date: "Feb 12", prize: "₹15K+" },
-    { id: 5, name: "ESCAPE ROOM", type: "Exploration", date: "Feb 13", prize: "₹20K+" },
-    { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "Feb 14", prize: "Priceless" },
+    { id: 1, name: "MISSION:POSSIBLE?", type: "Hackathon", date: "Feb 11-16", prize: "$$$" },
+    { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", date: "Feb 10", prize: "$$$" },
+    { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", date: "Feb 12", prize: "$$$" },
+    { id: 5, name: "ESCAPE ROOM", type: "Exploration", date: "Feb 13", prize: "$$$" },
+    { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "Feb 14", prize: "$$$" },
   ];
 
   const isEventRegistered = (eventName: string) => {
