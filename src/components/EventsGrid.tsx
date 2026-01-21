@@ -5,7 +5,7 @@ const events = [
   { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', desc: 'Take over ANC & Looters!', rating: 'PG', category: 'EVENT' },
   { name: 'WHAT DA FUKREY', desc: 'Tired of your wingies? Sell them.', rating: 'G', category: 'EVENT' },
   { name: 'WOLF OF DALAL STREET', desc: 'Build your company, bet on the IPO!', rating: 'PG', category: 'EVENT' },
-  { name: 'MISIRLOU', desc: 'Elementary, my dear Watson.', rating: 'G', category: 'EVENT' },
+  { name: 'MISIRLOU : A KNIVES OUT MYSTERY', desc: 'Elementary, my dear Watson.', rating: 'G', category: 'EVENT' },
   { name: 'MISSION:POSSIBLE?', desc: 'Raise capital to fund your solutions to campus problems.', rating: 'R', category: 'EVENT' },
   { name: 'ONE RED PAPERCLIP', desc: 'Trade your way up, starting from a single paperclip.', rating: 'G', category: 'EVENT' },
 ];

@@ -13,7 +13,7 @@ const events = [
   { date: 'FEB 06', title: 'HOW TO TRAIN YOUR DELIVERY TEAM', scene: 'SCENE 07', slug: 'dehack' },
   { date: 'FEB 06', title: 'MOVIE SCREENING', scene: 'SCENE 08' },
   { date: 'FEB 06', title: 'BEDROCK AUCTION', scene: 'SCENE 09', slug: 'bedrock' },
-  { date: 'FEB 07', title: 'MISIRLOU', scene: 'SCENE 10', slug: 'dehack' },
+  { date: 'FEB 07', title: 'MISIRLOU : A KNIVES OUT MYSTERY', scene: 'SCENE 10', slug: 'dehack' },
   { date: 'FEB 07', title: 'DEHACK SUBMISSIONS', scene: 'SCENE 11', slug: 'dehack' },
   { date: 'FEB 08', title: 'BEDROCK', scene: 'SCENE 12', slug: 'bedrock' },
 ];
