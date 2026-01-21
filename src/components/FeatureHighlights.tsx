@@ -20,7 +20,8 @@ const FeatureHighlights = () => {
   ];
 
   return (
-    <section className="py-24 relative z-10 font-mono">
+    // Added id="career-fair" to the section tag below
+    <section id="career-fair" className="py-24 relative z-10 font-mono">
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Production Label - Centered */}

@@ -46,10 +46,10 @@ const Navbar = () => {
 
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">
-        {['SHOWTIME', 'FEATURES', 'EBUCKS'].map(item => (
+        {['SHOWTIME', 'FEATURES', 'CAREER FAIR', 'EBUCKS'].map(item => (
           <button
             key={item}
-            onClick={() => scrollToSection(item.toLowerCase())}
+            onClick={() => scrollToSection(item === 'CAREER FAIR' ? 'career-fair' : item.toLowerCase())}
             className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
           >
             {item}
