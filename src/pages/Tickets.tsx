@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { useRegistrationStatus } from "@/hooks/useRegistrationStatus";
 
 import { EVENT_SHEET_MAP } from "@/lib/constants";
+import { useGoogleLogin } from '@react-oauth/google';
+
 
 const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
   "MISSION:POSSIBLE?": {
@@ -42,6 +44,31 @@ const Tickets = () => {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
   const [learnMoreEvent, setLearnMoreEvent] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Google Login flow
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const userInfo = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        }).then(res => res.json());
+
+        const credential = {
+          name: userInfo.name,
+          email: userInfo.email,
+          picture: userInfo.picture,
+        };
+
+        localStorage.setItem('user', JSON.stringify(credential));
+        window.location.reload();
+      } catch (error) {
+        console.error("Login Failed", error);
+        toast.error("Login failed. Please try again.");
+      }
+    },
+    onError: () => toast.error("Google Login failed."),
+  });
+
 
   const events = [
     { id: 1, name: "MISSION:POSSIBLE?", type: "Crowdfunding", prize: "$$$" },
@@ -121,11 +148,34 @@ const Tickets = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-20">
 
         {/* Navigation */}
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-12 flex justify-between items-center">
           <Link to="/" className="inline-flex items-center gap-2 text-primary hover:gap-4 transition-all duration-300 text-sm uppercase tracking-widest">
             <ArrowLeft className="w-4 h-4" /> Back to Premiere
           </Link>
+
+          {user ? (
+            <div className="flex items-center gap-3 bg-secondary/10 px-4 py-2 rounded-full border border-primary/20">
+              <span className="text-xs uppercase tracking-widest text-primary font-bold hidden md:block">
+                {user.name}
+              </span>
+              {user.picture ? (
+                <img src={user.picture} alt="Profile" className="w-8 h-8 rounded-full border-2 border-primary/50" />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                  {user.name.charAt(0)}
+                </div>
+              )}
+            </div>
+          ) : (
+            <Button
+              onClick={() => googleLogin()}
+              className="bg-primary text-black font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform"
+            >
+              LOGIN
+            </Button>
+          )}
         </motion.div>
+
 
         {/* Header */}
         <div className="flex items-center gap-4 mb-4">
