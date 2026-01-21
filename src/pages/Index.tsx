@@ -6,7 +6,7 @@ import TimelineSection from '@/components/TimelineSection';
 import DeHackSection from '@/components/DeHackSection';
 import BedRockSection from '@/components/BedRockSection';
 import EventsGrid from '@/components/EventsGrid';
-import BitscoinSection from '@/components/BitscoinSection';
+import BitscoinSection from '@/components/EBucksSection';
 import SponsorsSection from '@/components/SponsorsSection';
 import Footer from '@/components/Footer';
 import TicketPopup from '@/components/TicketPopup';
