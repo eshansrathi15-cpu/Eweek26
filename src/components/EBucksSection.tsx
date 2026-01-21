@@ -6,12 +6,12 @@ const EBucksSection = () => {
   const cards = [
     {
       title: "WHAT IS E-BUCKS?",
-      description: "E-BUCKS is E-Week's virtual currency. Earn it by participating in events. Use your E-BUCKS to bet on IPOs in Wolf of Dalal Street and multiply your wealth!",
+      description: "Your golden ticket to Bedrock! Players can earn E-Bucks by participating in and winning events.",
       icon: <Coins className="w-8 h-8 text-primary" />,
     },
     {
       title: "BEDROCK ACCESS",
-      description: "The top earners secure a guaranteed spot in Bedrock! Unlock special prizes and opportunities.",
+      description: "By the end of the week, the team with the most cumulative E-Bucks can cash them in for a chance to dominate C'Not!",
       icon: <Trophy className="w-8 h-8 text-primary" />,
     }
   ];
