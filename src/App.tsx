@@ -9,6 +9,7 @@ import DEHACK from "./pages/DEHACK";
 import BedrockPage from "./pages/BedrockPage";
 import Tickets from "./pages/Tickets";
 import AboutEWeek from "./pages/AboutEWeek";
+import TrailerTheater from "./components/TrailerTheater";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/bedrock" element={<BedrockPage />} />
             <Route path="/tickets" element={<Tickets />} />
             <Route path="/about" element={<AboutEWeek />} />
+            <Route path="/trailer" element={<TrailerTheater />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

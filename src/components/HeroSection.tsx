@@ -16,6 +16,14 @@ const HeroSection = () => {
     }, 800);
   };
 
+  // NEW: Handler for the Trailer Page
+  const handleWatchTrailer = () => {
+    setIsClapping(true);
+    setTimeout(() => {
+      navigate('/trailer');
+    }, 800);
+  };
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative px-6 pt-20 spotlight vignette">
       {/* 1. Clapper Overlay sits on top */}
@@ -78,7 +86,7 @@ const HeroSection = () => {
         >
           <div className="ticket-perf w-3 h-16 bg-primary" />
           <div className="bg-primary text-primary-foreground px-8 py-4 font-mono relative">
-            <div className="text-xs opacity-70 mb-1">​Theater Timing </div>
+            <div className="text-xs opacity-70 mb-1">Theater Timing </div>
             <div className="text-xl md:text-2xl font-bold tracking-wider">FEB 02 - 09</div>
             <div className="text-xs opacity-70 mt-1">BITS PILANI</div>
           </div>
@@ -108,7 +116,8 @@ const HeroSection = () => {
           <Button onClick={handleGetTickets} variant="default" size="lg" className="text-lg px-8 py-6">
             GET TICKETS
           </Button>
-          <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+          {/* MODIFIED: Added onClick to Watch Trailer */}
+          <Button onClick={handleWatchTrailer} variant="outline" size="lg" className="text-lg px-8 py-6">
             <Play className="w-5 h-5 mr-2" />
             WATCH TRAILER
           </Button>
