@@ -211,7 +211,7 @@ const Dehack = () => {
               <Trophy size={120} />
             </div>
             <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-2 font-bold">TOTAL_STAKES</p>
-            <h2 className="text-5xl md:text-7xl font-mono font-black text-foreground tracking-tighter"><span className="text-primary">+</span>
+            <h2 className="text-5xl md:text-7xl font-mono font-black text-foreground tracking-tighter">$$$<span className="text-primary">+</span>
             </h2>
             <p className="text-muted-foreground font-mono text-sm mt-2">Plus Incubation Opportunities, Cash Prizes.</p>
           </motion.div>
