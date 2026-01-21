@@ -12,8 +12,9 @@ const EVENT_SHEET_MAP: Record<string, string> = {
   "MISSION:POSSIBLE?": "CROWDFUNDING",
   "WOLF OF DALAL STREET": "WOLF_DALAL",
   "HOW TO TRAIN YOUR DELIVERY TEAM": "DELIVERY_TEAM",
-  "CCBR": "ESCAPE_ROOM",
+  "MISIRLOU: A KNIVES OUT MYSTERY": "KNIVES_OUT",
   "ONE RED PAPERCLIP": "RED_PAPERCLIP",
+  "WING TRADE": "WING_TRADE",
 };
 
 const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
@@ -29,12 +30,16 @@ const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
     description: "Take over ANC & Looters to master logistics and operations! Optimize delivery routes, manage resources and team up for maximum sales!",
     prize: "TBA"
   },
-  "ESCAPE ROOM": {
+  "MISIRLOU: A KNIVES OUT MYSTERY": {
     description: "Challenge yourself to a fusion of two classic events on campus—an escape room and a treasure hunt—but with a twist. The slowest team will be eliminated each round. Make your escape before time runs out.",
     prize: "TBA"
   },
   "ONE RED PAPERCLIP": {
     description: "One lone paperclip, infinite possibilities. Trade your way up and prove that the ultimate prize is just a few deals away. How far can you go?",
+    prize: "TBA"
+  },
+  "WING TRADE": {
+    description: "Tired of your wingies? Sell them. Navigate the ultimate trading challenge where strategy meets negotiation in this high-stakes marketplace.",
     prize: "TBA"
   }
 };
@@ -47,11 +52,12 @@ const Tickets = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const events = [
-    { id: 1, name: "MISSION:POSSIBLE?", type: "Hackathon", date: "Feb 11-16", prize: "$$$" },
-    { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", date: "Feb 10", prize: "$$$" },
-    { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", date: "Feb 12", prize: "$$$" },
-    { id: 5, name: "ESCAPE ROOM", type: "Exploration", date: "Feb 13", prize: "$$$" },
-    { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "Feb 14", prize: "$$$" },
+    { id: 1, name: "MISSION:POSSIBLE?", type: "Crowdfunding", prize: "$$$" },
+    { id: 2, name: "WING TRADE", type: "Online Game", prize: "$$$" },
+    { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", prize: "$$$" },
+    { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", prize: "$$$" },
+    { id: 5, name: "MISIRLOU: A KNIVES OUT MYSTERY", type: "Exploration", prize: "$$$" },
+    { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "", prize: "$$$" },
   ];
 
   const isEventRegistered = (eventName: string) => {
