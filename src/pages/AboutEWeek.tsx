@@ -177,7 +177,7 @@ const AboutEWeek = () => {
               About E-Week
             </motion.h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-sans">
-              A CEL Production • February 2-9, 2026
+              A CEL Production • February 02-08, 2026
             </p>
           </motion.div>
         </div>
