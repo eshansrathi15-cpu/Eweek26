@@ -145,7 +145,7 @@ const Tickets = () => {
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain font-mono">
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-20">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-20">
 
         {/* Navigation */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-12 flex justify-between items-center">
@@ -178,9 +178,9 @@ const Tickets = () => {
 
 
         {/* Header */}
-        <div className="flex items-center gap-4 mb-4">
-          <Ticket className="text-primary w-8 h-8" />
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase">EVENT_TICKETS</h1>
+        <div className="flex items-center gap-3 md:gap-4 mb-4">
+          <Ticket className="text-primary w-6 h-6 md:w-8 md:h-8" />
+          <h1 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">EVENT_TICKETS</h1>
         </div>
 
         {/* Notice Banner - Now as Subheading */}
@@ -204,13 +204,13 @@ const Tickets = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="group border border-primary/20 bg-secondary/5 p-8 hover:bg-primary/10 transition-all flex flex-col md:flex-row justify-between items-center gap-6 border-l-4 border-l-transparent hover:border-l-primary"
+                className="group border border-primary/20 bg-secondary/5 p-6 md:p-8 hover:bg-primary/10 transition-all flex flex-col md:flex-row justify-between items-center gap-6 border-l-4 border-l-transparent hover:border-l-primary"
               >
                 <div className="text-center md:text-left">
                   <div className="flex items-center justify-center md:justify-start gap-2 text-[10px] text-primary tracking-[0.3em] uppercase mb-2 font-bold">
                     <Star className="w-3 h-3" /> {event.type}
                   </div>
-                  <h3 className="text-3xl font-bold tracking-tight mb-2 group-hover:text-primary transition-colors">{event.name}</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2 group-hover:text-primary transition-colors">{event.name}</h3>
                   <div className="flex gap-6 text-xs text-muted-foreground">
                     <span className="flex items-center gap-2 uppercase font-semibold"><Zap className="w-3 h-3" /> {event.date}</span>
                     <span className="flex items-center gap-2 uppercase font-semibold"><Trophy className="w-3 h-3 text-yellow-500" /> {event.prize}</span>

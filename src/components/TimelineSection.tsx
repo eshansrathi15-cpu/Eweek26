@@ -48,17 +48,17 @@ const TimelineSection = () => {
             THE <span className="text-primary">SCHEDULE</span>
           </h2>
         </div>
-        <p className="text-center text-muted-foreground mb-16 font-mono text-sm tracking-widest">
+        <p className="text-center text-muted-foreground mb-10 md:mb-16 font-mono text-xs md:text-sm tracking-widest">
           — INNOVATION UNLEASHED —
         </p>
 
         {/* Film Strip Container */}
         <div className="relative">
           {/* Top Sprocket Holes */}
-          <div className="h-6 bg-secondary/50 relative overflow-hidden">
+          <div className="h-4 md:h-6 bg-secondary/50 relative overflow-hidden">
             <div className="absolute inset-0 flex justify-around items-center px-4">
-              {[...Array(20)].map((_, i) => (
-                <div key={i} className="w-4 h-3 bg-background rounded-sm" />
+              {[...Array(isMobile ? 12 : 20)].map((_, i) => (
+                <div key={i} className="w-3 h-2 md:w-4 md:h-3 bg-background rounded-sm" />
               ))}
             </div>
           </div>
@@ -84,11 +84,11 @@ const TimelineSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 onMouseEnter={() => setActiveIndex(index)}
-                className={`flex-shrink-0 w-64 md:w-80 transition-all duration-300 ${activeIndex === index ? 'scale-105 z-10' : 'opacity-70 hover:opacity-100'
+                className={`flex-shrink-0 w-60 md:w-80 transition-all duration-300 ${activeIndex === index ? 'scale-105 z-10' : 'opacity-70 hover:opacity-100'
                   }`}
               >
                 <div
-                  className={`border-2 p-6 h-52 flex flex-col justify-between transition-all duration-300 relative ${activeIndex === index
+                  className={`border-2 p-4 md:p-6 h-44 md:h-52 flex flex-col justify-between transition-all duration-300 relative ${activeIndex === index
                     ? 'border-primary bg-primary/5'
                     : 'border-foreground/50 bg-background'
                     }`}
@@ -131,12 +131,12 @@ const TimelineSection = () => {
           </motion.div>
 
           {/* Bottom Sprocket Holes */}
-          <div className="h-6 bg-secondary/50 relative overflow-hidden">
+          <div className="h-4 md:h-6 bg-secondary/50 relative overflow-hidden">
             <div className="absolute inset-0 flex justify-around items-center px-4">
-              {[...Array(20)].map((_, i) => (
+              {[...Array(isMobile ? 12 : 20)].map((_, i) => (
                 <div
                   key={i}
-                  className={`w-4 h-3 rounded-sm transition-colors ${activeIndex >= 0 ? 'bg-primary/30' : 'bg-background'
+                  className={`w-3 h-2 md:w-4 md:h-3 rounded-sm transition-colors ${activeIndex >= 0 ? 'bg-primary/30' : 'bg-background'
                     }`}
                 />
               ))}

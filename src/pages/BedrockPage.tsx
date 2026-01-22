@@ -164,7 +164,7 @@ const BedrockPage = () => {
 
     return <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain font-mono">
         <WaveformBackground />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 pb-40">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-20 pb-20 md:pb-40">
             {/* Navigation */}
             <motion.div initial={{
                 opacity: 0,
@@ -179,7 +179,7 @@ const BedrockPage = () => {
             </motion.div>
 
             {/* Hero Section */}
-            <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
+            <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-start mb-16 md:mb-24">
                 <motion.div initial={{
                     opacity: 0,
                     x: -50
@@ -197,28 +197,28 @@ const BedrockPage = () => {
                         The iconic C'Not Takeover. 14 teams. One goal: Absolute Market Dominance.
                     </p>
                     <div className="grid grid-cols-3 gap-4 pt-8 border-t border-primary/20 text-center">
-                        <div className="border border-primary/20 p-4 bg-secondary/10">
+                        <div className="border border-primary/20 p-3 md:p-4 bg-secondary/10">
                             <Users className="w-5 h-5 text-primary mx-auto mb-2" />
-                            <span className="text-2xl font-bold block text-foreground tracking-tighter">14</span>
-                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Elite_Teams</span>
+                            <span className="text-xl md:text-2xl font-bold block text-foreground tracking-tighter">14</span>
+                            <span className="text-[9px] md:text-[10px] text-muted-foreground uppercase tracking-widest">Elite_Teams</span>
                         </div>
-                        <div className="border border-primary/20 p-4 bg-secondary/10">
+                        <div className="border border-primary/20 p-3 md:p-4 bg-secondary/10">
                             <TrendingUp className="w-5 h-5 text-primary mx-auto mb-2" />
-                            <span className="text-2xl font-bold block text-foreground tracking-tighter">9+ HOURS</span>
-                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Selling_Ops</span>
+                            <span className="text-xl md:text-2xl font-bold block text-foreground tracking-tighter">9+ HOURS</span>
+                            <span className="text-[9px] md:text-[10px] text-muted-foreground uppercase tracking-widest">Selling_Ops</span>
                         </div>
-                        <div className="border border-primary/20 p-4 bg-primary/10">
+                        <div className="border border-primary/20 p-3 md:p-4 bg-primary/10">
                             <Award className="w-5 h-5 text-primary mx-auto mb-2" />
-                            <span className="text-2xl font-bold block text-foreground tracking-tighter">$$$</span>
-                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Grand_Prize</span>
+                            <span className="text-xl md:text-2xl font-bold block text-foreground tracking-tighter">$$$</span>
+                            <span className="text-[9px] md:text-[10px] text-muted-foreground uppercase tracking-widest">Grand_Prize</span>
                         </div>
                     </div>
                 </motion.div>
 
                 {/* Auction Terminal Visual */}
-                <div className="border-2 border-primary/20 bg-black/60 p-8 rounded-sm backdrop-blur-md relative overflow-hidden">
+                <div className="border-2 border-primary/20 bg-black/60 p-6 md:p-8 rounded-sm backdrop-blur-md relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-2 text-[8px] text-primary/20 rotate-90 tracking-widest">SECURE_SERVER_v4.2</div>
-                    <h3 className="text-primary mb-6 flex items-center gap-2 uppercase tracking-widest font-bold">
+                    <h3 className="text-primary mb-4 md:mb-6 flex items-center gap-2 uppercase tracking-widest font-bold">
                         <ShoppingCart className="w-5 h-5" /> ACTIVE_AUCTION_LOG
                     </h3>
                     <div className="space-y-4 text-xs opacity-80 border-l-2 border-primary/30 pl-4">
@@ -228,7 +228,7 @@ const BedrockPage = () => {
                         <p className="text-primary animate-pulse">{">"} WAITING FOR NEXT BID...</p>
                         <Button
                             onClick={handleOpenModal}
-                            className="w-full bg-primary text-black font-bold uppercase py-6 mt-6 tracking-widest hover:bg-primary/80 transition-all">
+                            className="w-full bg-primary text-black font-bold uppercase py-5 md:py-6 mt-6 tracking-widest hover:bg-primary/80 transition-all">
                             Team Registration
                         </Button>
                     </div>
@@ -236,7 +236,7 @@ const BedrockPage = () => {
             </div>
 
             {/* Mechanics Grid */}
-            <div className="grid md:grid-cols-3 gap-8 mb-32">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-20 md:mb-32">
                 {features.map((f, i) => <motion.div
                     key={i}
                     onClick={f.onClick} // Trigger Modal based on card
@@ -251,7 +251,7 @@ const BedrockPage = () => {
                     transition={{
                         delay: i * 0.1
                     }}
-                    className={`p-8 border border-primary/20 bg-secondary/5 group hover:border-primary/50 transition-all ${f.onClick ? "cursor-pointer" : ""}`}>
+                    className={`p-6 md:p-8 border border-primary/20 bg-secondary/5 group hover:border-primary/50 transition-all ${f.onClick ? "cursor-pointer" : ""}`}>
                     <div className="text-primary mb-4">{f.icon}</div>
                     <h4 className="text-lg font-bold uppercase mb-2 tracking-tighter">{f.title}</h4>
                     <p className="text-sm text-muted-foreground font-sans leading-relaxed">{f.desc}</p>
@@ -267,11 +267,11 @@ const BedrockPage = () => {
                     opacity: 1,
                     y: 0
                 }} className="border-l-4 border-primary/40 pl-8 md:pl-12">
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase mb-8 text-primary">
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase mb-6 md:mb-8 text-primary">
                         What Is Bedrock?
                     </h2>
-                    <div className="space-y-6 text-muted-foreground font-sans leading-relaxed max-w-4xl">
-                        <p className="text-lg md:text-xl">
+                    <div className="space-y-4 md:space-y-6 text-muted-foreground font-sans leading-relaxed max-w-4xl">
+                        <p className="text-base md:text-xl">
                             What if you got the chance to run your favorite restaurant at C'not?
                             You've had countless dinners there but it's time we turn the tables around!
                         </p>
@@ -284,7 +284,7 @@ const BedrockPage = () => {
                         <p className="text-lg md:text-xl">
                             Apart from a tonne of fun, memories and laughter, you stand a chance to win a{" "}
                             <span className="inline-block px-4 py-2 bg-primary text-black font-bold text-2xl md:text-3xl tracking-tight border-2 border-primary animate-pulse">
-                              CASH PRIZE!  
+                                CASH PRIZE!
                             </span>
                             {" "}
                             <span className="text-primary font-bold">You C'not miss this!</span>

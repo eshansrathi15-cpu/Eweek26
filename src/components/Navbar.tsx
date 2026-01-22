@@ -31,7 +31,7 @@ const Navbar = () => {
         duration: 0.6,
         ease: 'easeOut'
       }}
-      className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between bg-background/80 backdrop-blur-sm border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 md:py-4 flex items-center justify-between bg-background/80 backdrop-blur-sm border-b border-border"
     >
       {/* Logo with film reel */}
       <div className="flex items-center gap-3">
@@ -69,11 +69,11 @@ const Navbar = () => {
         {isAuthenticated && (
           <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-sm">
             <motion.div
-              animate={{ 
+              animate={{
                 rotate: [0, 360],
                 scale: [1, 1.1, 1]
               }}
-              transition={{ 
+              transition={{
                 duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut"

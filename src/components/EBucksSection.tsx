@@ -85,71 +85,71 @@ const EBucksSection = () => {
       rotateX,
       rotateY,
       transformStyle: "preserve-3d"
-    }} className="relative p-10 border border-white/10 group hover:border-primary/40 cursor-pointer transition-all duration-700 bg-zinc-950 rounded-[24px] overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] h-full flex flex-col justify-between">
-        {/* IRIDESCENT OIL SPILL LAYER */}
-        <motion.div className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-500" style={{
+    }} className="relative p-7 md:p-10 border border-white/10 group hover:border-primary/40 cursor-pointer transition-all duration-700 bg-zinc-950 rounded-[24px] overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] h-full flex flex-col justify-between">
+      {/* IRIDESCENT OIL SPILL LAYER */}
+      <motion.div className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-500" style={{
         opacity: isHovered ? 1 : 0,
         background: background
       }} />
 
-        {/* CLICK SHEEN FLASH */}
-        <motion.div animate={sheenControls} initial={{
+      {/* CLICK SHEEN FLASH */}
+      <motion.div animate={sheenControls} initial={{
         left: "-100%"
       }} className="absolute top-0 bottom-0 w-40 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[35deg] pointer-events-none z-30" />
 
-        {/* CHIP & CONTACTLESS */}
-        <div className="flex justify-between items-start relative z-10 mb-10">
-          <div className="w-14 h-11 bg-gradient-to-br from-yellow-600 via-yellow-200 to-yellow-700 rounded-lg relative overflow-hidden shadow-inner border border-black/20">
-            <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-20 border border-black/10" />
-            <div className="absolute top-1/2 left-0 w-full h-[0.5px] bg-black/40" />
-            <div className="absolute left-1/2 top-0 w-[0.5px] h-full bg-black/40" />
-            <div className="absolute inset-2 border border-black/10 rounded-sm" />
-          </div>
-          
-          <div className="flex gap-1 opacity-20 mt-2">
-            {[1, 2, 3].map(i => <div key={i} className="w-1 h-6 border-r-2 border-white rounded-full" style={{
+      {/* CHIP & CONTACTLESS */}
+      <div className="flex justify-between items-start relative z-10 mb-6 md:mb-10">
+        <div className="w-14 h-11 bg-gradient-to-br from-yellow-600 via-yellow-200 to-yellow-700 rounded-lg relative overflow-hidden shadow-inner border border-black/20">
+          <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-20 border border-black/10" />
+          <div className="absolute top-1/2 left-0 w-full h-[0.5px] bg-black/40" />
+          <div className="absolute left-1/2 top-0 w-[0.5px] h-full bg-black/40" />
+          <div className="absolute inset-2 border border-black/10 rounded-sm" />
+        </div>
+
+        <div className="flex gap-1 opacity-20 mt-2">
+          {[1, 2, 3].map(i => <div key={i} className="w-1 h-6 border-r-2 border-white rounded-full" style={{
             transform: `skewX(-15deg)`
           }} />)}
-          </div>
+        </div>
+      </div>
+
+      {/* CARD CONTENT */}
+      <div className="relative z-10 flex-grow">
+        <div className="mb-4 md:mb-6 text-primary group-hover:scale-110 transition-transform duration-500">
+          {card.icon}
+        </div>
+        {/* UPDATED HEADING STYLE: Larger, bolder, tighter tracking */}
+        <h3 className="text-2xl md:text-3xl font-mono font-black mb-4 md:mb-6 tracking-tight text-zinc-100 uppercase leading-none group-hover:text-primary transition-colors">
+          {card.title}
+        </h3>
+        <p className="text-zinc-400 font-sans text-sm leading-relaxed antialiased">
+          {card.description}
+        </p>
+      </div>
+
+      {/* BOTTOM AESTHETIC STRIP */}
+      <div className="mt-8 md:mt-12 pt-6 border-t border-white/5 flex justify-between items-end relative z-10">
+        <div className="flex flex-col gap-1">
+          <span className="font-mono text-[10px] text-white/20 tracking-[4px] uppercase">
+            Electronic Use Only
+          </span>
+          <span className="font-mono text-xs text-white/40 tracking-[2px]">
+            E-WEEK 2026 MEMBER
+          </span>
         </div>
 
-        {/* CARD CONTENT */}
-        <div className="relative z-10 flex-grow">
-          <div className="mb-6 text-primary group-hover:scale-110 transition-transform duration-500">
-            {card.icon}
-          </div>
-          {/* UPDATED HEADING STYLE: Larger, bolder, tighter tracking */}
-          <h3 className="text-3xl font-mono font-black mb-6 tracking-tight text-zinc-100 uppercase leading-none group-hover:text-primary transition-colors">
-            {card.title}
-          </h3>
-          <p className="text-zinc-400 font-sans text-sm leading-relaxed antialiased">
-            {card.description}
-          </p>
+        {/* MASTERCARD CIRCLES REMOVED AS REQUESTED */}
+        <div className="flex flex-col items-end opacity-20">
+          <div className="w-12 h-1 bg-white/20 rounded-full mb-1" />
+          <div className="w-8 h-1 bg-white/20 rounded-full" />
         </div>
-
-        {/* BOTTOM AESTHETIC STRIP */}
-        <div className="mt-12 pt-6 border-t border-white/5 flex justify-between items-end relative z-10">
-          <div className="flex flex-col gap-1">
-            <span className="font-mono text-[10px] text-white/20 tracking-[4px] uppercase">
-              Electronic Use Only
-            </span>
-            <span className="font-mono text-xs text-white/40 tracking-[2px]">
-              E-WEEK 2026 MEMBER
-            </span>
-          </div>
-          
-          {/* MASTERCARD CIRCLES REMOVED AS REQUESTED */}
-          <div className="flex flex-col items-end opacity-20">
-             <div className="w-12 h-1 bg-white/20 rounded-full mb-1" />
-             <div className="w-8 h-1 bg-white/20 rounded-full" />
-          </div>
-        </div>
-      </motion.div>;
+      </div>
+    </motion.div>;
   };
-  return <section id="ebucks" className="py-24 relative px-6 overflow-hidden bg-transparent">
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex flex-col items-center mb-20">
-          <motion.div initial={{
+  return <section id="ebucks" className="py-24 relative px-4 md:px-6 overflow-hidden bg-transparent">
+    <div className="max-w-6xl mx-auto relative z-10">
+      <div className="flex flex-col items-center mb-12 md:mb-20">
+        <motion.div initial={{
           opacity: 0,
           scale: 0.9
         }} whileInView={{
@@ -157,23 +157,23 @@ const EBucksSection = () => {
           scale: 1
         }} viewport={{
           once: true
-        }} className="inline-flex items-center gap-2 mb-6 px-5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-            <ChevronLeft className="w-3 h-3 text-primary" />
-            <span className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase">The Digital Mint</span>
-            <ChevronRight className="w-3 h-3 text-primary" />
-          </motion.div>
-          <h2 className="text-6xl md:text-8xl font-mono font-bold text-center tracking-tighter text-foreground">
-            E-<span className="text-primary drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">BUCKS</span>
-          </h2>
+        }} className="inline-flex items-center gap-2 mb-4 md:mb-6 px-4 md:px-5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+          <ChevronLeft className="w-3 h-3 text-primary" />
+          <span className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase">The Digital Mint</span>
+          <ChevronRight className="w-3 h-3 text-primary" />
+        </motion.div>
+        <h2 className="text-6xl md:text-8xl font-mono font-bold text-center tracking-tighter text-foreground">
+          E-<span className="text-primary drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">BUCKS</span>
+        </h2>
+      </div>
+
+      <div className="flex flex-col md:flex-row items-stretch justify-center gap-10">
+        <div className="w-full md:w-[420px]">
+          <Card card={cards[0]} index={0} />
         </div>
 
-        <div className="flex flex-col md:flex-row items-stretch justify-center gap-10">
-          <div className="w-full md:w-[420px]">
-            <Card card={cards[0]} index={0} />
-          </div>
-          
-          <div className="hidden md:flex md:items-center">
-            <motion.div animate={{
+        <div className="hidden md:flex md:items-center">
+          <motion.div animate={{
             x: [0, 8, 0],
             opacity: [0.2, 0.6, 0.2]
           }} transition={{
@@ -181,15 +181,15 @@ const EBucksSection = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}>
-              <ArrowRight className="w-8 h-8 opacity-100 bg-inherit border-cyan-600 text-cyan-400" />
-            </motion.div>
-          </div>
+            <ArrowRight className="w-8 h-8 opacity-100 bg-inherit border-cyan-600 text-cyan-400" />
+          </motion.div>
+        </div>
 
-          <div className="w-full md:w-[420px]">
-            <Card card={cards[1]} index={1} />
-          </div>
+        <div className="w-full md:w-[420px]">
+          <Card card={cards[1]} index={1} />
         </div>
       </div>
-    </section>;
+    </div>
+  </section>;
 };
 export default EBucksSection;

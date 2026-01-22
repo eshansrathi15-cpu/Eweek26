@@ -30,12 +30,12 @@ const EventsGrid = ({ onEventClick }: EventsGridProps) => {
               NOW <span className="text-primary">PLAYING</span>
             </h2>
           </div>
-          <p className="text-muted-foreground text-center mb-16 max-w-xl mx-auto font-mono text-sm tracking-wider">
+          <p className="text-muted-foreground text-center mb-10 md:mb-16 max-w-xl mx-auto font-mono text-xs md:text-sm tracking-wider">
             — SELECT YOUR FEATURE —
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {events.map((event, index) => (
             <motion.div
               key={index}
@@ -48,26 +48,26 @@ const EventsGrid = ({ onEventClick }: EventsGridProps) => {
             >
               {/* ADD 'event-tile' class and data attributes here: */}
               <div
-                className="border-2 border-foreground p-6 h-56 flex flex-col justify-between transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:border-primary relative overflow-hidden event-tile"
+                className="border-2 border-foreground p-4 md:p-6 h-48 md:h-56 flex flex-col justify-between transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:border-primary relative overflow-hidden event-tile"
                 data-title={event.name}
                 data-desc={event.desc}
                 onClick={() => onEventClick?.(event)}
               >
                 {/* Movie rating badge */}
-                <div className="absolute top-3 right-3 w-8 h-8 border border-current flex items-center justify-center">
-                  <span className="text-[10px] font-mono font-bold group-hover:text-primary-foreground transition-colors">
+                <div className="absolute top-2 right-2 md:top-3 md:right-3 w-7 h-7 md:w-8 md:h-8 border border-current flex items-center justify-center">
+                  <span className="text-[9px] md:text-[10px] font-mono font-bold group-hover:text-primary-foreground transition-colors">
                     {event.rating}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-mono font-bold mt-2 text-foreground group-hover:text-primary-foreground transition-colors pr-12">
+                  <h3 className="text-xl md:text-2xl font-mono font-bold mt-1 md:mt-2 text-foreground group-hover:text-primary-foreground transition-colors pr-12">
                     {event.name}
                   </h3>
                 </div>
 
                 <div>
-                  <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/80 transition-colors mb-3">
+                  <p className="text-xs md:text-sm text-muted-foreground group-hover:text-primary-foreground/80 transition-colors mb-2 md:mb-3 line-clamp-2 md:line-clamp-none">
                     {event.desc}
                   </p>
                   {/* Showtime style footer */}

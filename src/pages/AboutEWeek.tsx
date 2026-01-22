@@ -12,12 +12,12 @@ const AboutEWeek = () => {
           <motion.div
             key={`star-${i}`}
             className="absolute w-1 h-1 bg-primary/40 rounded-full"
-            initial={{ 
-              top: `${Math.random() * 100}%`, 
+            initial={{
+              top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              opacity: 0 
+              opacity: 0
             }}
-            animate={{ 
+            animate={{
               opacity: [0, 1, 0],
               scale: [1, 2, 1]
             }}
@@ -35,12 +35,12 @@ const AboutEWeek = () => {
           <motion.div
             key={`shooting-${i}`}
             className="absolute w-1 h-1 bg-primary rounded-full"
-            initial={{ 
-              top: `${Math.random() * 50}%`, 
+            initial={{
+              top: `${Math.random() * 50}%`,
               left: '-5%',
               opacity: 0
             }}
-            animate={{ 
+            animate={{
               top: `${Math.random() * 50 + 50}%`,
               left: '105%',
               opacity: [0, 1, 0]
@@ -71,7 +71,7 @@ const AboutEWeek = () => {
             viewBox="0 0 40 60"
             fill="currentColor"
             initial={{ y: 0, rotate: rocket.rotate }}
-            animate={{ 
+            animate={{
               y: [-30, 30, -30],
               rotate: [rocket.rotate - 8, rocket.rotate + 8, rocket.rotate - 8]
             }}
@@ -81,16 +81,16 @@ const AboutEWeek = () => {
               ease: "easeInOut",
               delay: rocket.delay
             }}
-            style={{ 
-              top: rocket.top, 
-              right: rocket.right, 
-              left: rocket.left, 
+            style={{
+              top: rocket.top,
+              right: rocket.right,
+              left: rocket.left,
               bottom: rocket.bottom,
               filter: 'drop-shadow(0 0 10px currentColor)'
             }}
           >
             <path d="M20 5 L30 25 L30 45 L25 50 L25 40 L20 45 L15 40 L15 50 L10 45 L10 25 Z" />
-            <circle cx="20" cy="20" r="3" fill="white" opacity="0.3"/>
+            <circle cx="20" cy="20" r="3" fill="white" opacity="0.3" />
           </motion.svg>
         ))}
 
@@ -120,9 +120,9 @@ const AboutEWeek = () => {
 
       {/* Navigation Bar */}
       <nav className="border-b border-border relative z-10 bg-background/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a 
-            href="/" 
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+          <a
+            href="/"
             className="flex items-center gap-2 text-primary hover:opacity-80 transition-all group"
           >
             <motion.div
@@ -133,8 +133,8 @@ const AboutEWeek = () => {
             </motion.div>
             <span className="font-mono text-sm font-bold tracking-widest uppercase">BACK TO HOME</span>
           </a>
-          
-          <motion.div 
+
+          <motion.div
             className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -142,7 +142,7 @@ const AboutEWeek = () => {
             <img src={celLogo} alt="CEL Logo" className="w-6 h-6" />
             <span className="font-mono text-lg font-bold">E-WEEK 2026</span>
           </motion.div>
-          
+
           <div className="w-32"></div>
         </div>
       </nav>
@@ -156,16 +156,16 @@ const AboutEWeek = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <motion.p 
+            <motion.p
               className="text-xs font-mono text-muted-foreground tracking-widest mb-4"
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               — PRODUCTION NOTES —
             </motion.p>
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6 tracking-tight"
-              animate={{ 
+            <motion.h1
+              className="text-4xl md:text-7xl font-bold mb-4 md:mb-6 tracking-tight"
+              animate={{
                 textShadow: [
                   '0 0 20px rgba(0, 255, 255, 0)',
                   '0 0 20px rgba(0, 255, 255, 0.3)',
@@ -191,9 +191,9 @@ const AboutEWeek = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center mb-20"
+            className="max-w-3xl mx-auto text-center mb-12 md:mb-20"
           >
-            <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-sans">
+            <p className="text-base md:text-xl leading-relaxed text-muted-foreground font-sans">
               A legacy initiative to cultivate an entrepreneurial spirit through fun events across the campus. Students learn skills including pitching, negotiating, and generally, just have a lot of fun. We’re bringing you high-stakes games where you get to be an entrepreneur, a stock market trader, a restaurateur, or exactly who you want to be. Cash prizes await the winners!
             </p>
           </motion.div>
@@ -207,8 +207,8 @@ const AboutEWeek = () => {
             className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
           >
             {/* Attendees */}
-            <motion.div 
-              className="text-center p-8 border border-border rounded-lg bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors relative overflow-hidden group"
+            <motion.div
+              className="text-center p-6 md:p-8 border border-border rounded-lg bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors relative overflow-hidden group"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -229,8 +229,8 @@ const AboutEWeek = () => {
               >
                 <Users className="w-12 h-12 mx-auto mb-4 text-primary relative z-10" />
               </motion.div>
-              <motion.div 
-                className="text-5xl font-bold mb-2 font-mono relative z-10"
+              <motion.div
+                className="text-4xl md:text-5xl font-bold mb-2 font-mono relative z-10"
                 whileHover={{ scale: 1.1 }}
               >
                 5000+
@@ -239,8 +239,8 @@ const AboutEWeek = () => {
             </motion.div>
 
             {/* Days */}
-            <motion.div 
-              className="text-center p-8 border border-border rounded-lg bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors relative overflow-hidden group"
+            <motion.div
+              className="text-center p-6 md:p-8 border border-border rounded-lg bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors relative overflow-hidden group"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -261,8 +261,8 @@ const AboutEWeek = () => {
               >
                 <Calendar className="w-12 h-12 mx-auto mb-4 text-primary relative z-10" />
               </motion.div>
-              <motion.div 
-                className="text-5xl font-bold mb-2 font-mono relative z-10"
+              <motion.div
+                className="text-4xl md:text-5xl font-bold mb-2 font-mono relative z-10"
                 whileHover={{ scale: 1.1 }}
               >
                 7
@@ -271,8 +271,8 @@ const AboutEWeek = () => {
             </motion.div>
 
             {/* Events */}
-            <motion.div 
-              className="text-center p-8 border border-border rounded-lg bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors relative overflow-hidden group"
+            <motion.div
+              className="text-center p-6 md:p-8 border border-border rounded-lg bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors relative overflow-hidden group"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -295,8 +295,8 @@ const AboutEWeek = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </motion.div>
-              <motion.div 
-                className="text-5xl font-bold mb-2 font-mono relative z-10"
+              <motion.div
+                className="text-4xl md:text-5xl font-bold mb-2 font-mono relative z-10"
                 whileHover={{ scale: 1.1 }}
               >
                 10+
@@ -317,7 +317,7 @@ const AboutEWeek = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <motion.p 
+            <motion.p
               className="text-xs font-mono text-muted-foreground tracking-widest mb-4"
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 3, repeat: Infinity }}

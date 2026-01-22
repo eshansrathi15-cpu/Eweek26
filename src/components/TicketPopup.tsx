@@ -176,7 +176,7 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
 
                     {/* Community link reminder - only show for internal registration events */}
                     {event.name !== "WHAT DA FUKREY" && event.name !== "MISSION: POSSIBLE?" && (
-                        <p className="mt-4 text-[10px] md:text-xs font-mono text-cyan-400 opacity-80 uppercase tracking-widest leading-relaxed">
+                        <p className="mt-2 md:mt-4 text-[10px] md:text-xs font-mono text-cyan-400 opacity-80 uppercase tracking-widest leading-relaxed">
                             {">"} You'll get an email with the community link upon registering!
                         </p>
                     )}
