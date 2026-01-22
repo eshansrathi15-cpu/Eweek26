@@ -53,7 +53,8 @@ const BedrockPage = () => {
     };
 
     const handleSubmit = async () => {
-        if (!teamName || !captainId || !captainPhone) {
+        // FIXED: Removed !captainId from validation because there is no input field for it in the UI
+        if (!teamName || !captainPhone) {
             toast.error('Please fill all required fields');
             return;
         }
@@ -72,7 +73,7 @@ const BedrockPage = () => {
                         teamName,
                         captainName,
                         captainEmail,
-                        captainId,
+                        captainEmail, // FIXED: Using Email as ID since there is no ID input
                         captainPhone,
                         numMembers,
                         membersData

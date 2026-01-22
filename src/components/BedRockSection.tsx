@@ -68,7 +68,7 @@ const BedRockSection = () => {
   };
 
   const handleSubmit = async () => {
-    if (!teamName || !captainId || !captainPhone) {
+    if (!teamName || !captainPhone) {
       toast.error('Please fill all required fields');
       return;
     }

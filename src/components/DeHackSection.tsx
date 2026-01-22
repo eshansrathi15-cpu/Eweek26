@@ -113,7 +113,8 @@ const DeHackSection = () => {
   };
 
   const handleSubmit = async () => {
-    if (!teamName || !captainId || !captainPhone) {
+    // FIXED: Removed !captainId from validation logic
+    if (!teamName || !captainPhone) {
       toast.error('Please fill all required fields');
       return;
     }
@@ -132,7 +133,7 @@ const DeHackSection = () => {
             teamName,
             captainName,
             captainEmail,
-            captainId,
+            captainEmail, // FIXED: Sending Email as ID since ID input doesn't exist
             captainPhone,
             numMembers,
             membersData
@@ -388,7 +389,7 @@ const DeHackSection = () => {
                     value={numMembers}
                     onChange={handleNumMembersChange}
                     className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                    placeholder="Enter number..."
+                    placeholder="Enter number (max 5)..."
                   />
                 </div>
 
