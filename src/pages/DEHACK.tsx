@@ -239,11 +239,11 @@ const Dehack = () => {
             </div>
             <div className="border-l-2 border-primary/30 pl-4">
               <p className="text-primary font-bold mb-1">02. THE CHALLENGE</p>
-              <p className="text-muted-foreground">54 Hours. Zero to founder in one weekend.</p>
+              <p className="text-muted-foreground">96 Hours. Zero to founder in one weekend.</p>
             </div>
             <div className="border-l-2 border-primary/30 pl-4">
               <p className="text-primary font-bold mb-1">03. THE OUTPUT</p>
-              <p className="text-muted-foreground">Functional prototypes. Project decks. The transition from student to builder.</p>
+              <p className="text-muted-foreground">Functional prototypes.The transition from student to builder.</p>
             </div>
           </div>
           <Button onClick={handleOpenModal} className="w-full mt-10 bg-primary text-black hover:bg-primary/90 font-bold tracking-widest uppercase py-6 text-lg">
