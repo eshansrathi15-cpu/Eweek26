@@ -46,12 +46,12 @@ const Navbar = () => {
 
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">
-        {['SHOWTIME', 'FEATURES', 'E-WEEK HITS', 'E-BUCKS'].map(item => (
+        {['SHOWTIME', 'FEATURES', 'BESTSELLERS', 'E-BUCKS'].map(item => (
           <button
             key={item}
             onClick={() => {
               // Mapping menu items to their respective section IDs
-              if (item === 'E-WEEK HITS') scrollToSection('hits');
+              if (item === 'BESTSELLERS') scrollToSection('hits');
               else if (item === 'CAREER FAIR') scrollToSection('career-fair');
               else if (item === 'E-BUCKS') scrollToSection('ebucks');
               else scrollToSection(item.toLowerCase());
