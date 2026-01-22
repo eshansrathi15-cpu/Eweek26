@@ -39,7 +39,7 @@ className="mb-6 font-mono text-primary hover:text-primary hover:bg-primary/10 tr
 <div className="relative aspect-video w-full h-auto md:h-[75vh] border-4 border-primary/20 bg-black rounded-lg overflow-hidden shadow-[0_0_50px_rgba(var(--primary-rgb),0.2)]">
 <iframe
 className="absolute inset-0 w-full h-full"
-src="https://www.instagram.com/reel/DTx8rfWiBAE/embed" 
+src="https://www.instagram.com/reel/DTx8rfWiBAE/embed?autoplay=1" 
 title="E-Week 2026 Trailer"
 frameBorder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
