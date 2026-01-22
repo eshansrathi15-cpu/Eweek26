@@ -6,10 +6,12 @@ import WaveformBackground from "@/components/WaveformBackground";
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+
 const Dehack = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const {
     user,
     isAuthenticated
@@ -25,6 +27,7 @@ const Dehack = () => {
   const [captainPhone, setCaptainPhone] = useState('');
   const [numMembers, setNumMembers] = useState('');
   const [teamMembers, setTeamMembers] = useState([]);
+
   const handleOpenModal = () => {
     if (!isAuthenticated) {
       toast.error('Please login first', {
@@ -36,6 +39,7 @@ const Dehack = () => {
     setCaptainEmail(user?.email || '');
     setShowModal(true);
   };
+
   const handleNumMembersChange = e => {
     const inputValue = e.target.value;
     setNumMembers(inputValue);
@@ -53,6 +57,7 @@ const Dehack = () => {
       setTeamMembers([]);
     }
   };
+
   const handleMemberChange = (index, field, value) => {
     const updatedMembers = [...teamMembers];
     updatedMembers[index] = {
@@ -61,8 +66,10 @@ const Dehack = () => {
     };
     setTeamMembers(updatedMembers);
   };
+
   const handleSubmit = async () => {
-    if (!teamName || !captainId || !captainPhone) {
+    // FIXED: Removed !captainId from validation logic because it doesn't exist in the form
+    if (!teamName || !captainPhone) {
       toast.error('Please fill all required fields');
       return;
     }
@@ -76,7 +83,8 @@ const Dehack = () => {
         },
         body: JSON.stringify({
           sheet_name: 'DEHACK',
-          row_data: [new Date().toISOString(), teamName, captainName, captainEmail, captainId, captainPhone, numMembers, membersData]
+          // FIXED: Used captainEmail in place of captainId to ensure data integrity in the sheet
+          row_data: [new Date().toISOString(), teamName, captainName, captainEmail, captainEmail, captainPhone, numMembers, membersData]
         })
       });
       const data = await response.json();
@@ -103,6 +111,7 @@ const Dehack = () => {
       setIsSubmitting(false);
     }
   };
+
   const containerVariants = {
     hidden: {
       opacity: 0
@@ -145,6 +154,7 @@ const Dehack = () => {
     task: "Submission day.",
     status: "FINAL_PUSH"
   }];
+
   return <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden film-grain">
     <WaveformBackground />
 
