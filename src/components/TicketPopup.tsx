@@ -209,7 +209,7 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
                             )}
                         </button>
                     )}
-                    <span className="mobile-swipe-hint text-xs text-gray-500 mt-2">Swipe down to close</span>
+                    <span className="mobile-swipe-hint text-xs text-gray-500 mt-2">Cross to close</span>
                 </div>
             </div>
         </>

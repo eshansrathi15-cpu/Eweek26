@@ -20,6 +20,7 @@ const events = [
 const TimelineSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = window.innerWidth < 768;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -69,7 +70,7 @@ const TimelineSection = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 60, 
+                duration: isMobile ? 40 : 60, 
                 ease: "linear",
               },
             }}

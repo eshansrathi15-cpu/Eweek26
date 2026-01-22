@@ -194,12 +194,12 @@ const BedrockPage = () => {
                         BED<span className="text-primary">ROCK</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-muted-foreground mb-10 font-sans leading-relaxed">
-                        The C'Not Takeover. 13 teams. One goal: Absolute Market Dominance.
+                        The iconic C'Not Takeover. 14 teams. One goal: Absolute Market Dominance.
                     </p>
                     <div className="grid grid-cols-3 gap-4 pt-8 border-t border-primary/20 text-center">
                         <div className="border border-primary/20 p-4 bg-secondary/10">
                             <Users className="w-5 h-5 text-primary mx-auto mb-2" />
-                            <span className="text-2xl font-bold block text-foreground tracking-tighter">13</span>
+                            <span className="text-2xl font-bold block text-foreground tracking-tighter">14</span>
                             <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Elite_Teams</span>
                         </div>
                         <div className="border border-primary/20 p-4 bg-secondary/10">
