@@ -7,7 +7,7 @@ const events = [
   { name: 'WOLF OF DALAL STREET', desc: '"Profit dikhta hai toh har koi jhukta hai. Toh banao profit yaha pe." - Harshad Mehta', rating: 'PG', category: 'EVENT' },
   { name: 'MISIRLOU : A KNIVES OUT MYSTERY', desc: '"Misirlou: a melody that seems chaotically complex, but in reality, it is just one string vibrating in panic." - Vincent Vega', rating: 'G', category: 'EVENT' },
   { name: 'MISSION:POSSIBLE?', desc: 'Raise capital to fund your solutions to campus problems. Join the community here, no registrations required!', rating: 'R', category: 'EVENT' },
-  { name: 'ONE RED PAPERCLIP', desc: 'Trade your way up, starting from a single paperclip.', rating: 'G', category: 'EVENT' },
+  { name: 'ONE RED PAPERCLIP', desc: '"I\'m gonna make him an offer he can\'t refuse. Watch me turn this paperclip into something magnificent." - Don Corleone', rating: 'G', category: 'EVENT' },
 ];
 
 interface EventsGridProps {
