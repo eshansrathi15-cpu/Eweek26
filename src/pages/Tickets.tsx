@@ -230,7 +230,7 @@ const Tickets = () => {
                       onClick={(e) => e.preventDefault()}
                       className="w-full md:w-auto font-bold uppercase py-5 px-8 tracking-widest transition-transform shadow-[0_0_20px_rgba(147,245,255,0.2)] text-sm bg-primary text-black hover:scale-105 inline-flex items-center justify-center cursor-pointer"
                     >
-                      LINK
+                      COMING SOON
                     </a>
                   ) : (
                     <Button

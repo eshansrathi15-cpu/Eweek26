@@ -188,7 +188,7 @@ const TicketPopup = ({ isOpen, onClose, event }: TicketPopupProps) => {
                             onClick={(e) => e.preventDefault()}
                             className="register-btn flex items-center justify-center gap-2 hover:scale-105 transition-transform cursor-pointer"
                         >
-                            LINK
+                            COMING SOON
                         </a>
                     ) : (
                         <button
