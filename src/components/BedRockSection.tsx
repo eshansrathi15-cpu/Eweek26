@@ -183,9 +183,9 @@ const BedRockSection = () => {
           >
             <div className="aspect-square border-4 border-primary p-1 relative shadow-[0_0_30px_rgba(147,245,255,0.1)]">
               <div className="w-full h-full bg-background border-2 border-primary/30 relative overflow-hidden">
-                <img 
-                  src={bedrockImage} 
-                  alt="Bedrock Event" 
+                <img
+                  src={bedrockImage}
+                  alt="Bedrock Event"
                   className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                 />
                 {/* Cyan overlay for theme consistency */}
@@ -208,15 +208,15 @@ const BedRockSection = () => {
             <h2 className="text-6xl md:text-8xl font-bold text-primary mb-6 tracking-tighter">BEDROCK</h2>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 font-sans">The C'Not Takeover. Marketing. Profit. Glory.</p>
 
-            <div className="grid grid-cols-3 gap-4 mb-10 text-center">
+            <div className="grid grid-cols-3 gap-2 md:gap-4 mb-10 text-center font-mono">
               {[{ icon: Users, label: 'TEAMS', value: '14' },
               { icon: TrendingUp, label: 'MONETARY', value: '10X REVENUE' },
               { icon: Crown, label: 'CHAMPION', value: '1' }
               ].map((stat, i) => (
-                <div key={i} className="p-4 border border-primary/20 bg-primary/5 hover:border-primary/50 transition-colors">
-                  <stat.icon className="w-6 h-6 mx-auto mb-2 text-primary" />
-                  <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                  <div className="text-[10px] text-muted-foreground tracking-widest uppercase">{stat.label}</div>
+                <div key={i} className="p-2 md:p-4 border border-primary/20 bg-primary/5 hover:border-primary/50 transition-colors">
+                  <stat.icon className="w-5 h-5 md:w-6 md:h-6 mx-auto mb-2 text-primary" />
+                  <div className="text-sm md:text-2xl font-bold text-foreground leading-tight">{stat.value}</div>
+                  <div className="text-[8px] md:text-[10px] text-muted-foreground tracking-widest uppercase mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>
