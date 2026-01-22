@@ -49,6 +49,10 @@ const Navbar = () => {
         {['SHOWTIME', 'FEATURES', 'BESTSELLERS', 'E-BUCKS'].map(item => (
           <button
             key={item}
+            onMouseEnter={() => {
+              // Prefetch logic for routes if they were links
+              // For section scrolls, nothing to prefetch as they are in Index.tsx
+            }}
             onClick={() => {
               // Mapping menu items to their respective section IDs
               if (item === 'BESTSELLERS') scrollToSection('hits');

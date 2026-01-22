@@ -39,7 +39,7 @@ const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
 };
 
 const Tickets = () => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, loginWithUserData } = useAuth();
   const { registeredEvents, addRegisteredEvent, isLoading: isCheckingStatus } = useRegistrationStatus();
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
   const [learnMoreEvent, setLearnMoreEvent] = useState<string | null>(null);
@@ -53,14 +53,14 @@ const Tickets = () => {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         }).then(res => res.json());
 
-        const credential = {
+        const userData = {
           name: userInfo.name,
           email: userInfo.email,
           picture: userInfo.picture,
         };
 
-        localStorage.setItem('user', JSON.stringify(credential));
-        window.location.reload();
+        loginWithUserData(userData);
+
       } catch (error) {
         console.error("Login Failed", error);
         toast.error("Login failed. Please try again.");

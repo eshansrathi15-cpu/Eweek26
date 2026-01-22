@@ -10,6 +10,7 @@ interface User {
 interface AuthContextType {
     user: User | null;
     login: (credential: string) => void;
+    loginWithUserData: (userData: User) => void;
     logout: () => void;
     isAuthenticated: boolean;
 }
@@ -48,13 +49,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
     };
 
+    const loginWithUserData = (userData: User) => {
+        setUser(userData);
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
+    };
+
     const logout = () => {
         setUser(null);
         localStorage.removeItem(AUTH_STORAGE_KEY);
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+        <AuthContext.Provider value={{ user, login, loginWithUserData, logout, isAuthenticated: !!user }}>
             {children}
         </AuthContext.Provider>
     );
