@@ -5,9 +5,9 @@ const events = [
   { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', desc: '"Turns out all we needed was a little more of ANC & Looters delivery" - Stoic The Vast', rating: 'PG', category: 'EVENT' },
   { name: 'WHAT DA FUKREY', desc: '"Gau Wing hai... bilkul gau. Isliye beechne aaye hai. Isse Déjà vu nahi... Déjà-Choo kehte hain." - Choocha', rating: 'G', category: 'EVENT' },
   { name: 'WOLF OF DALAL STREET', desc: '"Profit dikhta hai toh har koi jhukta hai. Toh banao profit yaha pe." - Harshad Mehta', rating: 'PG', category: 'EVENT' },
-  { name: 'MISIRLOU : A KNIVES OUT MYSTERY', desc: '"Misirlou: a melody that seems chaotically complex, but in reality, it is just one string vibrating in panic." - Vincent Vega', rating: 'G', category: 'EVENT' },
-  { name: 'MISSION:POSSIBLE?', desc: '"Your mission should you choose to accept it, is to raise capital to fund your solutions to campus problems." - Ethan Hunt', rating: 'R', category: 'EVENT' },
-  { name: 'ONE RED PAPERCLIP', desc: '"I\'m gonna make him an offer he can\'t refuse. Watch me turn this paperclip into something magnificent." - Don Corleone', rating: 'G', category: 'EVENT' },
+  { name: 'MISIRLOU: A KNIVES OUT MYSTERY', desc: '"Misirlou: a melody that seems chaotically complex, but in reality, it is just one string vibrating in panic." - Vincent Vega', rating: 'G', category: 'EVENT' },
+  { name: 'MISSION: POSSIBLE?', desc: '"Your mission should you choose to accept it, is to raise capital to fund your solutions to campus problems." - Ethan Hunt', rating: 'R', category: 'EVENT' },
+  { name: 'ONE RED PAPERCLIP', desc: '"I\'m gonna make him an offer he can\'t refuse. Watch me trade this paperclip into something magnificent right here" - Don Corleone', rating: 'G', category: 'EVENT' },
 ];
 
 interface EventsGridProps {
