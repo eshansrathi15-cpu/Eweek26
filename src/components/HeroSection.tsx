@@ -123,7 +123,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.4 }}
           className="mt-8 text-xs text-muted-foreground font-mono tracking-wider"
         >
-          E-WEEK '26'
+          E-WEEK '26
         </motion.p>
       </motion.div>
     </section>
