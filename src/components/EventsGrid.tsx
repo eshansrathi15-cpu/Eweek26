@@ -3,7 +3,7 @@ import { Ticket } from 'lucide-react';
 
 export const events = [
   { name: 'HOW TO TRAIN YOUR DELIVERY TEAM', desc: 'Take over ANC & Looters to master logistics and operations! Optimize delivery routes, manage resources and team up for maximum sales!', rating: 'PG', category: 'EVENT', slug: 'delivery-team' },
-  { name: 'WHAT DA FUKREY', desc: 'Tired of your wingies? Sell them. Navigate the ultimate trading challenge where strategy meets negotiation in this high-stakes marketplace.', rating: 'G', category: 'EVENT', slug: 'what-da-fukrey' },
+  { name: 'EVENT 404', desc: 'Tired of your wingies? Sell them. Navigate the ultimate trading challenge where strategy meets negotiation in this high-stakes marketplace.', rating: 'G', category: 'EVENT', slug: 'what-da-fukrey' },
   { name: 'WOLF OF DALAL STREET', desc: 'Durex making diapers? Prove you can pitch the impossible and snag a spot in our very own stock market. Market your stocks, trash-talk competitors and trade in E-bucks to bag the highest IPO! Test your market instincts and skill in this intense simulation.', rating: 'PG', category: 'EVENT', slug: 'wolf-of-dalal' },
   { name: 'MISIRLOU: A KNIVES OUT MYSTERY', desc: '"Challenge yourself to a fusion of two classic events on campus—an escape room and a treasure hunt—but with a twist. The slowest team will be eliminated each round. Make your escape before time runs out.', rating: 'G', category: 'EVENT', slug: 'misirlou' },
   { name: 'MISSION: POSSIBLE?', desc: 'Suggest solutions to problems. You decide what the problem is. ANC cats bothering you? No Diet Coke in your vendi? Pitch your solutions and raise real capital from the student body.', rating: 'R', category: 'EVENT', slug: 'mission-possible' },
@@ -71,7 +71,7 @@ const EventsGrid = ({ onEventClick }: EventsGridProps) => {
                     {event.desc}
                   </p>
                   {/* Showtime style footer */}
-                  {event.name !== "WHAT DA FUKREY" && event.name !== "MISSION: POSSIBLE?" && (
+                  {event.name !== "EVENT 404" && event.name !== "MISSION: POSSIBLE?" && (
                     <div className="flex items-center gap-2 pt-3 border-t border-border group-hover:border-primary-foreground/30 transition-colors">
                       <span className="text-xs font-mono font-bold text-primary group-hover:text-primary-foreground transition-colors">
                         REGISTER HERE

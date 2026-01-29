@@ -4,7 +4,7 @@ import { Clapperboard } from 'lucide-react';
 
 const events = [
   { date: 'JAN 21', title: 'REGISTRATIONS OPEN', scene: 'SCENE 01' },
-  { date: 'JAN 31', title: 'WHAT DA FUKREY', scene: 'SCENE 02' },
+  { date: 'JAN 31', title: 'EVENT 404', scene: 'SCENE 02' },
   { date: 'FEB 02', title: 'CAREER FAIR INTERVIEWS', scene: 'SCENE 03' },
   { date: 'FEB 03', title: 'ONE RED PAPERCLIP', scene: 'SCENE 04', slug: 'dehack' },
   { date: 'FEB 04', title: 'WOLF OF DALAL STREET', scene: 'SCENE 05', slug: 'dehack' },
