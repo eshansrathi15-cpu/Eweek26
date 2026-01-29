@@ -83,7 +83,7 @@ const FeatureHighlights = () => {
                 </div>
                 <div className="h-px flex-1 bg-primary/20" />
                 <span className="text-[12px] text-muted-foreground tracking-tighter uppercase font-bold">
-                  BITS PILANI
+                  E-WEEK
                 </span>
               </div>
             </motion.div>)}

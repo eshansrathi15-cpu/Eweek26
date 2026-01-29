@@ -177,7 +177,7 @@ const AboutEWeek = () => {
               About E-Week
             </motion.h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-sans">
-              A CEL Production • February 02-08, 2026
+              February 02-08, 2026
             </p>
           </motion.div>
         </div>
@@ -335,7 +335,7 @@ const AboutEWeek = () => {
       <footer className="py-8 border-t border-border/50 relative z-10">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-[10px] font-mono text-muted-foreground/50 tracking-widest">
-            DIRECTED & PRODUCED BY CEL • SCREENPLAY BY THE E-WEEK TEAM
+            DIRECTED & PRODUCED BY E-WEEK TEAM
           </p>
         </div>
       </footer>

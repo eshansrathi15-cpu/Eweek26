@@ -190,7 +190,7 @@ const Dehack = () => {
             DE<span className="text-primary animate-pulse">HACK</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-10 font-sans leading-relaxed">
-            Build the future with BITS Pilani's flagship 4 day hackathon where engineering meets entrepreneurship.
+            Build the future with our flagship 4 day hackathon where engineering meets entrepreneurship.
           </p>
 
           {/* LOGISTICS GRID */}

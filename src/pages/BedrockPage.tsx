@@ -277,7 +277,7 @@ const BedrockPage = () => {
                             You've had countless dinners there but it's time we turn the tables around!
                         </p>
                         <p className="text-lg md:text-xl">
-                            CEL brings to you, BEDROCK-the flagship event of E-Week 2024.
+                            We bring to you BEDROCK-the flagship event of E-Week 2024.
                             It's your chance to make your own team with creative, street smart and those jugaadu friends
                             to manage a restaurant at C'not. Imagine running Sharma's or Kamal's for a day and going crazy
                             with the marketing just to clock in the maximum revenue.

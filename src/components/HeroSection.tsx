@@ -47,7 +47,7 @@ const HeroSection = () => {
           className="inline-flex items-center gap-2 mb-6 px-4 py-2 border border-primary/50 bg-primary/10"
         >
           <ChevronLeft className="w-4 h-4 text-primary fill-primary" />
-          <span className="font-mono text-sm text-primary tracking-widest">CEL Presents</span>
+          <span className="font-mono text-sm text-primary tracking-widest">Presenting</span>
           <ChevronRight className="w-4 h-4 text-primary fill-primary" />
         </motion.div>
 
@@ -85,7 +85,7 @@ const HeroSection = () => {
           <div className="bg-primary text-primary-foreground px-5 md:px-8 py-2 md:py-4 font-mono relative">
             <div className="text-[10px] md:text-xs opacity-70 mb-0.5 md:mb-1">Theater Timing </div>
             <div className="text-lg md:text-2xl font-bold tracking-wider">FEB 02 - 08</div>
-            <div className="text-[10px] md:text-xs opacity-70 mt-0.5 md:mt-1">BITS PILANI</div>
+            <div className="text-[10px] md:text-xs opacity-70 mt-0.5 md:mt-1"></div>
           </div>
           <div className="ticket-perf w-2.5 h-12 md:w-3 md:h-16 bg-primary" />
         </motion.div>
@@ -123,7 +123,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.4 }}
           className="mt-8 text-xs text-muted-foreground font-mono tracking-wider"
         >
-          PRESENTED & PRODUCED BY CEL
+          E-WEEK '26'
         </motion.p>
       </motion.div>
     </section>

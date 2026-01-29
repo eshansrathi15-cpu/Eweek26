@@ -41,7 +41,7 @@ const ClapperOverlay = ({ isVisible, text }: ClapperOverlayProps) => {
                 </span>
               </div>
               <div className="flex justify-between font-mono text-white text-[10px] uppercase tracking-widest opacity-80">
-                <span>DIR: CEL</span>
+                <span>DIR: E-WEEK</span>
                 <span>TAKE 01</span>
               </div>
             </div>
