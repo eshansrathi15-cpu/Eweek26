@@ -101,7 +101,7 @@ const GoogleLoginBtn = () => {
             <Dialog open={showDisclaimer} onOpenChange={setShowDisclaimer}>
                 <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
-                        <DialogTitle className="font-mono text-xl">Important Disclaimer</DialogTitle>
+                        <DialogTitle className="font-mono text-xl">Disclaimer</DialogTitle>
                         <DialogDescription className="text-sm">
                             Please read and acknowledge the following before proceeding
                         </DialogDescription>
