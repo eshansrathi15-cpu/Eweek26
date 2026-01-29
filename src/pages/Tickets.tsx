@@ -17,7 +17,7 @@ const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
     prize: "TBA"
   },
   "WOLF OF DALAL STREET": {
-    description: "Durex making diapers? Prove you can pitch the impossible and snag a spot on BITS' very own stock market. Market your stocks, trash talk competitors and collect E-Bucks to bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
+    description: "Colgate making candy? Prove you can pitch the impossible and snag a spot on BITS' very own stock market. Market your stocks, trash talk competitors and bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
     prize: "TBA"
   },
   "HOW TO TRAIN YOUR DELIVERY TEAM": {
@@ -33,7 +33,7 @@ const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
     prize: "TBA"
   },
   "EVENT 404": {
-    description: "Tired of your wingies? Sell them. Navigate the ultimate trading challenge where strategy meets negotiation in this high-stakes marketplace.",
+    description: "Navigate the ultimate trading challenge where strategy meets negotiation in this high-stakes marketplace with a twist: how well do you know your friends?",
     prize: "TBA"
   }
 };
