@@ -660,7 +660,7 @@ const BedrockPage = () => {
                                     value={numMembers}
                                     onChange={handleNumMembersChange}
                                     className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                                    placeholder="Enter number..."
+                                    placeholder="Enter number (max 8)..."
                                 />
                             </div>
 

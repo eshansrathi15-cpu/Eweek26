@@ -237,7 +237,7 @@ const BedRockSection = () => {
                 size="lg"
                 className="text-lg border-2 border-primary text-primary hover:bg-primary/10 font-bold px-10 py-8 tracking-widest uppercase"
               >
-                BOOK NOW
+                REGISTER HERE
               </Button>
             </div>
           </motion.div>
@@ -339,7 +339,7 @@ const BedRockSection = () => {
                     value={numMembers}
                     onChange={handleNumMembersChange}
                     className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
-                    placeholder="Enter number..."
+                    placeholder="Enter number (max 8)..."
                   />
                 </div>
 
