@@ -45,6 +45,16 @@ const Tickets = () => {
   const [learnMoreEvent, setLearnMoreEvent] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Team registration states
+  const [showTeamModal, setShowTeamModal] = useState(false);
+  const [teamModalEvent, setTeamModalEvent] = useState<string | null>(null);
+  const [teamName, setTeamName] = useState('');
+  const [captainName, setCaptainName] = useState('');
+  const [captainEmail, setCaptainEmail] = useState('');
+  const [captainPhone, setCaptainPhone] = useState('');
+  const [numMembers, setNumMembers] = useState('');
+  const [teamMembers, setTeamMembers] = useState<Array<{name: string, id: string, phone: string}>>([]);
+
   // Google Login flow
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -99,7 +109,93 @@ const Tickets = () => {
       return;
     }
 
-    setSelectedEvent(eventName);
+    // Check if this event requires team registration
+    if (eventName === "WOLF OF DALAL STREET" || eventName === "HOW TO TRAIN YOUR DELIVERY TEAM") {
+      // Open team registration modal
+      setTeamModalEvent(eventName);
+      setCaptainName(user?.name || '');
+      setCaptainEmail(user?.email || '');
+      setShowTeamModal(true);
+    } else {
+      // Open individual registration confirmation modal
+      setSelectedEvent(eventName);
+    }
+  };
+
+  const handleNumMembersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setNumMembers(inputValue);
+    if (inputValue !== '') {
+      const numValue = parseInt(inputValue);
+      if (!isNaN(numValue) && numValue > 0) {
+        const membersCount = Math.max(0, numValue - 1);
+        setTeamMembers(Array(membersCount).fill(null).map(() => ({
+          name: '',
+          id: '',
+          phone: ''
+        })));
+      }
+    } else {
+      setTeamMembers([]);
+    }
+  };
+
+  const handleMemberChange = (index: number, field: string, value: string) => {
+    const updatedMembers = [...teamMembers];
+    updatedMembers[index] = {
+      ...updatedMembers[index],
+      [field]: value
+    };
+    setTeamMembers(updatedMembers);
+  };
+
+  const handleTeamSubmit = async () => {
+    if (!teamName || !captainPhone) {
+      toast.error('Please fill all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const membersData = teamMembers.map((m: any) => `${m.name} (${m.id}) [${m.phone}]`).join(', ');
+      const sheetName = EVENT_SHEET_MAP[teamModalEvent!];
+
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          sheet_name: sheetName,
+          row_data: [new Date().toISOString(), teamName, captainName, captainEmail, captainEmail, captainPhone, numMembers, membersData]
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Registration successful!', {
+          description: `Your team has been registered for ${teamModalEvent}.`
+        });
+        addRegisteredEvent(sheetName);
+        setShowTeamModal(false);
+        setTeamModalEvent(null);
+        setTeamName('');
+        setCaptainPhone('');
+        setNumMembers('');
+        setTeamMembers([]);
+      } else {
+        toast.error('Registration failed', {
+          description: data.error
+        });
+      }
+    } catch (error) {
+      toast.error('Registration failed', {
+        description: 'Please try again later.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleConfirmRegistration = async () => {
@@ -316,7 +412,164 @@ const Tickets = () => {
         )}
       </AnimatePresence>
 
-      {/* Confirmation Modal */}
+      {/* Team Registration Modal (for Wolf of Dalal Street & How To Train Your Delivery Team) */}
+      <AnimatePresence>
+        {showTeamModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowTeamModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-background border-2 border-primary/30 p-8 film-grain"
+            >
+              <button
+                onClick={() => setShowTeamModal(false)}
+                className="absolute top-4 right-4 text-primary hover:text-foreground transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold uppercase tracking-tighter text-primary mb-2">
+                  SIGN_UP_YOUR_SQUAD
+                </h2>
+                <p className="text-xs text-muted-foreground uppercase tracking-widest">
+                  {teamModalEvent === "WOLF OF DALAL STREET" ? "TEAM UP WITH UP TO 5 PEOPLE." : "TEAM UP WITH UP TO 6 PEOPLE."}
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2">
+                    1. Team Name
+                  </label>
+                  <input
+                    type="text"
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                    placeholder="Enter team name..."
+                  />
+                </div>
+
+                <div className="border-l-2 border-primary/30 pl-6 space-y-4">
+                  <p className="text-xs text-primary uppercase tracking-widest font-bold">CAPTAIN DETAILS</p>
+                  <div>
+                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                      2. Captain - Name (from Google)
+                    </label>
+                    <input
+                      type="text"
+                      value={captainName}
+                      readOnly
+                      className="w-full bg-black/60 border border-primary/30 px-4 py-3 text-foreground/70 cursor-not-allowed font-mono"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                      3. Captain - Email (from Google)
+                    </label>
+                    <input
+                      type="email"
+                      value={captainEmail}
+                      readOnly
+                      className="w-full bg-black/60 border border-primary/30 px-4 py-3 text-foreground/70 cursor-not-allowed font-mono"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                      4. Captain - Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      value={captainPhone}
+                      onChange={(e) => setCaptainPhone(e.target.value)}
+                      className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                      placeholder="Enter phone number..."
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wider text-primary mb-2">
+                    5. Number of Team Members ({teamModalEvent === "WOLF OF DALAL STREET" ? "5" : "6"} Including Captain)
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    max={teamModalEvent === "WOLF OF DALAL STREET" ? "5" : "6"}
+                    value={numMembers}
+                    onChange={handleNumMembersChange}
+                    className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                    placeholder={`Enter number (max ${teamModalEvent === "WOLF OF DALAL STREET" ? "5" : "6"})...`}
+                  />
+                </div>
+
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="border-l-2 border-primary/30 pl-6 space-y-4">
+                    <p className="text-xs text-primary uppercase tracking-widest font-bold">
+                      MEMBER {index + 2} DETAILS
+                    </p>
+                    <div>
+                      <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                        {6 + index * 3}. Team Member {index + 2} - Name
+                      </label>
+                      <input
+                        type="text"
+                        value={member.name}
+                        onChange={(e) => handleMemberChange(index, 'name', e.target.value)}
+                        className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                        placeholder="Enter name..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                        {7 + index * 3}. Team Member {index + 2} - BITS Email
+                      </label>
+                      <input
+                        type="text"
+                        value={member.id}
+                        onChange={(e) => handleMemberChange(index, 'id', e.target.value)}
+                        className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                        placeholder="Enter BITS Email..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold uppercase tracking-wider text-foreground mb-2">
+                        {8 + index * 3}. Team Member {index + 2} - Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        value={member.phone}
+                        onChange={(e) => handleMemberChange(index, 'phone', e.target.value)}
+                        className="w-full bg-black/40 border border-primary/30 px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-mono"
+                        placeholder="Enter phone number..."
+                      />
+                    </div>
+                  </div>
+                ))}
+
+                <Button
+                  onClick={handleTeamSubmit}
+                  disabled={isSubmitting}
+                  className="w-full bg-primary text-black font-bold uppercase py-6 mt-8 tracking-widest hover:bg-primary/80 transition-all disabled:opacity-50"
+                >
+                  {isSubmitting ? 'SUBMITTING...' : 'FINALISE'}
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Individual Registration Confirmation Modal */}
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
