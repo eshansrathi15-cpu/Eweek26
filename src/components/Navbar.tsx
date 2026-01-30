@@ -46,7 +46,7 @@ const Navbar = () => {
 
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">
-        {['SHOWTIME', 'FEATURES', 'BESTSELLERS', 'E-BUCKS'].map(item => (
+        {['SHOWTIME', 'FEATURES', 'BESTSELLERS'].map(item => (
           <button
             key={item}
             onMouseEnter={() => {
@@ -57,7 +57,6 @@ const Navbar = () => {
               // Mapping menu items to their respective section IDs
               if (item === 'BESTSELLERS') scrollToSection('hits');
               else if (item === 'CAREER FAIR') scrollToSection('career-fair');
-              else if (item === 'E-BUCKS') scrollToSection('ebucks');
               else scrollToSection(item.toLowerCase());
             }}
             className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
@@ -68,28 +67,8 @@ const Navbar = () => {
         ))}
       </div>
 
-      {/* Auth Buttons and E-BUCKS Counter */}
+      {/* Auth Buttons */}
       <div className="flex items-center gap-4">
-        {isAuthenticated && (
-          <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-sm">
-            <motion.div
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <Coins className="w-5 h-5 text-primary" />
-            </motion.div>
-            <span className="font-mono text-base font-bold text-primary tracking-wider">
-              {balance.toLocaleString()}
-            </span>
-          </div>
-        )}
         <GoogleLoginBtn />
       </div>
     </motion.nav>

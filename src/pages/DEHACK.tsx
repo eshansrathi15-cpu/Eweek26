@@ -190,7 +190,7 @@ const Dehack = () => {
             DE<span className="text-primary animate-pulse">HACK</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-10 font-sans leading-relaxed">
-            Build the future with BITS Pilani's flagship 4 day hackathon where engineering meets entrepreneurship.
+            Build the future with our flagship 4 day hackathon where engineering meets entrepreneurship.
           </p>
 
           {/* LOGISTICS GRID */}
@@ -221,9 +221,9 @@ const Dehack = () => {
               <Trophy size={80} className="md:w-32 md:h-32" />
             </div>
             <p className="text-primary font-mono text-xs uppercase tracking-[0.3em] mb-2 font-bold">TOTAL_STAKES</p>
-            <h2 className="text-4xl md:text-7xl font-mono font-black text-foreground tracking-tighter">$$$<span className="text-primary"></span>
+            <h2 className="text-4xl md:text-7xl font-mono font-black text-foreground tracking-tighter">₹50,000<span className="text-primary"></span>
             </h2>
-            <p className="text-muted-foreground font-mono text-[10px] md:text-sm mt-2">Plus Incubation Opportunities, Cash Prizes.</p>
+            <p className="text-muted-foreground font-mono text-[10px] md:text-sm mt-2">Plus Incubation Opportunities, API credits.</p>
           </motion.div>
         </motion.div>
 

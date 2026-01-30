@@ -51,7 +51,7 @@ const TrailerTheater = () => {
         {/* Tech Specs Footer */}
         <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 opacity-50">
           <p className="font-mono text-xs tracking-widest uppercase">
-            Produced by CEL • BITS Pilani • Director's Cut
+            E-Week • Director's Cut
           </p>
           <div className="flex gap-4">
             <div className="px-3 py-1 border border-muted-foreground/30 font-mono text-[10px]">4K UHD</div>

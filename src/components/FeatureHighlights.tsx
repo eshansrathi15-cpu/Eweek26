@@ -5,7 +5,7 @@ const FeatureHighlights = () => {
     title: "CAREER FAIR",
     type: "NETWORKING",
     icon: <Briefcase className="w-5 h-5 text-primary" />,
-    description: "Direct access to premiere startups. Submit your applications, secure your internship and solidfy your position in the ecosystem. Registrations opening soon!",
+    description: "Direct access to premiere startups. Submit your applications, secure your internship and solidify your position in the ecosystem. Registrations opening soon!",
     date: "FEB 02"
   }, {
     title: "MOVIE SCREENING",
@@ -83,7 +83,7 @@ const FeatureHighlights = () => {
                 </div>
                 <div className="h-px flex-1 bg-primary/20" />
                 <span className="text-[12px] text-muted-foreground tracking-tighter uppercase font-bold">
-                  BITS PILANI
+                  E-WEEK
                 </span>
               </div>
             </motion.div>)}

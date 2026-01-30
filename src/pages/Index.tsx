@@ -8,7 +8,6 @@ import DeHackSection from '@/components/DeHackSection';
 import BedRockSection from '@/components/BedRockSection';
 import FeatureHighlights from '@/components/FeatureHighlights';
 import EventsGrid, { events } from '@/components/EventsGrid';
-import BitscoinSection from '@/components/EBucksSection';
 import SponsorsSection from '@/components/SponsorsSection';
 import Footer from '@/components/Footer';
 import TicketPopup from '@/components/TicketPopup';
@@ -59,7 +58,6 @@ const Index = () => {
         <BedRockSection />
         <FeatureHighlights />
         <EventsGrid onEventClick={handleEventClick} />
-        <BitscoinSection />
         <SponsorsSection />
         <Footer />
       </div>

@@ -65,7 +65,7 @@ const Footer = () => {
             <img src={celLogo} alt="CEL Logo" className="w-6 h-6" />
             <div>
               <span className="font-mono text-lg font-bold">E-WEEK 2026</span>
-              <p className="text-muted-foreground tracking-widest font-sans text-xs">A CEL Production</p>
+              <p className="text-muted-foreground tracking-widest font-sans text-xs">E-Week '26</p>
             </div>
           </div>
           <p className="text-muted-foreground text-sm font-sans">
@@ -102,7 +102,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border">
         <p className="text-muted-foreground text-xs font-mono">
-          © 2026 E-WEEK, BITS PILANI. ALL RIGHTS RESERVED.
+          © 2026 E-WEEK. ALL RIGHTS RESERVED.
         </p>
 
         {/* Rocket Easter Egg */}
@@ -158,7 +158,7 @@ const Footer = () => {
 
       {/* Credits roll style */}
       <div className="mt-8 pt-6 border-t border-border/50 text-center">
-        <p className="text-[10px] font-mono text-muted-foreground/50 tracking-widest">DIRECTED & PRODUCED BY CEL • SCREENPLAY BY THE E-WEEK TEAM</p>
+        <p className="text-[10px] font-mono text-muted-foreground/50 tracking-widest">DIRECTED & PRODUCED BY E-WEEK TEAM</p>
       </div>
     </div>
   </footer>;
