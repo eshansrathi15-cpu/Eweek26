@@ -109,7 +109,7 @@ const HeroSection = () => {
           className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
         >
           <Button onClick={handleGetTickets} variant="default" size="lg" className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6">
-            GET TICKETS
+            REGISTER HERE
           </Button>
           <Button onClick={handleWatchTrailer} variant="outline" size="lg" className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6">
             <Play className="w-4 h-4 md:w-5 md:h-5 mr-2" />
