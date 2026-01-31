@@ -52,7 +52,7 @@ const EventsPage = () => {
   };
 
   return (
-    <section className="min-h-screen py-20 px-6 relative font-mono text-white">
+    <section id="events" className="min-h-screen py-20 px-6 relative font-mono text-white">
       <div className="max-w-6xl mx-auto">
         {/* Header matching your screenshot's "EVENT LINEUP" style */}
         <header className="text-center mb-16">
