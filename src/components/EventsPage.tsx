@@ -15,35 +15,35 @@ const EventsPage = () => {
   const events: Event[] = [
     {
       title: "One Red Paperclip",
-      description: "Trade your way to the top in this legendary bartering challenge. Starting with just one red paperclip, negotiate to climb the value chain.",
+      description: "Trade your way to the top in this legendary bartering challenge across campus. Starting with just one paperclip, negotiate to climb the value chain!",
       date: "Feb 03, 2026",
-      venue: "Main Arena",
+      venue: "SAC HALL",
       teams: "Individual",
-      prize: "Mystery Prize",
+      prize: "UP TO ₹10,000",
     },
     {
-      title: "Misirlou: A Mystery",
+      title: "Misirlou: A Knives Out Mystery",
       description: "Step into a world of intrigue. Solve the ultimate murder mystery using deductive skills and teamwork. Every clue matters.",
-      date: "Feb 04, 2026",
-      venue: "Mystery Hall",
+      date: "Feb 07, 2026",
+      venue: "TBA",
       teams: "4-6 Members",
-      prize: "Detective Badge",
+      prize: "UP TO ₹10,000",
     },
     {
       title: "Wolf of Dalal Street",
-      description: "Enter the high-stakes world of stock trading. Buy, sell, and dominate the market in this intense trading simulation.",
+      description: "Colgate selling candy? Market your weird product to launch your IPO! Buy, sell, and dominate the market in this intense trading simulation.",
       date: "Feb 05, 2026",
       venue: "Trading Floor",
-      teams: "2-4 Members",
-      prize: "Cash Prize",
+      teams: "2-5 Members",
+      prize: "UP TO ₹10,000",
     },
     {
       title: "Train Your Delivery Team",
-      description: "Master the art of logistics and team coordination. Optimize routes and manage resources under pressure.",
+      description: "Take over ANC and Looters for a day. Optimize routes and manage resources under pressure to maximise sales and win a huge cash prize!",
       date: "Feb 06, 2026",
-      venue: "Operations Center",
-      teams: "3-5 Members",
-      prize: "Efficiency Award",
+      venue: "ANC & LOOTERS",
+      teams: "4-6 Members",
+      prize: "UP TO ₹30,000",
     }
   ];
 
@@ -54,7 +54,7 @@ const EventsPage = () => {
   return (
     <section className="min-h-screen py-20 px-6 relative font-mono text-white">
       <div className="max-w-6xl mx-auto">
-        {/* Header matching your screenshot's "THE LINEUP" style */}
+        {/* Header matching your screenshot's "EVENT LINEUP" style */}
         <header className="text-center mb-16">
           <motion.div 
             initial={{ opacity: 0 }}
@@ -96,7 +96,22 @@ const EventsPage = () => {
                   <DetailItem icon={<Calendar className="w-3 h-3"/>} label="DATE" value={event.date} />
                   <DetailItem icon={<MapPin className="w-3 h-3"/>} label="VENUE" value={event.venue} />
                   <DetailItem icon={<Users className="w-3 h-3"/>} label="SIZE" value={event.teams} />
-                  <DetailItem icon={<Trophy className="w-3 h-3"/>} label="REWARD" value={event.prize} />
+                  
+                  {/* Enhanced Prize Box with Pulse Animation */}
+                  <motion.div 
+                    initial={{ scale: 1 }}
+                    animate={{ scale: [1, 1.02, 1] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    className="flex flex-col gap-1 bg-cyan-400/20 p-3 border border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+                  >
+                    <div className="flex items-center gap-2 text-cyan-400">
+                      <Trophy className="w-3 h-3 animate-bounce"/>
+                      <span className="text-[10px] tracking-[0.2em] font-black">REWARD</span>
+                    </div>
+                    <span className="text-lg text-white font-black uppercase tracking-tighter drop-shadow-sm">
+                      {event.prize}
+                    </span>
+                  </motion.div>
                 </div>
               </div>
 
