@@ -75,7 +75,7 @@ const FeatureHighlights = () => {
                 
                 {/* New Action Button */}
                 <Button 
-                  onClick={() => handleRegister(highlight.title)}
+                  onClick={() => window.open('https://careerfair.notion.site/', '_blank')}
                   className="bg-[#7DF9FF] hover:bg-[#5ce6ee] text-black rounded-none 
                              font-bold tracking-[0.2em] text-xs py-6 px-8 transition-all
                              shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none mb-10"
