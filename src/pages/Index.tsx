@@ -4,15 +4,15 @@ import WaveformBackground from '@/components/WaveformBackground';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import TimelineSection from '@/components/TimelineSection';
+import EventsPage from '@/components/EventsPage';
 import DeHackSection from '@/components/DeHackSection';
 import BedRockSection from '@/components/BedRockSection';
-import EventsPage from '@/components/EventsPage';
 import FeatureHighlights from '@/components/FeatureHighlights';
 import SponsorsSection from '@/components/SponsorsSection';
 import Footer from '@/components/Footer';
 import TicketPopup from '@/components/TicketPopup';
 
-// Local events data for popup state management since EventsGrid is removed
+// Local events data for popup state management
 const events = [
   { slug: "one-red-paperclip", name: "One Red Paperclip", desc: "Trade your way to the top in this legendary bartering challenge." },
   { slug: "misirlou", name: "Misirlou: A Mystery", desc: "Step into a world of intrigue. Solve the ultimate murder mystery." },
@@ -52,9 +52,12 @@ const Index = () => {
         <Navbar />
         <HeroSection />
         <TimelineSection />
-        <DeHackSection />
-        <BedRockSection />
+        
+        {/* EventsPage is now positioned above DeHackSection */}
         <EventsPage />
+        <DeHackSection />
+        
+        <BedRockSection />
         <FeatureHighlights />
         <SponsorsSection />
         <Footer />
