@@ -164,7 +164,7 @@ const DeHackSection = () => {
   };
 
   return (
-    <section id="features" className="py-24 relative overflow-hidden">
+    <section id="dehack" className="py-24 relative overflow-hidden">
       <AnimatePresence>
         {isLaunching && (
           <motion.div

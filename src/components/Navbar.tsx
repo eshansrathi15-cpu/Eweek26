@@ -10,6 +10,14 @@ const Navbar = () => {
   const { isAuthenticated } = useAuth();
   const { balance } = useEBucks();
 
+  // Mapping of Menu Labels to the Section IDs in your Index/App page
+  const sectionMapping: Record<string, string> = {
+    'SHOWTIME': 'showtime',
+    'LEGACY EVENTS': 'dehack', // Assuming DehackSection.tsx has id="dehack"
+    'EVENT LIST': 'events',    // Assuming EventsPage.tsx has id="events"
+    'CAREER FAIR': 'hits'      // From your FeatureHighlights code: id="hits"
+  };
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -46,19 +54,10 @@ const Navbar = () => {
 
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">
-        {['SHOWTIME', 'FEATURES', 'BESTSELLERS'].map(item => (
+        {['SHOWTIME', 'LEGACY EVENTS', 'EVENT LIST', 'CAREER FAIR'].map(item => (
           <button
             key={item}
-            onMouseEnter={() => {
-              // Prefetch logic for routes if they were links
-              // For section scrolls, nothing to prefetch as they are in Index.tsx
-            }}
-            onClick={() => {
-              // Mapping menu items to their respective section IDs
-              if (item === 'BESTSELLERS') scrollToSection('hits');
-              else if (item === 'CAREER FAIR') scrollToSection('career-fair');
-              else scrollToSection(item.toLowerCase());
-            }}
+            onClick={() => scrollToSection(sectionMapping[item])}
             className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
           >
             {item}
