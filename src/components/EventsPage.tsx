@@ -19,7 +19,7 @@ const EventsPage = () => {
       date: "Feb 03, 2026",
       venue: "SAC HALL",
       teams: "Individual",
-      prize: "UP TO ₹10,000",
+      prize: "PRIZE POOL OF ₹10,000",
     },
     {
       title: "Misirlou: A Knives Out Mystery",
@@ -27,7 +27,7 @@ const EventsPage = () => {
       date: "Feb 07, 2026",
       venue: "TBA",
       teams: "4-6 Members",
-      prize: "UP TO ₹10,000",
+      prize: "PRIZE POOL OF ₹10,000",
     },
     {
       title: "Wolf of Dalal Street",
@@ -35,7 +35,7 @@ const EventsPage = () => {
       date: "Feb 05, 2026",
       venue: "Trading Floor",
       teams: "2-5 Members",
-      prize: "UP TO ₹10,000",
+      prize: "PRIZE POOL OF ₹10,000",
     },
     {
       title: "Train Your Delivery Team",
@@ -43,7 +43,7 @@ const EventsPage = () => {
       date: "Feb 06, 2026",
       venue: "ANC & LOOTERS",
       teams: "4-6 Members",
-      prize: "UP TO ₹30,000",
+      prize: "PRIZE POOL OF ₹30,000",
     }
   ];
 
