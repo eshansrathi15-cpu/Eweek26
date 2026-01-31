@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import TimelineSection from '@/components/TimelineSection';
 import DeHackSection from '@/components/DeHackSection';
 import BedRockSection from '@/components/BedRockSection';
+import EventsPage from '@/components/EventsPage';
 import FeatureHighlights from '@/components/FeatureHighlights';
 import EventsGrid, { events } from '@/components/EventsGrid';
 import SponsorsSection from '@/components/SponsorsSection';
@@ -56,6 +57,7 @@ const Index = () => {
         <TimelineSection />
         <DeHackSection />
         <BedRockSection />
+        <EventsPage />
         <FeatureHighlights />
         <EventsGrid onEventClick={handleEventClick} />
         <SponsorsSection />
