@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Ticket, Star, Zap, Trophy, X, Check, Info } from "lucide-react";
+import { ArrowLeft, Ticket, Star, Clock, Trophy, X, Check, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
@@ -81,10 +81,10 @@ const Tickets = () => {
 
 
   const events = [
-    { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", prize: "$$$" },
-    { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", prize: "$$$" },
-    { id: 5, name: "MISIRLOU: A KNIVES OUT MYSTERY", type: "Exploration", prize: "$$$" },
-    { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "", prize: "$$$" },
+    { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", date: "FEB 02", prize: "$$$" },
+    { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", date: "FEB 06", prize: "$$$" },
+    { id: 5, name: "MISIRLOU: A KNIVES OUT MYSTERY", type: "Exploration", date: "FEB 07", prize: "$$$" },
+    { id: 6, name: "ONE RED PAPERCLIP", type: "Logistics Challenge", date: "FEB 03", prize: "$$$" },
   ];
 
   const isEventRegistered = (eventName: string) => {
@@ -306,7 +306,7 @@ const Tickets = () => {
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2 group-hover:text-primary transition-colors">{event.name}</h3>
                   <div className="flex gap-6 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-2 uppercase font-semibold"><Zap className="w-3 h-3" /> {event.date}</span>
+                    <span className="flex items-center gap-2 uppercase font-semibold"><Clock className="w-3 h-3" /> {event.date}</span>
                     <span className="flex items-center gap-2 uppercase font-semibold"><Trophy className="w-3 h-3 text-yellow-500" /> {event.prize}</span>
                   </div>
                 </div>
