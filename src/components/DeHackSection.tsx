@@ -269,7 +269,7 @@ const DeHackSection = () => {
               </Button>
               <Button onClick={handleOpenModal} variant="outline" size="lg" className="text-lg group border-primary bg-primary/10 hover:bg-primary/20">
                 <Rocket className="w-5 h-5 mr-2 text-primary" />
-                <span className="text-primary uppercase font-bold">Sign Up</span>
+                <span className="text-primary uppercase font-bold">REGISTER HERE</span>
               </Button>
             </div>
           </motion.div>
