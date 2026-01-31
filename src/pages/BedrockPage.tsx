@@ -210,8 +210,8 @@ const BedrockPage = () => {
                         </div>
                         <div className="border border-primary/20 p-3 md:p-4 bg-primary/10">
                             <Award className="w-5 h-5 text-primary mx-auto mb-2" />
-                            <span className="text-xl md:text-2xl font-bold block text-foreground tracking-tighter">$$$</span>
-                            <span className="text-[9px] md:text-[10px] text-muted-foreground uppercase tracking-widest">Grand_Prize</span>
+                            <span className="text-xl md:text-2xl font-bold block text-foreground tracking-tighter">8 FEB</span>
+                            <span className="text-[9px] md:text-[10px] text-muted-foreground uppercase tracking-widest">Showdown</span>
                         </div>
                     </div>
                 </motion.div>
