@@ -81,8 +81,6 @@ const Tickets = () => {
 
 
   const events = [
-    { id: 1, name: "MISSION: POSSIBLE?", type: "Crowdfunding", prize: "$$$" },
-    { id: 2, name: "EVENT 404", type: "Online Game", prize: "$$$" },
     { id: 3, name: "WOLF OF DALAL STREET", type: "Trading Sim", prize: "$$$" },
     { id: 4, name: "HOW TO TRAIN YOUR DELIVERY TEAM", type: "Ops Challenge", prize: "$$$" },
     { id: 5, name: "MISIRLOU: A KNIVES OUT MYSTERY", type: "Exploration", prize: "$$$" },
@@ -320,30 +318,20 @@ const Tickets = () => {
                   >
                     <Info className="w-4 h-4 mr-2" /> LEARN_MORE
                   </Button>
-                  {event.name === "EVENT 404" || event.name === "MISSION: POSSIBLE?" ? (
-                    <a
-                      href="javascript:void(0)"
-                      onClick={(e) => e.preventDefault()}
-                      className="w-full md:w-auto font-bold uppercase py-5 px-8 tracking-widest transition-transform shadow-[0_0_20px_rgba(147,245,255,0.2)] text-sm bg-primary text-black hover:scale-105 inline-flex items-center justify-center cursor-pointer"
-                    >
-                      COMING SOON
-                    </a>
-                  ) : (
-                    <Button
-                      onClick={() => handleRegisterClick(event.name)}
-                      className={`w-full md:w-auto font-bold uppercase py-5 px-8 tracking-widest transition-transform shadow-[0_0_20px_rgba(147,245,255,0.2)] text-sm ${isRegistered
-                        ? 'bg-green-500 text-white hover:bg-green-600'
-                        : 'bg-primary text-black hover:scale-105'
-                        }`}
-                      disabled={isRegistered || isCheckingStatus}
-                    >
-                      {isRegistered ? (
-                        <span className="flex items-center gap-2"><Check className="w-5 h-5" /> REGISTERED</span>
-                      ) : (
-                        'REGISTER_NOW'
-                      )}
-                    </Button>
-                  )}
+                  <Button
+                    onClick={() => handleRegisterClick(event.name)}
+                    className={`w-full md:w-auto font-bold uppercase py-5 px-8 tracking-widest transition-transform shadow-[0_0_20px_rgba(147,245,255,0.2)] text-sm ${isRegistered
+                      ? 'bg-green-500 text-white hover:bg-green-600'
+                      : 'bg-primary text-black hover:scale-105'
+                      }`}
+                    disabled={isRegistered || isCheckingStatus}
+                  >
+                    {isRegistered ? (
+                      <span className="flex items-center gap-2"><Check className="w-5 h-5" /> REGISTERED</span>
+                    ) : (
+                      'REGISTER_NOW'
+                    )}
+                  </Button>
                 </div>
               </motion.div>
             );
