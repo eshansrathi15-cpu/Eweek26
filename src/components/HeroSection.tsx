@@ -10,14 +10,6 @@ const HeroSection = () => {
   const [clapperText, setClapperText] = useState("TICKETS"); // New state
   const navigate = useNavigate();
 
-  const handleGetTickets = () => {
-    setClapperText("TICKETS"); // Set text for tickets
-    setIsClapping(true);
-    setTimeout(() => {
-      navigate('/tickets');
-    }, 800);
-  };
-
   const handleWatchTrailer = () => {
     setClapperText("TRAILER"); // Set text for trailer
     setIsClapping(true);
@@ -106,11 +98,8 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
+          className="mt-8 md:mt-12 flex justify-center"
         >
-          <Button onClick={handleGetTickets} variant="default" size="lg" className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6">
-            REGISTER HERE
-          </Button>
           <Button onClick={handleWatchTrailer} variant="outline" size="lg" className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6">
             <Play className="w-4 h-4 md:w-5 md:h-5 mr-2" />
             WATCH TRAILER
