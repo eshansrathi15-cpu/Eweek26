@@ -45,7 +45,7 @@ const FeatureHighlights = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-16 text-foreground text-center">TRENDING <span className="text-primary text-shadow-glow">HITS</span>
+        }} className="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-16 text-foreground text-center"> <span className="text-primary text-shadow-glow">HIGHLIGHTS</span>
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

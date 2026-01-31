@@ -17,7 +17,7 @@ const EVENT_DETAILS: Record<string, { description: string; prize: string }> = {
     prize: "TBA"
   },
   "WOLF OF DALAL STREET": {
-    description: "Colgate making candy? Prove you can pitch the impossible and snag a spot on our very own stock market. Register with a team of 1-5 to market your stocks, trash talk competitors and bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
+    description: "Colgate making candy? Prove you can pitch the impossible and snag a spot on our very own stock market. Register with a team of 2-5 to market your stocks, trash talk competitors and bag the highest IPO! Test your market instincts and trading skills in this intense simulation.",
     prize: "TBA"
   },
   "HOW TO TRAIN YOUR DELIVERY TEAM": {
