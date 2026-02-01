@@ -34,16 +34,7 @@ const BedRockSection = () => {
   };
 
   const handleOpenModal = () => {
-    if (!isAuthenticated) {
-      toast.error('Please login first', {
-        description: 'You need to be logged in to register for events.'
-      });
-      return;
-    }
-    // Auto-fill captain details from Google login
-    setCaptainName(user?.name || '');
-    setCaptainEmail(user?.email || '');
-    setShowModal(true);
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLScad8pchFRBQg5_GLAqTmDOQf-RM3B_PbCCUMkg9a33n1gXRA/viewform', '_blank');
   };
 
   const handleNumMembersChange = (e) => {
