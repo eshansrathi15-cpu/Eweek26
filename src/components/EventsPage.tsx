@@ -9,6 +9,7 @@ interface Event {
   venue: string;
   teams: string;
   prize: string;
+  registrationLink: string;
 }
 
 const EventsPage = () => {
@@ -20,6 +21,7 @@ const EventsPage = () => {
       venue: "SAC HALL",
       teams: "Individual",
       prize: "PRIZE POOL OF ₹10,000",
+      registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLScXhbkqynuAk1C3zo2etetI3GXaPvd9TD9CbC___30r6AHNPQ/viewform",
     },
     {
       title: "Misirlou: A Knives Out Mystery",
@@ -28,6 +30,7 @@ const EventsPage = () => {
       venue: "TBA",
       teams: "4-6 Members",
       prize: "PRIZE POOL OF ₹10,000",
+      registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfQNYbZqPthmt7pzmJ0eO2TkTVGnnvQTAdTf11cMo5ZpaFV_A/viewform?usp=dialog",
     },
     {
       title: "Wolf of Dalal Street",
@@ -36,14 +39,16 @@ const EventsPage = () => {
       venue: "Trading Floor",
       teams: "2-5 Members",
       prize: "PRIZE POOL OF ₹10,000",
+      registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfXrr7KvmZxKbCn_o-Cyc_zPIrCUQRlO7S9I2f_RKUez71tJw/viewform",
     },
     {
-      title: "Train Your Delivery Team",
+      title: "How To Train Your Delivery Team",
       description: "Take over ANC and Looters for a day. Optimize routes and manage resources under pressure to maximise sales and win a huge cash prize!",
       date: "Feb 06, 2026",
       venue: "ANC & LOOTERS",
       teams: "4-6 Members",
       prize: "PRIZE POOL OF ₹30,000",
+      registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSciGgR6LiBOdJc4TkLEYjBBMVTkUy31vKNkGgLw4A6eqNS7Yg/viewform",
     }
   ];
 
@@ -117,7 +122,7 @@ const EventsPage = () => {
 
               {/* Action Button - Matches PLOT REVEAL style */}
               <Button 
-                onClick={() => handleRegister(event.title)}
+                onClick={() => window.open(event.registrationLink, '_blank')}
                 className="w-full bg-[#7DF9FF] hover:bg-[#5ce6ee] text-black rounded-none 
                            font-bold tracking-[0.2em] text-xs py-7 transition-all
                            shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none"
