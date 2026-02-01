@@ -80,15 +80,7 @@ const DeHackSection = () => {
   };
 
   const handleOpenModal = () => {
-    if (!isAuthenticated) {
-      toast.error('Please login first', {
-        description: 'You need to be logged in to register for events.'
-      });
-      return;
-    }
-    setCaptainName(user?.name || '');
-    setCaptainEmail(user?.email || '');
-    setShowModal(true);
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSfchPf5RNBt0-ymzQjWUTv5g7Owcl2OqxQGZyGOXOrpkXj3-Q/viewform', '_blank');
   };
 
   const handleNumMembersChange = (e) => {
@@ -164,7 +156,7 @@ const DeHackSection = () => {
   };
 
   return (
-    <section id="features" className="py-24 relative overflow-hidden">
+    <section id="dehack" className="py-24 relative overflow-hidden">
       <AnimatePresence>
         {isLaunching && (
           <motion.div
@@ -269,7 +261,7 @@ const DeHackSection = () => {
               </Button>
               <Button onClick={handleOpenModal} variant="outline" size="lg" className="text-lg group border-primary bg-primary/10 hover:bg-primary/20">
                 <Rocket className="w-5 h-5 mr-2 text-primary" />
-                <span className="text-primary uppercase font-bold">Sign Up</span>
+                <span className="text-primary uppercase font-bold">REGISTER HERE</span>
               </Button>
             </div>
           </motion.div>

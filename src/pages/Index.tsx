@@ -4,13 +4,21 @@ import WaveformBackground from '@/components/WaveformBackground';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import TimelineSection from '@/components/TimelineSection';
+import EventsPage from '@/components/EventsPage';
 import DeHackSection from '@/components/DeHackSection';
 import BedRockSection from '@/components/BedRockSection';
 import FeatureHighlights from '@/components/FeatureHighlights';
-import EventsGrid, { events } from '@/components/EventsGrid';
 import SponsorsSection from '@/components/SponsorsSection';
 import Footer from '@/components/Footer';
 import TicketPopup from '@/components/TicketPopup';
+
+// Local events data for popup state management
+const events = [
+  { slug: "one-red-paperclip", name: "One Red Paperclip", desc: "Trade your way to the top in this legendary bartering challenge." },
+  { slug: "misirlou", name: "Misirlou: A Mystery", desc: "Step into a world of intrigue. Solve the ultimate murder mystery." },
+  { slug: "wolf-of-dalal-street", name: "Wolf of Dalal Street", desc: "Enter the high-stakes world of stock trading." },
+  { slug: "delivery-team", name: "Train Your Delivery Team", desc: "Master the art of logistics and team coordination." }
+];
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,16 +37,6 @@ const Index = () => {
     }
   }, [searchParams]);
 
-  const handleEventClick = (event: typeof events[0]) => {
-    // Determine the slug (fallback to existing logic if needed, but we added slugs)
-    if (event.slug) {
-      setSearchParams({ event: event.slug });
-    } else {
-      // Fallback or just set state if no slug
-      setSelectedEvent(event);
-    }
-  };
-
   const handleClose = () => {
     setSearchParams({}); // Clear query params
     setSelectedEvent(null);
@@ -54,10 +52,13 @@ const Index = () => {
         <Navbar />
         <HeroSection />
         <TimelineSection />
+        
+        {/* EventsPage is now positioned above DeHackSection */}
+        <EventsPage />
         <DeHackSection />
+        
         <BedRockSection />
         <FeatureHighlights />
-        <EventsGrid onEventClick={handleEventClick} />
         <SponsorsSection />
         <Footer />
       </div>
