@@ -47,7 +47,7 @@ const EventsPage = () => {
       date: "Feb 06, 2026",
       venue: "ANC & LOOTERS",
       teams: "4-6 Members",
-      prize: "PRIZE POOL OF ₹30,000",
+      prize: "PRIZE POOL OF ₹20,000",
       registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSciGgR6LiBOdJc4TkLEYjBBMVTkUy31vKNkGgLw4A6eqNS7Yg/viewform",
     }
   ];
