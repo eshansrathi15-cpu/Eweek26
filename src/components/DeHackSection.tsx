@@ -80,15 +80,7 @@ const DeHackSection = () => {
   };
 
   const handleOpenModal = () => {
-    if (!isAuthenticated) {
-      toast.error('Please login first', {
-        description: 'You need to be logged in to register for events.'
-      });
-      return;
-    }
-    setCaptainName(user?.name || '');
-    setCaptainEmail(user?.email || '');
-    setShowModal(true);
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSfchPf5RNBt0-ymzQjWUTv5g7Owcl2OqxQGZyGOXOrpkXj3-Q/viewform', '_blank');
   };
 
   const handleNumMembersChange = (e) => {
